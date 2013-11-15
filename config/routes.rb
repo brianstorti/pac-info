@@ -1,6 +1,10 @@
 PacInfo::Application.routes.draw do
   resources :ventures do
-    get 'investiments/:category' => 'ventures#investiments', on: :collection
+    collection do
+      get 'investiments/:category' => 'ventures#investiments'
+      get 'investiments_by_type/:category' => 'ventures#investiments_by_type'
+      get 'investiments_by_status/:category' => 'ventures#investiments_by_status'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
