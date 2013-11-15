@@ -1,5 +1,11 @@
 PacInfo::Application.routes.draw do
-  resources :ventures, except: [:new, :edit]
+  resources :ventures
+
+  namespace :ventures do
+    resources :transports do
+      get 'investiments', on: :collection
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
