@@ -23,4 +23,12 @@ class Venture
       { '$group' => { '_id' => '$idn_estagio.estagio' ,
       'total' => {'$sum' => 1} }}  )  
   end
+
+  def self.investiments_by_region(category, region)
+    collection.aggregate(
+      { '$match' => {'idn_digs.Subeixo' => category}, 'sig_uf' => {$in => get_states_by_region(region)}},
+      { '$group' => { '_id' => '$sig_uf',
+      'valor_total' => {'$sum' => '$investimento_total'}, 'valor_total2' => {'$sum' => '$val_2011_2014'} }}  )  
+  end
+
 end
