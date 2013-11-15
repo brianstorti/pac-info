@@ -10,3 +10,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+
+# Ignore ui-interface files
+public/node_modules
+public/dist
+public/.tmp
+public/.sass-cache
+public/app/bower_components

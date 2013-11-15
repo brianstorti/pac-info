@@ -1,0 +1,32 @@
+$iconSpritePath: "../images/glyphicons-halflings.png";
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+
+@import "bootstrap";
+@import "_pac_navbar.scss";
+
+//Desktop
+@media (min-width: $screen-md-min) {
+
+	.pac-nav-site {
+		width: 930px;
+		float: none;
+		margin: auto;
+		li {
+			font-size: $font-size-base;
+			padding-left: $navbar-padding-horizontal;
+			padding-right: $navbar-padding-horizontal;
+		}
+	}
+}
+
+//Tablet
+@media (min-width: $screen-sm-min) {
+	.navbar {
+		z-index: -1;
+	}
+	.pac-banner {
+		margin-top: -110px;
+		z-index: $zindex-modal-background;
+	}
+
+}

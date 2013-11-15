@@ -1,0 +1,52 @@
+// Navbar nav links
+//
+// Builds on top of the `.nav` components with it's own modifier class to make
+// the nav the full height of the horizontal nav (above 768px).
+.navbar-nav {
+  > li > a {
+    font-family: $font-family-light;
+
+    &:focus {
+      font-family: $font-family-base;
+    }
+  }
+}
+
+
+// Pac Navbar Colorful
+//
+// Builds on top of the `.navbar` components with it's own modifier class to add
+// colorfour top border
+.pac-navbar-colorful.navbar-inverse {
+	background: $gray-dark url(../images/raibow-pattern.png) center -1px repeat-x;
+	background-size: 100% 3px;
+}
+
+// Pac Navbar Stite
+// Defines the main navigation bar
+.pac-nav-site {
+	width: 100%;
+	padding-bottom: 90px;
+	li {
+		font-size: $font-size-small;
+		a {
+			padding-left: floor($navbar-padding-horizontal * 0.5);
+			padding-right: floor($navbar-padding-horizontal * 0.5);
+		}
+	}
+}
+
+//Desktop
+@media (min-width: $screen-md-min) {
+
+	.pac-nav-site {
+		width: 930px;
+		float: none;
+		margin: auto;
+		li {
+			font-size: $font-size-base;
+			padding-left: floor($navbar-padding-horizontal * 1.5);
+			padding-right: floor($navbar-padding-horizontal * 1.5);
+		}
+	}
+}
