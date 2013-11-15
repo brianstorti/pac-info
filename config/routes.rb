@@ -4,6 +4,7 @@ PacInfo::Application.routes.draw do
       get 'investiments/:category' => 'ventures#investiments'
       get 'investiments_by_type/:category' => 'ventures#investiments_by_type'
       get 'investiments_by_status/:category' => 'ventures#investiments_by_status'
+      get 'investiments_by_region/:category/:region' => 'ventures#investiments_by_region'
     end
   end
 
