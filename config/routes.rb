@@ -1,10 +1,8 @@
 PacInfo::Application.routes.draw do
   resources :ventures
 
-  namespace :ventures do
-    resources :transports do
-      get 'investiments', on: :collection
-    end
+  resources :transports do
+    get 'investiments', on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
