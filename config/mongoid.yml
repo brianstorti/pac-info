@@ -13,4 +13,5 @@ test:
 production:
   sessions:
     default:
-      uri: pac_production
+      database: pacinfo
+      uri: <%= ENV['MONGOHQ_URL'] %>
