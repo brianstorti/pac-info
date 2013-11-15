@@ -1,0 +1,61 @@
+//
+// Wells
+// --------------------------------------------------
+.well {
+	border: none;
+	min-height: 330px;
+	margin-top: $line-height-computed;
+  margin-bottom: $line-height-computed;
+	@include clearfix()
+}
+
+// Colors
+.well-primary {
+  background-color: $brand-primary;
+}
+.well-success {
+  background-color: $brand-success;
+}
+.well-warning {
+  background-color: $brand-warning;
+}
+.well-danger {
+  background-color: $brand-danger;
+}
+.well-info {
+  background-color: $brand-info;
+}
+
+
+// Spaces
+.well-margin-lg {
+
+}
+
+.well-margin-md {
+
+}
+
+// Well shadow
+.well-shadow {
+	@include box-shadow(0px 1px 1px 0px rgba(0,0,0,0.20));
+}
+
+// Well Title
+// Define the well title text
+.well-title {
+	color: $white;
+	margin-bottom: 20px;
+}
+
+.well-title-inverse {
+	color: $gray-dark;
+	margin-bottom: 20px;
+}
+
+// Desktop
+// @media (min-width: $screen-md-min) {
+// 	.well {
+// 		margin-bottom: 0;
+// 	}
+// }

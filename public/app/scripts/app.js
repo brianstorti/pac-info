@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('pacApp', [
-  'ngCookies',
-  'ngSanitize'
-])
+    'ngCookies',
+    'ngSanitize',
+    'vegaModule'
+  ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -24,6 +24,7 @@ $red: 									#EB585C;
 $purple: 								#A085C6;
 $yellow: 								#FCD174;
 $orange: 								#FBAD2F;
+$white:									#FFFFFF;
 
 $brand-primary:         $blue !default;
 $brand-success:         $green !default;
@@ -94,9 +95,9 @@ $padding-small-horizontal:       10px !default;
 $line-height-large:              1.33 !default;
 $line-height-small:              1.5 !default;
 
-$border-radius-base:             4px !default;
-$border-radius-large:            6px !default;
-$border-radius-small:            3px !default;
+$border-radius-base:             8px !default;
+$border-radius-large:            10px !default;
+$border-radius-small:            5px !default;
 
 $component-active-color:         #fff !default;
 $component-active-bg:            $brand-primary !default;
@@ -481,10 +482,10 @@ $alert-danger-border:         $state-danger-border !default;
 
 // Progress bars
 // -------------------------
-$progress-bg:                 #f5f5f5 !default;
-$progress-bar-color:          #fff !default;
+$progress-bg:                 transparent !default;
+$progress-bar-color:          $white !default;
 
-$progress-bar-bg:             $brand-primary !default;
+$progress-bar-bg:             $white !default;
 $progress-bar-success-bg:     $brand-success !default;
 $progress-bar-warning-bg:     $brand-warning !default;
 $progress-bar-danger-bg:      $brand-danger !default;
@@ -551,7 +552,7 @@ $thumbnail-caption-padding:   9px !default;
 
 // Wells
 // -------------------------
-$well-bg:                     #f5f5f5 !default;
+$well-bg:                     #FFFFFF !default;
 
 
 // Badges

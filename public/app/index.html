@@ -72,26 +72,83 @@
 
     <!-- Add your site or application content here -->
     <!-- <div class="container" ng-view=""></div> -->
-    <div class="container pac-banner">
-      <div class="well">
-        <h2>Transporte</h2>
+    <section class="primary-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well well-shadow pac-banner">
+              <h2>Transporte</h2>
+            </div>
+          </div>
+        </div>
+
+        <p class="lead text-center">
+          Foram investidos aproximadamente
+          <span class="text-info">2 milhões</span> de reais em
+          <span class="text-primary">Rodovias</span>,
+          <span class="text-success">Ferrovias</span> e
+          <span class="text-warning">outros</span>
+        </p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well well-info">
+              <header class="well-title">Evolução dos investimentos</header>
+              <div pac-evolucao-investimentos></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="well well-warning">
+              <header class="well-title">Distribuição dos investidos</header>
+              <div pac-distribuicao-investimentos></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secondary-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well well-lg well-shadow">
+              <header class="well-title-inverse">Estágio dos investimentos</header>
+              <div pac-estagio-investimentos></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="primary-area">
+      <div class="container">
+        <p class="lead text-center">
+          Acompanhe como foi distribuidos os investimentos entre todas as regiões
+          <span class="text-info">Norte</span>,
+          <span class="text-primary">Nordeste</span>,
+          <span class="text-success">Centro-Oeste</span>,
+          <span class="text-warning">Sudeste</span> e
+          <span class="text-danger">Sul</span>
+        </p>
       </div>
 
-      <p class="lead text-center">
-        Foram investidos aproximadamente
-        <span class="text-info">2 milhões</span> de reais em
-        <span class="text-primary">Rodovias</span>,
-        <span class="text-success">Ferrovias</span> e
-        <span class="text-warning">outros</span>
-      </p>
-
-      <div class="row">
-        <div class="col-md-6 well well-primary">
+       <div class="row">
+        <div class="col-sm-4">
+          <div class="well well-success">
+            <header class="well-title">Sudeste</header>
+          </div>
         </div>
-        <div class="col-md-6 well well-primary">
+        <div class="col-sm-8">
+          <div class="well well-success">
+            <header class="well-title">Investimentos por Região</header>
+            <div class="col-md-6">
+              <div pac-distribuicao-investimentos></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+    </section>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -109,6 +166,8 @@
     <script src="bower_components/angular/angular.js"></script>
 
         <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/d3/d3.js"></script>
+        <script src="bower_components/vega/vega.js"></script>
         <script src="bower_components/bootstrap-sass/js/affix.js"></script>
         <script src="bower_components/bootstrap-sass/js/alert.js"></script>
         <script src="bower_components/bootstrap-sass/js/button.js"></script>
@@ -131,6 +190,10 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/modules/vega-module.js"></script>
+        <script src="scripts/directives/estagio-investimentos.js"></script>
+        <script src="scripts/directives/evolucao-investimentos.js"></script>
+        <script src="scripts/directives/distribuicao-investimentos.js"></script>
         <!-- endbuild -->
 </body>
 </html>

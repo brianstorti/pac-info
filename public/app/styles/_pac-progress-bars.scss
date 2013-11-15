@@ -1,0 +1,30 @@
+// Bar of progress
+.pac-progress {
+	border-radius: 0;
+
+  //reset box-shadow
+  @include box-shadow(inset 0 0 0 transparent);
+  .progress-bar {
+  	@include box-shadow(inset 0 0 0 transparent);
+  }
+}
+
+.pac-progress.vertical {
+  position: relative;
+  width: 26px;
+  min-height: 130px;
+  float: left;
+  margin-right: 40px;
+  margin-bottom: 0;
+  overflow-x: visible;
+  .progress-bar {
+  	position: absolute;
+  	bottom: 50px;
+  }
+  .progress-bar-title {
+  	position: absolute;
+  	bottom: 0;
+  	height: 50px;
+  	color: $white;
+  }
+}
