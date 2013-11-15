@@ -1,17 +1,17 @@
 class VenturesController < ApplicationController
-  def investiments
+  def index
     render json: Venture.investiments_by(params[:category])
   end
 
-  def investiments_by_type
-    render json: Venture.investiments_by_type_in(params[:category])
+  def by_type
+    render json: Venture.investiments_by_type(params[:category])
   end
 
-  def investiments_by_status
+  def by_status
     render json: Venture.investiments_by_status(params[:category])
   end
 
-  def investiments_by_region
+  def by_region
     render json: Venture.investiments_by_region(params[:category], params[:region])
   end
 end

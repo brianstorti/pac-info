@@ -9,7 +9,7 @@ class Venture
       'valor_total2' => {'$sum' => '$val_2011_2014'} } } )
   end
 
-  def self.investiments_by_type_in(category)
+  def self.investiments_by_type(category)
     collection.aggregate(
       { '$match' => {'idn_digs.Subeixo' => category}},
       { '$group' => { '_id' => '$idn_digs.Tipo' ,
