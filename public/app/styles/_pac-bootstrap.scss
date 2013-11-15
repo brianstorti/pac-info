@@ -1,5 +1,5 @@
 // Custom variables
-@import "_pac_variables";
+@import "_pac-variables";
 
 // Core mixins
 @import "bootstrap-sass/lib/mixins";
@@ -49,3 +49,9 @@
 // Utility classes
 @import "bootstrap-sass/lib/utilities";
 @import "bootstrap-sass/lib/responsive-utilities";
+
+// PAC Customization
+@import "_pac-navbar.scss";
+@import "_pac-wells.scss";
+@import "_pac-wells.scss";
+@import "_pac-progress-bars.scss";
