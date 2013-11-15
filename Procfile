@@ -1,1 +1,1 @@
-web: bundle exec rails-api server -p $PORT
+web: bin/rails server -p $PORT
