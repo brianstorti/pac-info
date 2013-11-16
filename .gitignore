@@ -18,3 +18,10 @@ front-end/dist
 front-end/.tmp
 front-end/.sass-cache
 front-end/app/bower_components
+
+# Ignore published files
+public/bower_components/
+public/images/
+public/scripts/
+public/styles/
+public/views/
