@@ -6,6 +6,20 @@ angular.module('pacApp', [
     'vegaModule'
   ])
   .constant('chartHeight',  110)
+  .directive('onSlide', [function () {
+    return {
+      restrict: 'A',
+      scope: {
+        next: '&next',
+        prev: '&prev'
+      },
+      link: function (scope, iElement) {
+        iElement.on('slide.bs.carousel', function(e){
+          scope.$apply( (e.direction === 'left') ? scope.next : scope.prev);
+        });
+      }
+    };
+  }])
   .factory('measureElement',  function(){
     return function(element) {
       return {

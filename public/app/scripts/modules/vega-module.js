@@ -10,19 +10,28 @@ angular.module('vegaModule', [])
       scope: {
         data: '=',
         spec: '=',
+        opts: '='
       },
       link: function (scope, iElement) {
         var view;
 
         function drawChart() {
-          var spec = scope.spec(iElement, scope.data);
+          var dataFull = scope.data.full || scope.data,
+              dataEmpty = scope.data.empty || scope.data,
+              opts = scope.opts || {};
+
+          var spec = scope.spec(iElement, dataFull, opts);
+
           if(!view){
             vega.parse.spec(spec, function(chart){
-              view = chart({el: iElement[0], data: scope.data}).update();
+              view = chart({el: iElement[0], data: dataEmpty}).update();
+              setTimeout(function(){
+                view.data(dataFull).update({duration: 1000});
+              },500);
             });
           } else {
             view.width(spec.width)
-              .data(scope.data)
+              .data(dataFull)
               .update({duration: 1000});
           }
         }

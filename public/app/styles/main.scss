@@ -1,7 +1,16 @@
-$iconSpritePath: "../images/glyphicons-halflings.png";
-$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
-
 @import "_pac-bootstrap";
+
+.carousel-control {
+  // Set gradients for backgrounds
+  &.left {
+    @include gradient-horizontal($start-color: rgba(0,0,0,0), $end-color: rgba(0,0,0,0));
+  }
+  &.right {
+    left: auto;
+    right: 0;
+    @include gradient-horizontal($start-color: rgba(0,0,0,0), $end-color: rgba(0,0,0,0));
+  }
+}
 
 .text-inverse {
 	color: $white

@@ -31,9 +31,11 @@ angular.module('pacApp')
 						'type': 'x',
 						'scale': 'x',
 						'grid': true,
+						'tickSizeEnd': 0,
 						'properties': {
 							'axis': {
-								'strokeWidth': { 'value': 0 }
+								'strokeWidth': { 'value': 1 },
+								'stroke': { 'value': 'white' }
 							},
 							'grid': {
 								'stroke': { 'value': 'white' }
@@ -56,10 +58,11 @@ angular.module('pacApp')
 								'stroke': { 'value': 'white' },
 								'strokeWidth': { 'value': 0 }
 							},
-							'majorTicks': { 'strokeWidth': {'value': 0} },
+							'majorTicks': { 'stroke': {'value': 'white'} },
 							'labels': {
 								'fill': { 'value': 'white' },
-								'fontSize': { 'value': 14 }
+								'fontSize': { 'value': 14 },
+								'baseline': {'value': 'bottom'}
 							}
 						}
 					}

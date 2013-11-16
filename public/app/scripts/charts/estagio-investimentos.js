@@ -58,7 +58,7 @@ angular.module('pacApp')
             },
             'symbols': {
               'stroke': {'value': 'transparent'},
-              'shape': {'value': 'square'}
+              'shape': {'value': 'circle'}
             },
             'labels': {
               'fill': {'value': '#656567'},

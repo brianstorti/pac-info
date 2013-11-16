@@ -2,13 +2,13 @@
 
 angular.module('pacApp')
 	.factory('distribuicaoSpec', ['chartHeight', 'measureElement', function(chartHeight, measureElement){
-		return function(element, data) {
+		return function(element, data, opts) {
 			var width = measureElement(element).width;
 			return {
 				'width': width,
 				'height': chartHeight,
 				'padding': { 'top': 10, 'left': 0, 'bottom': 30, 'right': 0 },
-				'data': [{ 'name': 'table' }],
+				'data': [{'name': 'table'}],
 				'scales': [
 					{
 						'name': 'x',
@@ -20,7 +20,8 @@ angular.module('pacApp')
 						'name': 'y',
 						'range': 'height',
 						'nice': true,
-						'domain': { 'data': 'table', 'field': 'data.y' }
+						'domain': { 'data': 'table', 'field': 'data.y' },
+						'domainMax': opts.domainMax || undefined
 					}
 				],
 				'axes': [
@@ -41,20 +42,21 @@ angular.module('pacApp')
 				],
 				'marks': [
 					{
+						'key': 'data.x',
 						'type': 'rect',
 						'from': { 'data': 'table' },
 						'properties': {
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data.x', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.y'},
-								'y2': { 'scale': 'y', 'value': 10 },
+								'y': { 'scale': 'y', 'field': 'data.y', 'offset': 5 },
+								'y2': { 'scale': 'y', 'value': 0 },
 								'fill': {'value': '#fff'},
 								'width': {'scale': 'x', 'band': true, 'offset': -30},
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data.x', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.y'},
-								'y2': { 'scale': 'y', 'value': 10 },
+								'y': { 'scale': 'y', 'field': 'data.y', 'offset': 5 },
+								'y2': { 'scale': 'y', 'value': 0 },
 								'width': {'scale': 'x', 'band': true, 'offset': -30}
 							}
 						}
@@ -65,17 +67,17 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data.x'},
-								'y': { 'scale': 'y', 'value': -5 },
+								'y': {'scale': 'y', 'field': 'data.y'},
 								'fill': {'value': '#fff'},
 								'text': {'field': 'data.y'},
-								'align': {'value': 'left'},
-								'dx': {'value': (width/data.table.length), 'mult': 0.45},
+								// 'dx': {'value': (width/data.table.length), 'mult': 0.45},
 								'fontSize': { 'value': 14 }
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data.x'},
-								'y': { 'scale': 'y', 'value': -5 },
-								'dx': {'value': (width/data.table.length), 'mult': 0.45}
+								'y': {'scale': 'y', 'field': 'data.y'},
+								// 'dx': {'value': (width/data.table.length), 'mult': 0.45},
+								'text': {'field': 'data.y'},
 							}
 						}
 					}
