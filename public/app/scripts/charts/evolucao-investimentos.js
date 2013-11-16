@@ -15,7 +15,8 @@ angular.module('pacApp')
 						'points': true,
 						'padding': 1.5,
 						'range': 'width',
-						'domain': {'data': 'table', 'field': 'data.x'}
+						'domain': {'data': 'table', 'field': 'data._id.data_balanco'},
+						'reverse': true
 					},
 					{
 						'name': 'y',
@@ -23,7 +24,15 @@ angular.module('pacApp')
 						'range': 'height',
 						'nice': true,
 						'zero': true,
-						'domain': {'data': 'table', 'field': 'data.y'}
+						'domain': {'data': 'table', 'field': 'data.val_2011_2014'}
+					},
+					{
+						'name': 'yLabel',
+						'type': 'ordinal',
+						'range': 'height',
+						'nice': true,
+						'zero': true,
+						'domain': {'data': 'table', 'field': 'data.val_fmt'}
 					}
 				],
 				'axes': [
@@ -31,10 +40,9 @@ angular.module('pacApp')
 						'type': 'x',
 						'scale': 'x',
 						'grid': true,
-						'tickSizeEnd': 0,
 						'properties': {
 							'axis': {
-								'strokeWidth': { 'value': 1 },
+								'strokeWidth': { 'value': 0 },
 								'stroke': { 'value': 'white' }
 							},
 							'grid': {
@@ -62,7 +70,7 @@ angular.module('pacApp')
 							'labels': {
 								'fill': { 'value': 'white' },
 								'fontSize': { 'value': 14 },
-								'baseline': {'value': 'bottom'}
+								'baseline': {'value': 'middle'}
 							}
 						}
 					}
@@ -74,16 +82,16 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'interpolate': {'value': 'monotone'},
-								'x': {'scale': 'x', 'field': 'data.x'},
-								'y': {'scale': 'y', 'field': 'data.y'},
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 								'y2': {'scale': 'y', 'value': 0},
 								'fill': {'value': 'white'},
 								'fillOpacity': {'value': 0.3}
 							},
 							'update': {
 								'interpolate': {'value': 'monotone'},
-								'x': {'scale': 'x', 'field': 'data.x'},
-								'y': {'scale': 'y', 'field': 'data.y'},
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 								'y2': {'scale': 'y', 'value': 0},
 							}
 						}
@@ -95,14 +103,14 @@ angular.module('pacApp')
 							'enter': {
 								'shape': {'value': 'circle'},
 								'size': {'value': 50},
-								'x': {'scale': 'x', 'field': 'data.x'},
-								'y': {'scale': 'y', 'field': 'data.y'},
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 								'y2': {'scale': 'y', 'value': 0},
 								'fill': {'value': 'white'}
 							},
 							'update': {
-			          'x': {'scale': 'x', 'field': 'data.x'},
-			          'y': {'scale': 'y', 'field': 'data.y'},
+			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+			          'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 			          'y2': {'scale': 'y', 'value': 0}
 			        },
 						}
@@ -113,15 +121,15 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'interpolate': {'value': 'monotone'},
-								'x': {'scale': 'x', 'field': 'data.x'},
-								'y': {'scale': 'y', 'field': 'data.y'},
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 								'y2': {'scale': 'y', 'value': 0},
 								'stroke': {'value': 'white'},
 								'strokeWidth': {'value': 2 }
 							},
 							'update': {
-			          'x': {'scale': 'x', 'field': 'data.x'},
-			          'y': {'scale': 'y', 'field': 'data.y'},
+			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+			          'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 			          'y2': {'scale': 'y', 'value': 0}
 			        }
 						}
@@ -129,4 +137,40 @@ angular.module('pacApp')
 				]
 			};
 		};
+	}])
+	.service('evolucaoChart', ['API_URL','$http','evolucaoSpec', 'emptyDataChart', function(API_URL, $http, evolucaoSpec, emptyDataChart){
+		var that = this;
+
+		this.spec = evolucaoSpec;
+		this.data = emptyDataChart;
+
+		this.transformResponseElement = function(responseElement){
+			responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
+		};
+
+		this.clearResponseElement = function(responseElement){
+			var clearObj = angular.copy(responseElement);
+			clearObj.val_2011_2014 = '';
+			return clearObj;
+		};
+
+		this.transformResponse = function(investimentosPorData){
+			var emptyData = [];
+
+			for (var i = 0; i < investimentosPorData.length; i++) {
+				that.transformResponseElement(investimentosPorData[i]);
+				emptyData.push( that.clearResponseElement(investimentosPorData[i]) );
+			}
+
+			return {
+				full: { table: investimentosPorData },
+				empty: { table: emptyData }
+			};
+		};
+
+		this.carregarCategoria = function(categoria){
+			var url = API_URL + categoria;
+			$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
+		};
+
 	}]);

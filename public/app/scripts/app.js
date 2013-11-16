@@ -5,7 +5,12 @@ angular.module('pacApp', [
     'ngSanitize',
     'vegaModule'
   ])
+  .constant('emptyDataChart', {
+    full: { table: [] },
+    empty: { table: [] }
+  })
   .constant('chartHeight',  110)
+  .constant('API_URL',  'http://pac-info.herokuapp.com/ventures/')
   .directive('onSlide', [function () {
     return {
       restrict: 'A',
@@ -20,20 +25,27 @@ angular.module('pacApp', [
       }
     };
   }])
+  .directive('navLink', ['$location', function ($location) {
+    return {
+      restrict: 'A',
+      link: function (scope, iElement, attrs) {
+        var route = iElement.find('a').prop('href').replace('#', ''),
+            locationChange = function(){ return $location.path(); },
+            isDefault = angular.isDefined(attrs.navLinkDefault);
+
+        scope.$watch(locationChange, function(path){
+          iElement.removeClass('active');
+          iElement.addClass( (route.search(path) >= 0 && path !== '/')?'active':'');
+          iElement.addClass( (isDefault && path === '/')?'active':'');
+
+        });
+      }
+    };
+  }])
   .factory('measureElement',  function(){
     return function(element) {
       return {
         width: parseInt(element.css('width').replace('px',''),10)
       };
     };
-  })
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
   });

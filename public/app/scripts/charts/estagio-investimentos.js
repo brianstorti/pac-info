@@ -6,7 +6,7 @@ angular.module('pacApp')
 			var estagios = [], colors = [];
 
       for (var i = 0;i < data.table.length; i++) {
-        estagios.push(data.table[i].estagio+' :  '+data.table[i].total);
+        estagios.push(data.table[i]._id+' :  '+data.table[i].total);
         colors.push(data.table[i].color);
       }
 
@@ -28,7 +28,7 @@ angular.module('pacApp')
           },
           {
             'name': 'size',
-            'type': 'linear',
+            'type': 'ordinal',
             'sort': true,
             'domain': {'data': 'table', 'field': 'data.total'},
             'range': [100, 1000]
@@ -97,11 +97,53 @@ angular.module('pacApp')
                 'startAngle': {'field': 'startAngle'},
                 'endAngle': {'field': 'endAngle'},
                 'innerRadius': {'value': 80},
-                'outerRadius': {'scale': 'r', 'field': 'data.total'}
+                'outerRadius': {'value': 200}
               }
             }
           }
         ]
       };
 		};
-	}]);
+	}])
+  .service('estagioChart',[
+    'API_URL',
+    '$http',
+    'estagioSpec',
+    'emptyDataChart',
+    function(API_URL, $http, evolucaoSpec, emptyDataChart){
+      var that = this,
+          colors = ['#1DA1CD', '#68D286', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D', '#FBAD2F'];
+
+      this.spec = evolucaoSpec;
+      this.data = emptyDataChart;
+
+      this.transformResponseElement = function(responseElement, idx){
+        responseElement.color = colors[idx % colors.length];
+      };
+
+      this.clearResponseElement = function(responseElement){
+        var clearObj = angular.copy(responseElement);
+        clearObj.total = 10;
+        return clearObj;
+      };
+
+      this.transformResponse = function(investimentosPorTipo){
+        var emptyData = [];
+
+        for (var i = 0; i < investimentosPorTipo.length; i++) {
+          that.transformResponseElement(investimentosPorTipo[i], i);
+          emptyData.push( that.clearResponseElement(investimentosPorTipo[i]) );
+        }
+
+        return {
+          full: { table: investimentosPorTipo },
+          empty: { table: emptyData }
+        };
+      };
+
+      this.carregarCategoria = function(categoria){
+        var url = API_URL + [categoria, 'by_status'].join('/');
+        $http.get(url).success(function(data){ that.data = that.transformResponse(data); });
+      };
+    }
+  ]);

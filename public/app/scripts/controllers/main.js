@@ -4,9 +4,12 @@ angular.module('pacApp')
 	.controller('MainCtrl',[
 		'$scope',
 		'estagioSpec',
-		'evolucaoSpec',
 		'distribuicaoSpec',
-		function ($scope, estagioSpec, evolucaoSpec, distribuicaoSpec) {
+		'estagioChart',
+		'evolucaoChart',
+		'distribuicaoChart',
+		'$location',
+		function ($scope, estagioSpec, distribuicaoSpec, estagioChart, evolucaoChart, distribuicaoChart, $location) {
 
 			var regioes = [
 				{
@@ -144,109 +147,60 @@ angular.module('pacApp')
 				}
 			];
 
+
+			$scope.evolucao = evolucaoChart;
+
+			$scope.distribuicao = distribuicaoChart;
+
+			$scope.estagios = estagioChart;
+
 			$scope.slides = {
-				list: regioes,
-				current: regioes[0],
-				next: function(){
-					var list = $scope.slides.list,
-							current = $scope.slides.current,
-							idx = list.indexOf(current) + 1;
+					list: regioes,
+					current: regioes[0],
+					next: function(){
+						var list = $scope.slides.list,
+								current = $scope.slides.current,
+								idx = list.indexOf(current) + 1;
 
-					$scope.slides.current = list[idx % list.length];
-					$scope.porRegiao.data = $scope.slides.current.data;
-				},
-				prev: function(){
-					var list = $scope.slides.list,
-							current = $scope.slides.current,
-							idx = (list.indexOf(current) || list.length) - 1;
-
-					$scope.slides.current = list[idx % list.length];
-					$scope.porRegiao.data = $scope.slides.current.data;
-				}
-			};
-
-			$scope.evolucao = {
-				spec: evolucaoSpec,
-				data: {
-					full: {
-						table: [
-							{ 'x': '2007', 'y': 10 },
-							{ 'x': '2008', 'y': 50 },
-							{ 'x': '2009', 'y': 52 },
-							{ 'x': '2010', 'y': 60 },
-							{ 'x': '2011', 'y': 74 },
-							{ 'x': '2012', 'y': 90 },
-							{ 'x': '2013', 'y': 110 }
-						]
+						$scope.slides.current = list[idx % list.length];
+						$scope.porRegiao.data = $scope.slides.current.data;
 					},
-					empty: {
-						table: [
-							{ 'x': '2007', 'y': 0 },
-							{ 'x': '2008', 'y': 0 },
-							{ 'x': '2009', 'y': 0 },
-							{ 'x': '2010', 'y': 0 },
-							{ 'x': '2011', 'y': 0 },
-							{ 'x': '2012', 'y': 0 },
-							{ 'x': '2013', 'y': 0 }
-						]
-					}
-				}
-			};
+					prev: function(){
+						var list = $scope.slides.list,
+								current = $scope.slides.current,
+								idx = (list.indexOf(current) || list.length) - 1;
 
-			$scope.distribuicao = {
-				spec: distribuicaoSpec,
-				data: {
-					full : {
-						table: [
-							{ 'x': 'Portos', 'y': 40 },
-							{ 'x': 'Rodovias', 'y': 100 },
-							{ 'x': 'Ferrovias', 'y': 80 },
-							{ 'x': 'Hidrovias', 'y': 60 },
-							{ 'x': 'Aeroportos', 'y': 15 }
-						]
-					},
-					empty : {
-						table: [
-							{ 'x': 'Portos', 'y': '' },
-							{ 'x': 'Rodovias', 'y': '' },
-							{ 'x': 'Ferrovias', 'y': '' },
-							{ 'x': 'Hidrovias', 'y': '' },
-							{ 'x': 'Aeroportos', 'y': '' }
-						]
+						$scope.slides.current = list[idx % list.length];
+						$scope.porRegiao.data = $scope.slides.current.data;
 					}
-				}
-			};
-
-			$scope.estagios = {
-				spec: estagioSpec,
-				data: {
-					full : {
-						table: [
-	            { 'color':'#A085C6','estagio': 'Em Licitação', 'total': 120 },
-	            { 'color':'#EB585C','estagio': 'Ação Preparatória', 'total': 310 },
-	            { 'color':'#FF8FB4','estagio': 'A Celecionar', 'total': 450 },
-	            { 'color':'#68D286','estagio': 'A Contratar', 'total': 890 },
-	            { 'color':'#FDD26D','estagio': 'Concluído', 'total': 1902 },
-	            { 'color':'#1DA1CD','estagio': 'Em Andamento', 'total': 2000 }
-	          ]
-					},
-					empty : {
-						table: [
-	            { 'color':'#A085C6','estagio': 'Em Licitação', 'total': 1 },
-	            { 'color':'#EB585C','estagio': 'Ação Preparatória', 'total': 1 },
-	            { 'color':'#FF8FB4','estagio': 'A Celecionar', 'total': 1 },
-	            { 'color':'#68D286','estagio': 'A Contratar', 'total': 1 },
-	            { 'color':'#FDD26D','estagio': 'Concluído', 'total': 1 },
-	            { 'color':'#1DA1CD','estagio': 'Em Andamento', 'total': 1 }
-	          ]
-					}
-				}
-			};
+			}
 
 			$scope.porRegiao = {
 				opts: { domainMax: 100 },
 				spec: distribuicaoSpec,
 				data: $scope.slides.current.data
 			};
+
+			$scope.$on('$locationChangeSuccess', function(){
+				var categoriaApi = $location.path().replace('/', ''),
+					categoriasMap = {
+						'transportes': 'Transportes',
+						'comunidade-cidada': 'Comunidade Cidadã',
+						'habitacao': 'Habitação',
+						'agua-e-luz-para-todos' : 'Água e Luz para todos',
+						'cidade-melhor': 'Cidade Melhor',
+						'energia': 'Energia',
+					},
+					categoriaNome = categoriasMap[categoriaApi];
+
+				$scope.evolucao.carregarCategoria(categoriaApi);
+				$scope.distribuicao.carregarCategoria(categoriaApi);
+				$scope.estagios.carregarCategoria(categoriaApi);
+
+				$scope.banner = {title: categoriaNome};
+
+			});
 		}
+
+
 	]);

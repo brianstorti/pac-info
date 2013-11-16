@@ -50,7 +50,7 @@
 @media (min-width: $screen-md-min) {
 
 	.pac-nav-site {
-		width: 930px;
+		width: 940px;
 		float: none;
 		margin: auto;
 		li {
@@ -64,7 +64,7 @@
 //Tablet
 @media (min-width: $screen-sm-min) {
 	.navbar {
-		z-index: -1;
+		// z-index: -1;
 	}
 	.pac-banner {
 		margin-top: -140px;

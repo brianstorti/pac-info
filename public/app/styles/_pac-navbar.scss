@@ -35,18 +35,3 @@
 		}
 	}
 }
-
-//Desktop
-@media (min-width: $screen-md-min) {
-
-	.pac-nav-site {
-		width: 930px;
-		float: none;
-		margin: auto;
-		li {
-			font-size: $font-size-base;
-			padding-left: floor($navbar-padding-horizontal * 1.5);
-			padding-right: floor($navbar-padding-horizontal * 1.5);
-		}
-	}
-}

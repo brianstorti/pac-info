@@ -36,8 +36,15 @@ angular.module('vegaModule', [])
           }
         }
 
-        scope.$watch('data', drawChart);
-        angular.element(window).on('resize', drawChart);
+        function drawChartReady() {
+          if(scope.data && scope.data.full && scope.data.full.table && scope.data.full.table.length > 0){
+            drawChart();
+          }
+        }
+
+        scope.$watch('ready', drawChartReady);
+        scope.$watch('data', drawChartReady);
+        angular.element(window).on('resize', drawChartReady);
       }
     };
   }]);
