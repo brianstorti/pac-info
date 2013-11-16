@@ -1,0 +1,201 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="styles/e36a28e8.main.css">
+</head>
+  <body ng-app="pacApp" ng-controller="MainCtrl">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+
+    <!-- <header class="navbar navbar-inverse navbar-static-top pac-nav" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">PAC2 <span class="muted">Estatístico</span></a>
+        </div>
+      </div>
+    </header> -->
+
+    <nav class="navbar navbar-inverse pac-navbar-colorful">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav pac-nav-site">
+            <li nav-link="">
+              <a class="text-center" href="#/agua-e-luz-para-todos">Água e Luz para todos</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/comunidade-cidada">Comunidade Cidadã</a>
+            </li>
+            <li nav-link="" nav-link-default="">
+              <a class="text-center" href="#/transportes">Transportes</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/cidade-melhor">Cidade Cidadã</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/energia">Energia</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/habitacao">Habitação</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </nav>
+
+
+    <!-- Add your site or application content here -->
+    <section class="primary-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well well-shadow pac-banner">
+              <h2 ng-bind="banner.title">Transporte</h2>
+            </div>
+          </div>
+        </div>
+
+        <p class="lead text-center">
+          Foram investidos aproximadamente
+          <span class="text-info">2 milhões</span> de reais em
+          <span class="text-primary">Rodovias</span>,
+          <span class="text-success">Ferrovias</span> e
+          <span class="text-warning">outros</span>
+        </p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well well-info">
+              <header class="well-title">Progresso dos Investimentos</header>
+              <div vega-chart="" data="evolucao.data" spec="evolucao.spec"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="well well-warning">
+              <header class="well-title">Distribuição dos Investidos</header>
+              <div vega-chart="" data="distribuicao.data" spec="distribuicao.spec"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secondary-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well well-lg well-shadow">
+              <header class="well-title-inverse">Estágio dos investimentos</header>
+              <div vega-chart="" data="estagios.data" spec="estagios.spec"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="primary-area">
+      <div class="container">
+        <p class="lead text-center">
+          Dados de todas as regiões do Brasil:
+          <span class="text-info">Norte</span>,
+          <span class="text-primary">Nordeste</span>,
+          <span class="text-success">Centro-Oeste</span>,
+          <span class="text-warning">Sudeste</span> e
+          <span class="text-danger">Sul</span>
+        </p>
+        </div>
+
+        <div class="container">
+         <div class="row">
+          <div class="col-sm-4">
+            <div class="well well-success">
+              <header class="well-title" ng-bind="slides.current.name"></header>
+
+              <div id="carousel" class="carousel slide" on-slide="" next="slides.next()" prev="slides.next()">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img class="" src="images/e2ed93fe.sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px">
+                  </div>
+                  <div class="item">
+                    <img class="" src="images/e2ed93fe.sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px">
+                  </div>
+                  <div class="item">
+                    <img class="" src="images/e2ed93fe.sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px">
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#carousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-8">
+            <div class="well well-success">
+              <header class="well-title">Investimentos por Região</header>
+              <div class="col-md-8">
+                <div vega-chart="" data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
+              </div>
+              <div class="col-md-4">
+                <div class="well well-compressed bg-dark-success">
+                  <!-- <div vega-chart data="porRegiao.pie.data" spec="porRegiao.pie.spec"></div> -->
+                  <h3 class="text-center text-inverse">123</h3>
+                  <p class="text-center text-inverse">Milhões</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+        <script src="scripts/d4f08d95.plugins.js"></script>
+
+        <script src="scripts/3aaf8296.modules.js"></script>
+
+        <script src="scripts/54748df2.scripts.js"></script>
+</body>
+</html>
