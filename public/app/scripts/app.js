@@ -5,6 +5,7 @@ angular.module('pacApp', [
     'ngSanitize',
     'vegaModule'
   ])
+  .constant('chartHeight',  110)
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

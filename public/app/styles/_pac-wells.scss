@@ -3,10 +3,16 @@
 // --------------------------------------------------
 .well {
 	border: none;
-	min-height: 330px;
+	min-height: 235px;
 	margin-top: $line-height-computed;
   margin-bottom: $line-height-computed;
 	@include clearfix()
+}
+
+.well-compressed {
+	min-height: 0;
+	margin-top: 0;
+  margin-bottom: 0;
 }
 
 // Colors
@@ -45,12 +51,12 @@
 // Define the well title text
 .well-title {
 	color: $white;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 .well-title-inverse {
 	color: $gray-dark;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 // Desktop

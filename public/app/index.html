@@ -123,29 +123,38 @@
     <section class="primary-area">
       <div class="container">
         <p class="lead text-center">
-          Acompanhe como foi distribuidos os investimentos entre todas as regiões
+          Dados de todas as regiões do Brasil:
           <span class="text-info">Norte</span>,
           <span class="text-primary">Nordeste</span>,
           <span class="text-success">Centro-Oeste</span>,
           <span class="text-warning">Sudeste</span> e
           <span class="text-danger">Sul</span>
         </p>
-      </div>
-
-       <div class="row">
-        <div class="col-sm-4">
-          <div class="well well-success">
-            <header class="well-title">Sudeste</header>
-          </div>
         </div>
-        <div class="col-sm-8">
-          <div class="well well-success">
-            <header class="well-title">Investimentos por Região</header>
-            <div class="col-md-6">
-              <div pac-distribuicao-investimentos></div>
+
+        <div class="container">
+         <div class="row">
+          <div class="col-sm-4">
+            <div class="well well-success">
+              <header class="well-title">Sudeste</header>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="well well-success">
+              <header class="well-title">Investimentos por Região</header>
+              <div class="col-md-8">
+                <div pac-por-regiao-investimentos></div>
+              </div>
+              <div class="col-md-4">
+                <div class="well well-compressed bg-dark-success">
+                  <h3 class="text-center text-inverse">123</h3>
+                  <p class="text-center text-inverse">Milhões</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
     </section>
@@ -194,6 +203,7 @@
         <script src="scripts/directives/estagio-investimentos.js"></script>
         <script src="scripts/directives/evolucao-investimentos.js"></script>
         <script src="scripts/directives/distribuicao-investimentos.js"></script>
+        <script src="scripts/directives/por-regiao-investimentos.js"></script>
         <!-- endbuild -->
 </body>
 </html>

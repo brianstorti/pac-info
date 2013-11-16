@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('pacApp')
-	.directive('pacEvolucaoInvestimentos', ['vega', function (vega) {
+	.directive('pacEvolucaoInvestimentos', ['vega', 'chartHeight', function (vega, chartHeight) {
 		return {
 			replace: true,
 			restrict: 'A',
 			link: function (scope, iElement) {
 				var view,
 						width,
-						height = 200;
+						height = chartHeight;
 
 				function drawChart(){
 
@@ -71,7 +71,7 @@ angular.module('pacApp')
 							{
 								'type': 'y',
 								'scale': 'y',
-								'offset': -50,
+								'offset': -40,
 								'ticks': 3,
 								'orient': 'right',
 								'properties': {

@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('pacApp')
-	.directive('pacDistribuicaoInvestimentos', ['vega', function (vega) {
+	.directive('pacDistribuicaoInvestimentos', ['vega', 'chartHeight', function (vega, chartHeight) {
 		return {
 			replace: true,
 			restrict: 'A',
 			link: function (scope, iElement) {
 				var view,
 						width,
-						height = 200;
+						height = chartHeight;
 
 				function drawChart(){
 
@@ -16,10 +16,11 @@ angular.module('pacApp')
 
 					var data = {
 						table: [
-							{ 'x': '1500 SP', 'y': 100 },
-							{ 'x': '1500 RJ', 'y': 80 },
-							{ 'x': '1500 MG', 'y': 60 },
-							{ 'x': '1500 ES', 'y': 40 }
+							{ 'x': 'Rodovias', 'y': 100 },
+							{ 'x': 'Ferrovias', 'y': 80 },
+							{ 'x': 'Hidrovias', 'y': 60 },
+							{ 'x': 'Portos', 'y': 40 },
+							{ 'x': 'Aeroportos', 'y': 15 }
 						]
 					};
 
@@ -51,7 +52,8 @@ angular.module('pacApp')
 									'majorTicks': { 'strokeWidth': {'value': 0} },
 									'labels': {
 										'fill': { 'value': '#FFF' },
-										'fontSize': { 'value': 14 },
+										'fontSize': { 'value': 13 },
+										'fontWeight': { 'value': '200' },
 										'align': { 'value': 'center'}
 									}
 								}
@@ -63,11 +65,26 @@ angular.module('pacApp')
 								'from': { 'data': 'table' },
 								'properties': {
 									'enter': {
-										'x': {'scale': 'x', 'field': 'data.x', 'offset': 30},
+										'x': {'scale': 'x', 'field': 'data.x', 'offset': 15},
 										'y': { 'scale': 'y', 'field': 'data.y'},
-										'y2': { 'scale': 'y', 'value': 0 },
+										'y2': { 'scale': 'y', 'value': 10 },
 										'fill': {'value': '#fff'},
-										'width': {'scale': 'x', 'band': true, 'offset': -60},
+										'width': {'scale': 'x', 'band': true, 'offset': -30},
+									}
+								}
+							},
+							{
+								'type': 'text',
+								'from': { 'data': 'table' },
+								'properties': {
+									'enter': {
+										'x': {'scale': 'x', 'field': 'data.x'},
+										'y': { 'scale': 'y', 'value': -5 },
+										'fill': {'value': '#fff'},
+										'text': {'field': 'data.y'},
+										'align': {'value': 'left'},
+										'dx': {'value': (width/data.table.length), 'mult': 0.45},
+										'fontSize': { 'value': 14 }
 									}
 								}
 							}

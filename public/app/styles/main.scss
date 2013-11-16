@@ -3,20 +3,27 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import "_pac-bootstrap";
 
+.text-inverse {
+	color: $white
+}
 
+.bg-dark-success {
+	background-color: #36B453;
+}
 
 .pac-banner {
 	min-height: 0;
 }
 
 .lead {
+	color: #8D9AA5;
   margin-bottom: 0;
-  font-size: floor($font-size-base * 1.15);
+  font-size: floor($font-size-base);
   line-height: 1.4;
   font-weight: normal;
 
   @media (min-width: $screen-sm-min) {
-    font-size: ($font-size-base * 1.5);
+    font-size: ($font-size-base);
   }
 }
 
