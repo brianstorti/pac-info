@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: '../public'
+      dist: 'dist'
     },
     watch: {
       coffee: {
@@ -270,7 +270,7 @@ module.exports = function (grunt) {
           dot: true,
           cwd: '<%= yeoman.dist %>',
           dest: '../public/',
-          src: ['**']
+          src: ['**', '!**/bower_components/**']
         }, {
           expand: true,
           cwd: '<%= yeoman.dist %>',
