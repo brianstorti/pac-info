@@ -17,7 +17,8 @@ class Venture
 
   def by_type
     result = collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category }},
+      { '$match' => { 'idn_digs.Subeixo' => @category, 
+                      'dat_ciclo' => '31/08/2013' }},
       { '$group' => { '_id' => '$idn_digs.Tipo',
                       'investimento_total' => { '$sum'  => '$investimento_total' },
                       'val_2011_2014' => { '$sum' => '$val_2011_2014' }}})
@@ -26,7 +27,8 @@ class Venture
 
   def by_status
     collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category }},
+      { '$match' => { 'idn_digs.Subeixo' => @category, 
+                      'dat_ciclo' => '31/08/2013' }},
       { '$group' => { '_id' => '$idn_estagio.estagio',
                       'total' => { '$sum' => 1 }}},
       { '$sort' => { 'total' => 1 }})
@@ -35,7 +37,8 @@ class Venture
   def by_region(region)
     result = collection.aggregate(
       { '$match' => { 'idn_digs.Subeixo' => @category,
-                      'sig_uf' => { '$in' => Region.states_in(region) }}},
+                      'sig_uf' => { '$in' => Region.states_in(region) },
+                      'dat_ciclo' => '31/08/2013'}},
       { '$group' => { '_id' => '$sig_uf',
                       'investimento_total' => { '$sum' => '$investimento_total' },
                       'val_2011_2014' => { '$sum' => '$val_2011_2014' }}})
