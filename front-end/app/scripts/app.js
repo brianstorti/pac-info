@@ -1,8 +1,6 @@
 'use strict';
 
 angular.module('pacApp', [
-    'ngCookies',
-    'ngSanitize',
     'vegaModule'
   ])
   .constant('emptyDataChart', {
