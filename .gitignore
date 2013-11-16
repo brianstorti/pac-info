@@ -13,8 +13,8 @@
 
 
 # Ignore ui-interface files
-public/node_modules
-public/dist
-public/.tmp
-public/.sass-cache
-public/app/bower_components
+front-end/node_modules
+front-end/dist
+front-end/.tmp
+front-end/.sass-cache
+front-end/app/bower_components
