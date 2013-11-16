@@ -43,7 +43,6 @@ angular.module('pacApp')
 				],
 				'marks': [
 					{
-						'key': 'data._id',
 						'type': 'rect',
 						'from': { 'data': 'table' },
 						'properties': {
@@ -115,7 +114,7 @@ angular.module('pacApp')
 			};
 
 			this.carregarCategoria = function(categoria, regiao){
-				var url = API_URL + [categoria, 'by_regiao', regiao].join('/');
+				var url = API_URL + [categoria, 'by_region', regiao].join('/');
 				$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
 			};
 		}

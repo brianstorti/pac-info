@@ -97,7 +97,7 @@ angular.module('pacApp')
                 'startAngle': {'field': 'startAngle'},
                 'endAngle': {'field': 'endAngle'},
                 'innerRadius': {'value': 80},
-                'outerRadius': {'value': 200}
+                'outerRadius': {'scale': 'r', 'field': 'data.total'}
               }
             }
           }

@@ -10,7 +10,7 @@ angular.module('pacApp', [
     empty: { table: [] }
   })
   .constant('chartHeight',  110)
-  .constant('API_URL',  'http://pac-info.herokuapp.com/ventures/')
+  .constant('API_URL', 'http://pac-info.herokuapp.com/ventures/') //'http://pac-info.herokuapp.com/ventures/'
   .directive('onSlide', [function () {
     return {
       restrict: 'A',
