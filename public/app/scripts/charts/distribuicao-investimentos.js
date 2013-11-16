@@ -70,15 +70,13 @@ angular.module('pacApp')
 								'x': {'scale': 'x', 'field': 'data._id'},
 								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
 								'fill': {'value': '#fff'},
-								'text': {'field': 'data.val_2011_2014'},
-								// 'dx': {'value': (width/data.table.length), 'mult': 0.45},
+								'text': {'field': 'data.label'},
 								'fontSize': { 'value': 14 }
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id'},
 								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
-								// 'dx': {'value': (width/data.table.length), 'mult': 0.45},
-								'text': {'field': 'data.val_2011_2014'},
+								'text': {'field': 'data.label'},
 							}
 						}
 					}

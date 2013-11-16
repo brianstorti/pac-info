@@ -32,7 +32,7 @@ angular.module('pacApp')
 						'range': 'height',
 						'nice': true,
 						'zero': true,
-						'domain': {'data': 'table', 'field': 'data.val_fmt'}
+						'domain': {'data': 'table', 'field': 'data.label'}
 					}
 				],
 				'axes': [
