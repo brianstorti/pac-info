@@ -15,3 +15,7 @@ gem 'kgio'
 # MemCachier sets environment variables prefixed with MEMCACHIER rather than MEMCACHE.
 # The memcachier gem, however, fixes this for you.
 gem 'memcachier'
+
+group :development do
+  gem "rspec-rails"
+end
