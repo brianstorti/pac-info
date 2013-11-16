@@ -6,6 +6,13 @@ angular.module('pacApp', [
     'vegaModule'
   ])
   .constant('chartHeight',  110)
+  .factory('measureElement',  function(){
+    return function(element) {
+      return {
+        width: parseInt(element.css('width').replace('px',''),10)
+      };
+    };
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

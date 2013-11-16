@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
-  <body ng-app="pacApp">
+  <body ng-app="pacApp" ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -94,13 +94,13 @@
           <div class="col-md-6">
             <div class="well well-info">
               <header class="well-title">Evolução dos investimentos</header>
-              <div pac-evolucao-investimentos></div>
+              <div vega-chart data="evolucao.data" spec="evolucao.spec"></div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="well well-warning">
               <header class="well-title">Distribuição dos investidos</header>
-              <div pac-distribuicao-investimentos></div>
+              <div vega-chart data="distribuicao.data" spec="distribuicao.spec"></div>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
           <div class="col-md-12">
             <div class="well well-lg well-shadow">
               <header class="well-title-inverse">Estágio dos investimentos</header>
-              <div pac-estagio-investimentos></div>
+              <div vega-chart data="estagios.data" spec="estagios.spec"></div>
             </div>
           </div>
         </div>
@@ -200,9 +200,10 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/modules/vega-module.js"></script>
-        <script src="scripts/directives/estagio-investimentos.js"></script>
-        <script src="scripts/directives/evolucao-investimentos.js"></script>
-        <script src="scripts/directives/distribuicao-investimentos.js"></script>
+        <script src="scripts/charts/evolucao-investimentos.js"></script>
+        <script src="scripts/charts/distribuicao-investimentos.js"></script>
+        <script src="scripts/charts/estagio-investimentos.js"></script>
+
         <script src="scripts/directives/por-regiao-investimentos.js"></script>
         <!-- endbuild -->
 </body>
