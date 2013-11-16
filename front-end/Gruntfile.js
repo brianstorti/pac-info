@@ -264,6 +264,17 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      publish: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.dist %>',
+          dest: '../public/',
+          src: [
+            '*.*',
+          ]
+        }]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -357,7 +368,8 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'copy:publish'
   ]);
 
   grunt.registerTask('default', [

@@ -1,0 +1,56 @@
+[
+  {
+    "_id": {
+      "data_balanco": "31/08/2013",
+      "subeixo": "Transportes"
+    },
+    "investimento_total": 0,
+    "val_2011_2014": 117237247423.54999,
+    "val_fmt": "100Mi"
+  },
+  {
+    "_id": {
+      "data_balanco": "31/12/2012",
+      "subeixo": "Transportes"
+    },
+    "investimento_total": 0,
+    "val_2011_2014": 97607131964.530014,
+    "val_fmt": "100Mi"
+  },
+  {
+    "_id": {
+      "data_balanco": "30/09/2012",
+      "subeixo": "Transportes"
+    },
+    "investimento_total": 0,
+    "val_2011_2014": 97497784206.519958,
+    "val_fmt": "10Mi"
+  },
+  {
+    "_id": {
+      "data_balanco": "30/04/2012",
+      "subeixo": "Transportes"
+    },
+    "investimento_total": 0,
+    "val_2011_2014": 95085712166.890015,
+    "val_fmt": "1Mi"
+  },
+  {
+    "_id": {
+      "data_balanco": "30/04/2013",
+      "subeixo": "Transportes"
+    },
+    "investimento_total": 0,
+    "val_2011_2014": 106681307848.7,
+    "val_fmt": "150K"
+  },
+  {
+    "_id": {
+      "data_balanco": "31/12/2011",
+      "subeixo": "Transportes"
+    },
+    "investimento_total": 0,
+    "val_2011_2014": 25314310000.0,
+    "val_fmt": "10K"
+  }
+]

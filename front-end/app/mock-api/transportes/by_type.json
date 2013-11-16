@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "Hidrovia",
+    "investimento_total": 0,
+    "val_2011_2014": 9497737959.0
+  },
+  {
+    "_id": "Aeroporto",
+    "investimento_total": 0,
+    "val_2011_2014": 124158539543.56001
+  },
+  {
+    "_id": "Ferrovia",
+    "investimento_total": 0,
+    "val_2011_2014": 165557000000.05002
+  },
+  {
+    "_id": "Equipamentos - Estradas Vicinais",
+    "investimento_total": 0,
+    "val_2011_2014": 7843121763.6199999
+  },
+  {
+    "_id": "Rodovias",
+    "investimento_total": 0,
+    "val_2011_2014": 330495380789.49023
+  },
+  {
+    "_id": "Porto",
+    "investimento_total": 0,
+    "val_2011_2014": 19955940000.0
+  }
+]

@@ -1,0 +1,30 @@
+[
+	{
+    "_id": "Em contratação",
+    "total": 30
+  },
+  {
+    "_id": "Em licitação de projeto",
+    "total": 58
+  },
+  {
+    "_id": "Em licitação de obra",
+    "total": 183
+  },
+  {
+    "_id": "Em execução",
+    "total": 451
+  },
+  {
+    "_id": "Concluído",
+    "total": 916
+  },
+  {
+    "_id": "Ação preparatória",
+    "total": 1467
+  },
+  {
+    "_id": "Em obras",
+    "total": 1346
+  }
+]
