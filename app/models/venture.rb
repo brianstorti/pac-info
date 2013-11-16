@@ -28,7 +28,8 @@ class Venture
     collection.aggregate(
       { '$match' => { 'idn_digs.Subeixo' => @category }},
       { '$group' => { '_id' => '$idn_estagio.estagio',
-                      'total' => { '$sum' => 1 }}})
+                      'total' => { '$sum' => 1 }}},
+      { '$sort' => { 'total' => 1 }})
   end
 
   def by_region(region)
