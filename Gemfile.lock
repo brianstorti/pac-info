@@ -30,14 +30,17 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
+    dalli (2.6.4)
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.6.5)
     journey (1.0.4)
     json (1.8.1)
+    kgio (2.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     mime-types (1.25)
     mongoid (3.1.5)
       activemodel (~> 3.2)
@@ -93,6 +96,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dalli
+  kgio
+  memcachier
   mongoid
+  rack-cache
   rails (= 3.2.15)
   rails-api

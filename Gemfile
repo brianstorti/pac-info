@@ -7,3 +7,11 @@ gem "rails", "3.2.15"
 
 gem "rails-api"
 gem "mongoid"
+
+gem 'rack-cache'
+gem 'dalli'
+gem 'kgio'
+
+# MemCachier sets environment variables prefixed with MEMCACHIER rather than MEMCACHE.
+# The memcachier gem, however, fixes this for you.
+gem 'memcachier'
