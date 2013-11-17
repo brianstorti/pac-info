@@ -1,5 +1,24 @@
 @import "_pac-bootstrap";
 
+.navbar-brand-name {
+	color: $white !important;
+}
+
+.navbar-brand-subname {
+	text-transform: uppercase;
+	color: #8C989E;
+	margin-left: 5px;
+}
+
+.colorfull-bar {
+	position: absolute;
+	bottom: -7px;
+	min-height: 8px;
+	width: 100%;
+	background: transparent url(../images/raibow-pattern.png) center -1px repeat-x;
+	background-size: 100% 5px;
+}
+
 .carousel-control {
   // Set gradients for backgrounds
   &.left {
@@ -22,6 +41,13 @@
 
 .pac-banner {
 	min-height: 0;
+	background: #EFF2F3;
+
+	margin-top: 0;
+	@media (min-width: $screen-md-min) {
+		margin-top: $line-height-computed;
+	  margin-bottom: $line-height-computed;
+	}
 }
 
 .lead {
