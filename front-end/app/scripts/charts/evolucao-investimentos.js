@@ -24,7 +24,7 @@ angular.module('pacApp')
 						'range': 'height',
 						'nice': true,
 						'zero': true,
-						'domain': {'data': 'table', 'field': 'data.val_2011_2014'}
+						'domain': {'data': 'table', 'field': 'data.valor_total'}
 					},
 					{
 						'name': 'yLabel',
@@ -83,7 +83,7 @@ angular.module('pacApp')
 							'enter': {
 								'interpolate': {'value': 'monotone'},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+								'y': {'scale': 'y', 'field': 'data.valor_total'},
 								'y2': {'scale': 'y', 'value': 0},
 								'fill': {'value': 'white'},
 								'fillOpacity': {'value': 0.3}
@@ -91,7 +91,7 @@ angular.module('pacApp')
 							'update': {
 								'interpolate': {'value': 'monotone'},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+								'y': {'scale': 'y', 'field': 'data.valor_total'},
 								'y2': {'scale': 'y', 'value': 0},
 							}
 						}
@@ -104,13 +104,13 @@ angular.module('pacApp')
 								'shape': {'value': 'circle'},
 								'size': {'value': 50},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+								'y': {'scale': 'y', 'field': 'data.valor_total'},
 								'y2': {'scale': 'y', 'value': 0},
 								'fill': {'value': 'white'}
 							},
 							'update': {
 			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-			          'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+			          'y': {'scale': 'y', 'field': 'data.valor_total'},
 			          'y2': {'scale': 'y', 'value': 0}
 			        },
 						}
@@ -122,14 +122,14 @@ angular.module('pacApp')
 							'enter': {
 								'interpolate': {'value': 'monotone'},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+								'y': {'scale': 'y', 'field': 'data.valor_total'},
 								'y2': {'scale': 'y', 'value': 0},
 								'stroke': {'value': 'white'},
 								'strokeWidth': {'value': 2 }
 							},
 							'update': {
 			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-			          'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+			          'y': {'scale': 'y', 'field': 'data.valor_total'},
 			          'y2': {'scale': 'y', 'value': 0}
 			        }
 						}
@@ -150,7 +150,7 @@ angular.module('pacApp')
 
 		this.clearResponseElement = function(responseElement){
 			var clearObj = angular.copy(responseElement);
-			clearObj.val_2011_2014 = '';
+			clearObj.valor_total = '';
 			return clearObj;
 		};
 

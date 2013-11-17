@@ -20,7 +20,7 @@ angular.module('pacApp')
 						'name': 'y',
 						'range': 'height',
 						'nice': true,
-						'domain': { 'data': 'table', 'field': 'data.val_2011_2014' },
+						'domain': { 'data': 'table', 'field': 'data.valor_total' },
 						'domainMax': opts.domainMax || undefined
 					}
 				],
@@ -48,14 +48,14 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.val_2011_2014', 'offset': 5 },
+								'y': { 'scale': 'y', 'field': 'data.valor_total', 'offset': 5 },
 								'y2': { 'scale': 'y', 'value': 0 },
 								'fill': {'value': '#fff'},
 								'width': {'scale': 'x', 'band': true, 'offset': -30},
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.val_2011_2014', 'offset': 5 },
+								'y': { 'scale': 'y', 'field': 'data.valor_total', 'offset': 5 },
 								'y2': { 'scale': 'y', 'value': 0 },
 								'width': {'scale': 'x', 'band': true, 'offset': -30}
 							}
@@ -67,14 +67,14 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data._id'},
-								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+								'y': {'scale': 'y', 'field': 'data.valor_total'},
 								'fill': {'value': '#fff'},
 								'text': {'field': 'data.label'},
 								'fontSize': { 'value': 14 }
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id'},
-								'y': {'scale': 'y', 'field': 'data.val_2011_2014'},
+								'y': {'scale': 'y', 'field': 'data.valor_total'},
 								'text': {'field': 'data.label'},
 							}
 						}
@@ -96,7 +96,7 @@ angular.module('pacApp')
 
 			this.clearResponseElement = function(responseElement){
 				var clearObj = angular.copy(responseElement);
-				clearObj['val_2011_2014'] = '';
+				clearObj['valor_total'] = '';
 				return clearObj;
 			};
 

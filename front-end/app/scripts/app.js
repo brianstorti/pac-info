@@ -8,7 +8,7 @@ angular.module('pacApp', [
     empty: { table: [] }
   })
   .constant('chartHeight',  110)
-  .constant('API_URL', 'http://pac-info.herokuapp.com/ventures/') //'http://pac-info.herokuapp.com/ventures/'
+  .constant('API_URL', 'http://pac-info.herokuapp.com/ventures/')
   .directive('onSlide', [function () {
     return {
       restrict: 'A',
@@ -32,9 +32,11 @@ angular.module('pacApp', [
             isDefault = angular.isDefined(attrs.navLinkDefault);
 
         scope.$watch(locationChange, function(path){
+          var pathDefault = path === '/' || path === '';
+
           iElement.removeClass('active');
-          iElement.addClass( (route.search(path) >= 0 && path !== '/')?'active':'');
-          iElement.addClass( (isDefault && path === '/')?'active':'');
+          iElement.addClass( (route.search(path) >= 0 && !pathDefault)?'active':'');
+          iElement.addClass( (isDefault && pathDefault)?'active':'');
 
         });
       }

@@ -49,7 +49,7 @@ angular.module('pacApp')
 			};
 
 			$scope.$on('$locationChangeSuccess', function(){
-				var categoriaApi = $location.path(),
+				var categoriaApi = $location.path() || '/transportes',
 					categoriasMap = {
 						'/transportes': 'Transportes',
 						'/comunidade-cidada': 'Comunidade Cidadã',

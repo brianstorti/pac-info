@@ -11,7 +11,7 @@ angular.module('pacApp')
 				'data': [
 					{
 						'name': 'table',
-						'transform': [{'type': 'pie', 'value': 'data.val_2011_2014'}]
+						'transform': [{'type': 'pie', 'value': 'data.valor_total'}]
 					}
 				],
 				'scales':
@@ -19,7 +19,7 @@ angular.module('pacApp')
           {
             'name': 'r',
             'type': 'sqrt',
-            'domain': {'data': 'table', 'field': 'data.val_2011_2014'},
+            'domain': {'data': 'table', 'field': 'data.valor_total'},
             'range': [130, 180]
           }
         ],
@@ -83,7 +83,7 @@ angular.module('pacApp')
 
 			this.clearResponseElement = function(responseElement){
 				var clearObj = angular.copy(responseElement);
-				clearObj['val_2011_2014'] = '';
+				clearObj['valor_total'] = '';
 				return clearObj;
 			};
 
