@@ -16,7 +16,7 @@ class Venture
                       'val_2011_2014' => { '$sum' => '$val_2011_2014' }}})
 
     result = convert_date(result)
-    result = result.sort_by { |r| r["formatted_date"] }
+    result = result.sort_by { |r| r["formatted_date"] }.reverse
     format_currency(result)
   end
 
