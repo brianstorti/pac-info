@@ -31,4 +31,3 @@ angular.module('pacApp', ['vegaModule'])
 			return { value: value, label: label };
 		};
 	}]);
-
