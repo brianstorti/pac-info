@@ -2,12 +2,12 @@
 
 angular.module('pacApp')
 	.factory('porRegiaoSpec', ['chartSize', function(chartSize){
-		return function(element, data, opts) {
+		return function(element, data, width, small) {
 
 			return {
-				'width': chartSize(element).width,
+				'width': width,
 				'height': chartSize(element).height,
-				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right': 0 },
+				'padding': { 'top': small?30:20, 'left': 0, 'bottom': 30, 'right': small?10:0 },
 				'data': [{'name': 'table'}],
 				'scales': [
 					{
@@ -22,8 +22,7 @@ angular.module('pacApp')
 						'name': 'y',
 						'range': 'height',
 						'nice': true,
-						'domain': { 'data': 'table', 'field': 'data.valor_total' },
-						'domainMax': opts.domainMax || undefined
+						'domain': { 'data': 'table', 'field': 'data.valor_total' }
 					}
 				],
 				'axes': [
@@ -53,13 +52,13 @@ angular.module('pacApp')
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
 								'y': { 'scale': 'y', 'field': 'data.valor_total'},
 								'y2': { 'scale': 'y', 'value': 0 },
-								'width': {'scale': 'x', 'band': true, 'offset': -30},
+								'width': {'scale': 'x', 'band': true, 'offset': small?-20:-30},
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
 								'y': { 'scale': 'y', 'field': 'data.valor_total'},
 								'y2': { 'scale': 'y', 'value': 0 },
-								'width': {'scale': 'x', 'band': true, 'offset': -30}
+								'width': {'scale': 'x', 'band': true, 'offset': small?-20:-30}
 							}
 						}
 					},
@@ -72,7 +71,8 @@ angular.module('pacApp')
 								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':-10},
 								'fill': {'value': '#fff'},
 								'text': {'field': 'data.label'},
-								'align': {'value': 'center'},
+								'align': {'value': (small?'left':'center')},
+								'angle': {'value': (small? -45:0)},
 								'fontSize': { 'value': 14 }
 							},
 							'update': {

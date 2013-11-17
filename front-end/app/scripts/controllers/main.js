@@ -10,7 +10,7 @@ angular.module('pacApp')
 		'$location',
 		function ($scope, porRegiaoChart, estagioChart, evolucaoChart, distribuicaoChart, $location) {
 
-			var regioes = [
+			$scope.regioes = [
 				{ name: 'Norte' },
 				{ name: 'Nordeste' },
 				{ name: 'Centro-Oeste' },
@@ -27,8 +27,8 @@ angular.module('pacApp')
 			$scope.porRegiao = porRegiaoChart;
 
 			$scope.slides = {
-				list: regioes,
-				current: regioes[0],
+				list: $scope.regioes,
+				current: $scope.regioes[0],
 				next: function(){
 					$scope.slides.move('right');
 				},

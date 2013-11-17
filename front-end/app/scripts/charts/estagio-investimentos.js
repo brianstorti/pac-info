@@ -7,18 +7,11 @@ angular.module('pacApp')
 			return o;
 		};
 	}])
-	.factory('estagioSpec', ['chartSize', function(chartSize){
-		return function(element, data) {
-			var estagios = [], colors = [];
-
-			for (var i = 0;i < data.table.length; i++) {
-				estagios.push(data.table[i]._id+' :  '+data.table[i].total);
-				colors.push(data.table[i].color);
-			}
-
+	.factory('estagioSpec', [function(){
+		return function(element, data, width, small) {
 			return {
-				'width': chartSize(element).width,
-				'height': 400,
+				'width': width,
+				'height': (small)?200:400,
 				'padding': { 'top': 20, 'left': 10, 'bottom': 30, 'right': 10 },
 				'data': [{
 					'name': 'table',
@@ -30,7 +23,62 @@ angular.module('pacApp')
 						'name': 'r',
 						'type': 'sqrt',
 						'domain': {'data': 'table', 'field': 'data.total'},
-						'range': [180, 180]
+						'range': (small)?[80, 100]:[130, 180]
+					}
+				],
+				'marks': [
+					{
+						'type': 'arc',
+						'from': { 'data': 'table' },
+						'properties': {
+							'enter': {
+								'x': {'group': 'width', 'mult': 0.5},
+								'y': {'group': 'height', 'mult': 0.5},
+								'startAngle': {'field': 'startAngle'},
+								'endAngle': {'field': 'endAngle'},
+								'innerRadius': {'value': (small)?30:80},
+								'outerRadius': {'scale': 'r', 'field': 'data.total'},
+								'fill': {'field': 'data.color'},
+								'stroke': {'value': 'white'},
+								'strokeWidth': {'value': 2}
+							},
+							'update': {
+								'x': {'group': 'width', 'mult': 0.5},
+								'y': {'group': 'height', 'mult': 0.5},
+								'startAngle': {'field': 'startAngle'},
+								'endAngle': {'field': 'endAngle'},
+								'innerRadius': {'value': (small)?30:80},
+								'outerRadius': {'scale': 'r', 'field': 'data.total'}
+							}
+						}
+					}
+				]
+			};
+		};
+	}])
+	.factory('estagioLegendSpec', ['chartSize', function(chartSize){
+		return function(element, data, width, small) {
+			var estagios = [], colors = [];
+
+			for (var i = 0;i < data.table.length; i++) {
+				estagios.push(data.table[i]._id+' :  '+data.table[i].total);
+				colors.push(data.table[i].color);
+			}
+
+			return {
+				'width': width,
+				'height': (small)?300:400,
+				'padding': { 'top': 20, 'left': 10, 'bottom': 30, 'right': 30 },
+				'data': [{
+					'name': 'table',
+				}],
+				'scales':
+				[
+					{
+						'name': 'r',
+						'type': 'sqrt',
+						'domain': {'data': 'table', 'field': 'data.total'},
+						'range': [130, 180]
 					},
 					{
 						'name': 'size',
@@ -76,56 +124,39 @@ angular.module('pacApp')
 							'padding': {'value': 10},
 							'stroke': {'value': '#ccc'},
 							'strokeWidth': {'value': 0},
-							'x': {'value': 0},
-							'y': {'value': 10}
+							'x': {'x': 0},
+							'y': {'value': (small)?0:70}
 						}
 					}
-				}],
-				'marks': [
-					{
-						'type': 'arc',
-						'from': { 'data': 'table' },
-						'properties': {
-							'enter': {
-								'x': {'group': 'width', 'mult': 0.7},
-								'y': {'group': 'height', 'mult': 0.5},
-								'startAngle': {'field': 'startAngle'},
-								'endAngle': {'field': 'endAngle'},
-								'innerRadius': {'value': 80},
-								'outerRadius': {'scale': 'r', 'field': 'data.total'},
-								'fill': {'field': 'data.color'},
-								'stroke': {'value': 'white'},
-								'strokeWidth': {'value': 2}
-							},
-							'update': {
-								'x': {'group': 'width', 'mult': 0.7},
-								'y': {'group': 'height', 'mult': 0.5},
-								'startAngle': {'field': 'startAngle'},
-								'endAngle': {'field': 'endAngle'},
-								'innerRadius': {'value': 80},
-								'outerRadius': {'scale': 'r', 'field': 'data.total'}
-							}
-						}
-					}
-				]
+				}]
 			};
 		};
 	}])
-	.service('estagioChart',['PacService','estagioSpec', 'shuffle', function(PacService, estagioSpec, shuffle){
-		var that = this,
-				colors = shuffle(['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D']);
+	.service('estagioChart',[
+		'PacService',
+		'estagioSpec',
+		'estagioLegendSpec',
+		'shuffle',
+		function(PacService, estagioSpec, estagioLegendSpec, shuffle){
 
-		this.spec = estagioSpec;
+			var that = this,
+					colors = shuffle(['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D']);
 
-		var service = new PacService(
-			function(responseElement, idx){
-				responseElement.color = colors[idx % colors.length];
-			},
-			function(responseElement, idx){
-				responseElement.total = 10;
-			});
+			this.spec = estagioSpec;
+			this.legendSpec  = estagioLegendSpec;
 
-		this.carregarCategoria = function(categoria){
-			service.get(categoria+'/by_status').success(function(data){ that.data = data; });
-		};
-	}]);
+			var service = new PacService(
+				function(responseElement, idx){
+					responseElement.color = colors[idx % colors.length];
+				},
+				function(responseElement, idx){
+					responseElement.total = 10;
+				});
+
+			this.carregarCategoria = function(categoria){
+				service.get(categoria+'/by_status').success(function(data){
+					that.data = data;
+					that.legendData = { full: data.full, empty: data.full };
+				});
+			};
+		}]);

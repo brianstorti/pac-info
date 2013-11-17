@@ -2,11 +2,11 @@
 
 angular.module('pacApp')
 	.factory('evolucaoSpec', ['chartSize', function(chartSize){
-		return function(element) {
+		return function(element, data, width, small) {
 			return {
-				'width': chartSize(element).width,
+				'width': width,
 				'height': chartSize(element).height,
-				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right':10 },
+				'padding': { 'top': small?30:20, 'left': small?10:0, 'bottom': small?40:30, 'right': small?20:10 },
 				'data': [{'name': 'table'}],
 				'scales': [
 					{
@@ -49,7 +49,8 @@ angular.module('pacApp')
 							'majorTicks': { 'strokeWidth': {'value': 0} },
 							'labels': {
 								'fill': { 'value': 'white' },
-								'fontSize': { 'value': 14 }
+								'fontSize': { 'value': 14 },
+								'angle': {'value': (small? 45:0)}
 							}
 						}
 					}
@@ -67,7 +68,7 @@ angular.module('pacApp')
 			          'text': {'field': ''},
 			          'font': {'value': 'Helvetica Neue'},
 			          'fontSize': {'value': 14},
-			          'align': {'value': 'center'},
+			          'align': {'value': 'center'}
 			        },
 			        'update': {
 			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
