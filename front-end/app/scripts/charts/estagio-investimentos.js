@@ -1,6 +1,12 @@
 'use strict';
 
 angular.module('pacApp')
+	.factory('shuffle', [function() {
+		return function(o){
+			for(var j, x, i = o.length; i; j = parseInt(Math.random() * i, 10), x = o[--i], o[i] = o[j], o[j] = x);
+			return o;
+		};
+	}])
 	.factory('estagioSpec', ['chartSize', function(chartSize){
 		return function(element, data) {
 			var estagios = [], colors = [];
@@ -24,7 +30,7 @@ angular.module('pacApp')
 						'name': 'r',
 						'type': 'sqrt',
 						'domain': {'data': 'table', 'field': 'data.total'},
-						'range': [130, 180]
+						'range': [180, 180]
 					},
 					{
 						'name': 'size',
@@ -105,8 +111,9 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('estagioChart',['PacService','estagioSpec', function(PacService, estagioSpec){
-		var that = this, colors = ['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D'];
+	.service('estagioChart',['PacService','estagioSpec', 'shuffle', function(PacService, estagioSpec, shuffle){
+		var that = this,
+				colors = shuffle(['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D']);
 
 		this.spec = estagioSpec;
 
@@ -114,7 +121,7 @@ angular.module('pacApp')
 			function(responseElement, idx){
 				responseElement.color = colors[idx % colors.length];
 			},
-			function(responseElement){
+			function(responseElement, idx){
 				responseElement.total = 10;
 			});
 

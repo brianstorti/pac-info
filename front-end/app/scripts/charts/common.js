@@ -22,10 +22,11 @@ angular.module('pacApp')
 					that = this;
 
 			angular.forEach(responseTable, function(responseEachObject){
-				that.transformObjectFunction(responseEachObject, responseTable.indexOf(responseEachObject));
+				var idx = responseTable.indexOf(responseEachObject);
+				that.transformObjectFunction(responseEachObject, idx);
 
 				var resetObj = angular.copy(responseEachObject);
-				that.resetObjectFunction(resetObj);
+				that.resetObjectFunction(resetObj, idx);
 				this.push(resetObj);
 			}, resetTable);
 

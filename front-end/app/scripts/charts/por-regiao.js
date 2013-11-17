@@ -87,17 +87,54 @@ angular.module('pacApp')
 		};
 	}])
 	.service('porRegiaoChart',['PacService','porRegiaoSpec',function(PacService, porRegiaoSpec){
-			var that = this;
+			var that = this,
+					total = 0,
+					totalLabel = '',
+					mil = 1000,
+					milhao = mil * 1000,
+					bilhao = milhao * 1000,
+					trilhao = bilhao * 1000;
 
 			this.spec = porRegiaoSpec;
 
-			var service = new PacService(undefined,
+			var service = new PacService(
+				function(responseElement){
+					total += responseElement.valor_total;
+				},
 				function(responseElement){
 					responseElement.valor_total = '';
 				});
 
 			this.carregarCategoria = function(categoria, regiao){
-				service.get(categoria+'/by_region/'+regiao).success(function(data){ that.data = data; });
+				total = 0;
+				service.get(categoria+'/by_region/'+regiao).success(function(data){
+					that.data = data;
+
+					if(total > trilhao) {
+						that.data.totalLabel = 'Trilhões';
+						that.data.total = total/trilhao;
+					}
+					else if(total > bilhao) {
+						that.data.totalLabel = 'Bilhões';
+						that.data.total = total/bilhao;
+					}
+					else if(total > milhao) {
+						that.data.totalLabel = 'Milhões';
+						that.data.total = total/milhao;
+					}
+					else if(total > mil) {
+						that.data.totalLabel = 'Mil';
+						that.data.total = total/mil;
+					}
+					else {
+						that.data.totalLabel = 'Reais';
+						that.data.total = total;
+					}
+
+					that.data.total = that.data.total.toFixed(0);
+
+
+				});
 			};
 		}
 	]);

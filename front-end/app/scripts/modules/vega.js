@@ -4,7 +4,7 @@ angular.module('vegaModule', [])
 	.service('vega', function(){
 		return window.vg;
 	})
-  .service('screen', [function () {
+  .service('screen', ['$timeout',function ($timeout) {
 
     var trackedElements = [],
         tracksInfo = [];
@@ -36,7 +36,7 @@ angular.module('vegaModule', [])
       };
     };
 
-    angular.element(window).on('scroll', function scroll(){
+    function doScroll(){
       var windowTop = angular.element(window).scrollTop(),
           windowHeight = window.innerHeight;
 
@@ -45,7 +45,7 @@ angular.module('vegaModule', [])
             trackInfo = tracksInfo[trackedElements.indexOf(element)],
             elementHeight = parseInt(angular.element(element).css('height').replace('px',''),10);
 
-        if(windowTop + windowHeight > elementTop + elementHeight){
+        if(windowTop + windowHeight > elementTop + elementHeight - elementHeight/3){
           if(!trackInfo.didEnter){
             trackInfo.didEnter = true;
             trackInfo.onEnter.call();
@@ -57,10 +57,11 @@ angular.module('vegaModule', [])
         }
 
       });
+    }
+    angular.element(window).on('scroll', doScroll);
+    $timeout(function(){
+      doScroll();
     });
-
-
-    scroll();
 
   }])
   .directive('vegaChart', ['vega', 'screen', function (vega, screen) {
@@ -72,19 +73,18 @@ angular.module('vegaModule', [])
         opts: '='
       },
       link: function (scope, iElement) {
-        var view, isInTheView = false;
-        scope.$watch('ready', drawChartReady);
+        var view;
+        scope.isInTheView = false;
         scope.$watch('data', drawChartReady);
         angular.element(window).on('resize', drawChartReady);
-        angular.element(window).on('scroll', drawChartReady);
 
         screen.trackElement(iElement).onEnter(function(){
-          isInTheView = true;
+          scope.isInTheView = true;
           drawChartReady();
         });
 
         screen.trackElement(iElement).onLeave(function(){
-          isInTheView = false;
+          scope.isInTheView = false;
         });
 
         function drawChart() {
@@ -98,7 +98,7 @@ angular.module('vegaModule', [])
             vega.parse.spec(spec, function(chart){
               view = chart({el: iElement[0], data: dataEmpty}).update();
               setTimeout(function(){
-                view.data(dataFull).update({duration: 1000});
+                view.data(scope.isInTheView ? dataFull : dataEmpty).update({duration: 1000});
               },500);
             });
           } else {
@@ -109,11 +109,10 @@ angular.module('vegaModule', [])
         }
 
         function drawChartReady() {
-          var hasData = scope.data && scope.data.full && scope.data.full.table && scope.data.full.table.length > 0
+          var hasData = (scope.data && scope.data.full && scope.data.full.table && scope.data.full.table.length > 0);
 
-          if(hasData && isInTheView){
+          if(hasData){
             drawChart();
-            angular.element(window).off('scroll', drawChartReady);
           }
         }
 
