@@ -26,7 +26,8 @@ class Venture
                       'dat_ciclo' => DATE_LAST_CYCLE }},
       { '$group' => { '_id' => '$idn_digs.Tipo',
                       'investimento_total' => { '$sum'  => '$investimento_total' },
-                      'val_2011_2014' => { '$sum' => '$val_2011_2014' }}})
+                      'val_2011_2014' => { '$sum' => '$val_2011_2014' },
+                      'quantidade_empreendimentos' => { '$sum' => 1 }}})
 
     format_currency(result)
   end
