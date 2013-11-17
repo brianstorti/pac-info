@@ -8,7 +8,14 @@ angular.module('pacApp', [
     empty: { table: [] }
   })
   .constant('chartHeight',  110)
-  .constant('API_URL', 'http://pac-info.herokuapp.com/ventures/')
+  .factory('apiUrl', function(){
+    return function(path){
+      var baseUrl = 'http://pac-info.herokuapp.com/ventures',
+          mockUrl = 'http://localhost:9000/mock-api',
+
+      return baseUrl + path;
+    };
+  })
   .directive('onSlide', [function () {
     return {
       restrict: 'A',

@@ -106,11 +106,11 @@ angular.module('pacApp')
 		};
 	}])
   .service('estagioChart',[
-    'API_URL',
+    'apiUrl',
     '$http',
     'estagioSpec',
     'emptyDataChart',
-    function(API_URL, $http, evolucaoSpec, emptyDataChart){
+    function(apiUrl, $http, evolucaoSpec, emptyDataChart){
       var that = this,
           colors = ['#1DA1CD', '#68D286', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D', '#FBAD2F'];
 
@@ -142,7 +142,7 @@ angular.module('pacApp')
       };
 
       this.carregarCategoria = function(categoria){
-        var url = API_URL + [categoria, 'by_status'].join('/');
+        var url = apiUrl([categoria, 'by_status'].join('/'));
         $http.get(url).success(function(data){ that.data = that.transformResponse(data); });
       };
     }

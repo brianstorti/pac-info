@@ -71,11 +71,11 @@ angular.module('pacApp')
 		};
 	}])
 	.service('porRegiaoChart',[
-		'API_URL',
+		'apiUrl',
 		'$http',
 		'porRegiaoSpec',
 		'emptyDataChart',
-		function(API_URL, $http, evolucaoSpec, emptyDataChart){
+		function(apiUrl, $http, evolucaoSpec, emptyDataChart){
 			var that = this;
 
 			this.spec = evolucaoSpec;
@@ -101,7 +101,7 @@ angular.module('pacApp')
 			};
 
 			this.carregarCategoria = function(categoria, regiao){
-				var url = API_URL + [categoria, 'by_region', regiao + '.json'].join('/');
+				var url = apiUrl([categoria, 'by_region', regiao + '.json'].join('/'));
 				$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
 			};
 		}

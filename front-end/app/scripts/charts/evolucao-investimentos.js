@@ -138,7 +138,7 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('evolucaoChart', ['API_URL','$http','evolucaoSpec', 'emptyDataChart', function(API_URL, $http, evolucaoSpec, emptyDataChart){
+	.service('evolucaoChart', ['apiUrl','$http','evolucaoSpec', 'emptyDataChart', function(apiUrl, $http, evolucaoSpec, emptyDataChart){
 		var that = this;
 
 		this.spec = evolucaoSpec;
@@ -169,8 +169,7 @@ angular.module('pacApp')
 		};
 
 		this.carregarCategoria = function(categoria){
-			var url = API_URL + categoria;
-			$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
+			$http.get(apiUrl(categoria)).success(function(data){ that.data = that.transformResponse(data); });
 		};
 
 	}]);
