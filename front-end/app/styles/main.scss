@@ -73,21 +73,18 @@
 .primary-area {
 	width: 100%;
 	background-color: $white;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .secondary-area {
 	width: 100%;
 	background-color: #F6F9FA;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
-//Tablet
-@media (min-width: $screen-xs-min) {
-	.secondary-area,
-	.primary-area {
-		padding-top: 30px;
-		padding-bottom: 30px;
-	}
-}
+
 @media (min-width: $screen-md-min) {
 	.secondary-area,
 	.primary-area {
