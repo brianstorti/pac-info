@@ -182,19 +182,22 @@
             <span pac-random-color ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
             <span pac-random-color ng-show="$last" ng-bind-template='e {{tipo}}'></span>
           </span>
-          <!-- <span ng-bind-template='e outros'></span> -->
         </p>
 
         <div class="row">
+
           <div class="col-md-12">
             <div class="well well-info">
               <header class="well-title">Balanços do PAC </span></header>
               <div vega-chart data="evolucao.data" spec="evolucao.spec" opts="evolucao.opts"></div>
             </div>
           </div>
+
           <div class="col-md-12">
             <div class="well well-warning">
-              <header class="well-title">Planejamento dos Empreendimentos </span></header>
+              <header class="well-title">
+                Planejamento dos Empreendimentos
+              </header>
               <div vega-chart data="distribuicao.data" spec="distribuicao.spec"></div>
             </div>
           </div>
@@ -205,21 +208,24 @@
     <section id="estagiosChart" class="secondary-area">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
+          <p class="lead text-center"> Quantidade de Empreendimentos </p>
+          <div class="col-md-3 col-xs-6" ng-repeat="empreendimento in distribuicao.data.full.table">
+            <div class="well well-primary" style="min-height:170px; margin-bottom:0">
+              <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
+              <p class="text-center text-inverse"  ng-bind="empreendimento._id"></p>
+            </div>
+          </div>
 
+          <div class="col-md-12">
             <div class="well well-lg well-shadow">
               <header class="well-title-inverse">Estágio dos Empreendimentos</span></header>
-
               <div class="col-sm-6">
                 <div vega-chart data="estagios.legendData" spec="estagios.legendSpec" reuse-spec="false"></div>
               </div>
-
               <div class="col-sm-6">
                 <div vega-chart data="estagios.data" spec="estagios.spec"></div>
               </div>
-
             </div>
-
           </div>
 
         </div>
@@ -241,35 +247,36 @@
         <div class="container">
          <div class="row">
           <div class="col-md-4">
+
             <div class="well well-success">
-              <!-- <header class="well-title" ng-bind="slides.current.name"></header> -->
-              <div id="carousel" class="carousel slide" on-slide next="slides.next()" prev="slides.prev()" style="height: 200px">
+              <div id="carousel" class="carousel slide" on-slide next="slides.next()" prev="slides.prev()" style="height: 120px">
                 <div class="carousel-inner">
                   <div class="item" ng-repeat="regiao in ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']" ng-class="{active: $first}">
-                    <h2 class="text-center text-inverse" style="margin-top:90px">{{regiao}}</h2>
+                    <h2 class="text-center text-inverse" style="margin-top:40px">{{regiao}}</h2>
                   </div>
                 </div>
-                <a class="left carousel-control" href="#carousel" data-slide="prev">
+
+                <a class="left carousel-control" href="#carousel" data-slide="prev" style="margin-left:-10px">
                   <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <a class="right carousel-control" href="#carousel" data-slide="next">
+                <a class="right carousel-control" href="#carousel" data-slide="next" style="margin-right:-10px">
                   <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
               </div>
+
+              <div class="well well-compressed well-regiao-counter bg-dark-success">
+                <h3 class="text-center text-inverse" ng-bind="porRegiao.data.total"></h3>
+                <p class="text-center text-inverse" ng-bind="porRegiao.data.totalLabel"></p>
+              </div>
+
             </div>
           </div>
 
           <div class="col-md-8">
             <div class="well well-success">
               <header class="well-title">Planejamento na Região {{slides.current.name}}</header>
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div vega-chart data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
-              </div>
-              <div class="col-md-4">
-                <div class="well well-compressed bg-dark-success">
-                  <h3 class="text-center text-inverse" ng-bind="porRegiao.data.total"></h3>
-                  <p class="text-center text-inverse" ng-bind="porRegiao.data.totalLabel"></p>
-                </div>
               </div>
             </div>
           </div>

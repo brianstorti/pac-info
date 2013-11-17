@@ -57,7 +57,6 @@ angular.module('pacApp')
 				],
 				'marks': [
 					{
-						'key': 'data._id',
 						'type': 'rect',
 						'from': { 'data': 'table' },
 						'properties': {
@@ -65,7 +64,7 @@ angular.module('pacApp')
 								'fill': {'value': '#fff'},
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': small ? 10:40},
 								'y': { 'scale': 'y', 'field': 'data.valor_total'},
-								'y2': { 'value': 0 },
+								'y2': { 'scale': 'y', 'value': -10 },
 								'width': {'scale': 'x', 'band': true, 'offset': small ? -20: -80},
 							},
 							'update': {
@@ -74,7 +73,7 @@ angular.module('pacApp')
 								'y2': { 'scale': 'y', 'value': -10 },
 								'width': {'scale': 'x', 'band': true, 'offset': small ? -20: -80},
 							}
-						}
+						},
 					},
 					{
 						'type': 'text',
