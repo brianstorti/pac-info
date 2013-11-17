@@ -18,5 +18,7 @@ gem 'compass'
 gem 'memcachier'
 
 group :development do
+  gem 'pry'
+  gem 'pry-nav'
   gem 'rspec-rails'
 end

@@ -31,6 +31,7 @@ GEM
     arel (3.0.2)
     builder (3.0.4)
     chunky_png (1.2.9)
+    coderay (1.1.0)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -48,6 +49,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     memcachier (0.0.2)
+    method_source (0.8.2)
     mime-types (1.25)
     mongoid (3.1.5)
       activemodel (~> 3.2)
@@ -58,6 +60,12 @@ GEM
     multi_json (1.8.2)
     origin (1.1.0)
     polyglot (0.3.3)
+    pry (0.9.12.3)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -101,6 +109,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.9.0)
     sass (3.2.12)
+    slop (3.4.7)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -122,6 +131,8 @@ DEPENDENCIES
   kgio
   memcachier
   mongoid
+  pry
+  pry-nav
   rack-cache
   rails (= 3.2.15)
   rails-api
