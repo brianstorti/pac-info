@@ -50,8 +50,11 @@ class Venture
     formatted_results = []
     results.each do |result|
       value = result["investimento_total"] + result ["val_2011_2014"]
-      formatted_results << result.merge(label: CurrencyFormatter.new(value).formatted,
-                                        valor_total: value)
+      result = result.merge(label: CurrencyFormatter.new(value).formatted,
+                            valor_total: value)
+      result.delete("investimento_total")
+      result.delete("val_2011_2014")
+      formatted_results << result
     end
 
     formatted_results
