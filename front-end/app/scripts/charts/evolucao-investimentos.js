@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('pacApp')
-	.factory('evolucaoSpec', ['chartHeight', 'measureElement', function(chartHeight, measureElement){
+	.factory('evolucaoSpec', ['chartSize', function(chartSize){
 		return function(element) {
 			return {
-				'width': measureElement(element).width,
-				'height': chartHeight,
-				'padding': { 'top': 10, 'left': -10, 'bottom': 30, 'right':20 },
-				'data': [{ 'name': 'table' }],
+				'width': chartSize(element).width,
+				'height': chartSize(element).height,
+				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right':10 },
+				'data': [{'name': 'table'}],
 				'scales': [
 					{
 						'name': 'x',
 						'type': 'ordinal',
 						'points': true,
-						'padding': 1.5,
+						'padding': 1,
 						'range': 'width',
 						'domain': {'data': 'table', 'field': 'data._id.data_balanco'},
 						'reverse': true
@@ -26,20 +26,18 @@ angular.module('pacApp')
 						'zero': true,
 						'domain': {'data': 'table', 'field': 'data.valor_total'}
 					},
-					{
-						'name': 'yLabel',
-						'type': 'ordinal',
-						'range': 'height',
-						'nice': true,
-						'zero': true,
-						'domain': {'data': 'table', 'field': 'data.label'}
-					}
+			    {
+			      'name': 'width',
+			      'type': 'ordinal',
+			      'range': 'width',
+			      'points': true,
+			      'domain': {'data': 'table', 'field': 'index'}
+			    },
 				],
 				'axes': [
 					{
 						'type': 'x',
 						'scale': 'x',
-						'grid': true,
 						'properties': {
 							'axis': {
 								'strokeWidth': { 'value': 0 },
@@ -54,36 +52,70 @@ angular.module('pacApp')
 								'fontSize': { 'value': 14 }
 							}
 						}
-					},
-					{
-						'type': 'y',
-						'scale': 'y',
-						'offset': -40,
-						'ticks': 3,
-						'orient': 'right',
-						'properties': {
-							'axis': {
-								'stroke': { 'value': 'white' },
-								'strokeWidth': { 'value': 0 }
-							},
-							'majorTicks': { 'stroke': {'value': 'white'} },
-							'labels': {
-								'fill': { 'value': 'white' },
-								'fontSize': { 'value': 14 },
-								'baseline': {'value': 'middle'}
-							}
-						}
 					}
 				],
 				'marks': [
 					{
+			      'type': 'text',
+			      'from': {'data': 'table'},
+			      'properties': {
+			        'enter': {
+			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+			          'y': {'scale': 'y', 'field': 'data.valor_total'},
+			          'baseline': {'value': 'bottom'},
+			          'fill': {'value': '#fff'},
+			          'text': {'field': ''},
+			          'font': {'value': 'Helvetica Neue'},
+			          'fontSize': {'value': 14},
+			          'align': {'value': 'center'},
+			        },
+			        'update': {
+			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+			          'y': {'scale': 'y', 'field': 'data.valor_total'},
+			          'text': {'field': 'data.label'},
+			        }
+			      }
+					},
+					{
+			      'type': 'rect',
+			      'from': {'data': 'table'},
+			      'properties': {
+							'enter': {
+								'fill': {'value': '#fff'},
+								'fillOpacity': {'value': 0.5},
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+								'y': { 'scale': 'y', 'field': 'data.valor_total'},
+								'y2': { 'value': 0 }
+							},
+							'update': {
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
+								'y': { 'scale': 'y', 'field': 'data.valor_total'},
+								'y2': { 'scale': 'y', 'value': -10 },
+								'width': {'value': 2},
+							}
+						}
+					},
+					{
+			      'type': 'rect',
+			      'from': {'data': 'table'},
+			      'properties': {
+							'update': {
+								'fill': {'value': '#fff'},
+								'x': {'scale': 'x', 'field': 'data._id.data_balanco', 'offset': 0},
+								'y': { 'group': 'height' },
+								'width': {'scale': 'width', 'field': 'index', 'mult': 0.835},
+								'height': {'value': 2}
+							}
+						}
+					},
+					{
 						'type': 'area',
-						'from': { 'data': 'table' },
+						'from': {'data': 'table'},
 						'properties': {
 							'enter': {
 								'interpolate': {'value': 'monotone'},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':5},
 								'y2': {'scale': 'y', 'value': 0},
 								'fill': {'value': 'white'},
 								'fillOpacity': {'value': 0.3}
@@ -91,8 +123,8 @@ angular.module('pacApp')
 							'update': {
 								'interpolate': {'value': 'monotone'},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
-								'y2': {'scale': 'y', 'value': 0},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':5},
+								'y2': {'scale': 'y', 'value': 0}
 							}
 						}
 					},
@@ -104,13 +136,13 @@ angular.module('pacApp')
 								'shape': {'value': 'circle'},
 								'size': {'value': 50},
 								'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':5},
 								'y2': {'scale': 'y', 'value': 0},
 								'fill': {'value': 'white'}
 							},
 							'update': {
 			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-			          'y': {'scale': 'y', 'field': 'data.valor_total'},
+			          'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':5},
 			          'y2': {'scale': 'y', 'value': 0}
 			        },
 						}
@@ -129,7 +161,7 @@ angular.module('pacApp')
 							},
 							'update': {
 			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
-			          'y': {'scale': 'y', 'field': 'data.valor_total'},
+			          'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':5},
 			          'y2': {'scale': 'y', 'value': 0}
 			        }
 						}
@@ -138,38 +170,22 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('evolucaoChart', ['apiUrl','$http','evolucaoSpec', 'emptyDataChart', function(apiUrl, $http, evolucaoSpec, emptyDataChart){
+	.service('evolucaoChart',['PacService','evolucaoSpec',function(PacService, evolucaoSpec){
 		var that = this;
 
 		this.spec = evolucaoSpec;
-		this.data = emptyDataChart;
 
-		this.transformResponseElement = function(responseElement){
-			responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
-		};
-
-		this.clearResponseElement = function(responseElement){
-			var clearObj = angular.copy(responseElement);
-			clearObj.valor_total = '';
-			return clearObj;
-		};
-
-		this.transformResponse = function(investimentosPorData){
-			var emptyData = [];
-
-			for (var i = 0; i < investimentosPorData.length; i++) {
-				that.transformResponseElement(investimentosPorData[i]);
-				emptyData.push( that.clearResponseElement(investimentosPorData[i]) );
-			}
-
-			return {
-				full: { table: investimentosPorData },
-				empty: { table: emptyData }
-			};
-		};
+		var service = new PacService(
+			function(responseElement){
+				responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
+			},
+			function(responseElement){
+				responseElement.valor_total = '';
+				responseElement.label = '';
+			});
 
 		this.carregarCategoria = function(categoria){
-			$http.get(apiUrl(categoria)).success(function(data){ that.data = that.transformResponse(data); });
+			service.get(categoria).success(function(data){ that.data = data; });
 		};
 
 	}]);

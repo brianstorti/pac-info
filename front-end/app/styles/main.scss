@@ -10,13 +10,21 @@
 	margin-left: 5px;
 }
 
-.colorfull-bar {
+.colorfull-bar-bottom {
 	position: absolute;
-	bottom: -7px;
-	min-height: 8px;
+	bottom: -2px;
+	min-height: 4px;
 	width: 100%;
 	background: transparent url(../images/colors.png) center -1px repeat-x;
-	background-size: 100% 5px;
+	background-size: 100% 4px;
+}
+.colorfull-bar-top {
+	position: absolute;
+	top: 0px;
+	min-height: 4px;
+	width: 100%;
+	background: transparent url(../images/colors.png) center -1px repeat-x;
+	background-size: 100% 4px;
 }
 
 .carousel-control {
@@ -72,36 +80,18 @@
 	background-color: #F6F9FA;
 }
 
-//Desktop
-@media (min-width: $screen-md-min) {
-
-	.pac-nav-site {
-		width: 940px;
-		float: none;
-		margin: auto;
-		li {
-			font-size: $font-size-base;
-			padding-left: $navbar-padding-horizontal;
-			padding-right: $navbar-padding-horizontal;
-		}
+//Tablet
+@media (min-width: $screen-xs-min) {
+	.secondary-area,
+	.primary-area {
+		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 }
-
-//Tablet
-@media (min-width: $screen-sm-min) {
-	.navbar {
-		// z-index: -1;
-	}
-	.pac-banner {
-		margin-top: -140px;
-		z-index: $zindex-modal-background;
-	}
-
+@media (min-width: $screen-md-min) {
+	.secondary-area,
 	.primary-area {
-		padding: 30px;
-	}
-
-	.secondary-area {
-		padding: 30px;
+		padding-left: 30px;
+		padding-right: 30px;
 	}
 }

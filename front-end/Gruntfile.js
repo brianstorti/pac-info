@@ -380,7 +380,8 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'copy:publish'
+    'copy:publish',
+    'clean:dist'
   ]);
 
   grunt.registerTask('default', [

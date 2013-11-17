@@ -1,18 +1,19 @@
 'use strict';
 
 angular.module('pacApp')
-	.factory('distribuicaoSpec', ['chartHeight', 'measureElement', function(chartHeight, measureElement){
+	.factory('distribuicaoSpec', ['chartSize', function(chartSize){
 		return function(element, data, opts) {
-			var width = measureElement(element).width;
 			return {
-				'width': width,
-				'height': chartHeight,
-				'padding': { 'top': 10, 'left': 0, 'bottom': 30, 'right': 0 },
+				'width': chartSize(element).width,
+				'height': chartSize(element).height,
+				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right': 0 },
 				'data': [{'name': 'table'}],
 				'scales': [
 					{
 						'name': 'x',
 						'type': 'ordinal',
+						'points': true,
+						'padding': 1.5,
 						'range': 'width',
 						'domain': { 'data': 'table', 'field': 'data._id' }
 					},
@@ -48,16 +49,16 @@ angular.module('pacApp')
 						'from': { 'data': 'table' },
 						'properties': {
 							'enter': {
-								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.valor_total', 'offset': 5 },
-								'y2': { 'scale': 'y', 'value': 0 },
 								'fill': {'value': '#fff'},
+								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
+								'y': { 'scale': 'y', 'field': 'data.valor_total'},
+								'y2': { 'value': 0 },
 								'width': {'scale': 'x', 'band': true, 'offset': -30},
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.valor_total', 'offset': 5 },
-								'y2': { 'scale': 'y', 'value': 0 },
+								'y': { 'scale': 'y', 'field': 'data.valor_total'},
+								'y2': { 'scale': 'y', 'value': -10 },
 								'width': {'scale': 'x', 'band': true, 'offset': -30}
 							}
 						}
@@ -68,14 +69,15 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data._id'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':-10},
 								'fill': {'value': '#fff'},
 								'text': {'field': 'data.label'},
+								'align': {'value': 'center'},
 								'fontSize': { 'value': 14 }
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':-10},
 								'text': {'field': 'data.label'},
 							}
 						}
@@ -84,46 +86,22 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('distribuicaoChart',[
-		'apiUrl',
-		'$http',
-		'distribuicaoSpec',
-		'emptyDataChart',
-		function(apiUrl, $http, evolucaoSpec, emptyDataChart){
-			var that = this;
+	.service('distribuicaoChart',['PacService','distribuicaoSpec',function(PacService, distribuicaoSpec){
+		var that = this;
 
-			this.spec = evolucaoSpec;
-			this.data = emptyDataChart;
+		this.spec = distribuicaoSpec;
 
-			this.transformResponseElement = function(responseElement){
+		var service = new PacService(
+			function(responseElement){
 				if( responseElement._id === 'Equipamentos - Estradas Vicinais' ){
 					responseElement._id = 'Estradas';
 				}
-			};
+			},
+			function(responseElement){
+				responseElement.valor_total = '';
+			});
 
-			this.clearResponseElement = function(responseElement){
-				var clearObj = angular.copy(responseElement);
-				clearObj['valor_total'] = '';
-				return clearObj;
-			};
-
-			this.transformResponse = function(investimentosPorTipo){
-				var emptyData = [];
-
-				for (var i = 0; i < investimentosPorTipo.length; i++) {
-					that.transformResponseElement(investimentosPorTipo[i]);
-					emptyData.push( that.clearResponseElement(investimentosPorTipo[i]) );
-				}
-
-				return {
-					full: { table: investimentosPorTipo },
-					empty: { table: emptyData }
-				};
-			};
-
-			this.carregarCategoria = function(categoria){
-				var url = apiUrl([categoria, 'by_type'].join('/'));
-				$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
-			};
-		}
-	]);
+		this.carregarCategoria = function(categoria){
+			service.get(categoria+'/by_type').success(function(data){ that.data = data; });
+		};
+	}]);

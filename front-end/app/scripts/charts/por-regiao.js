@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('pacApp')
-	.factory('porRegiaoSpec', ['chartHeight', 'measureElement', function(chartHeight, measureElement){
+	.factory('porRegiaoSpec', ['chartSize', function(chartSize){
 		return function(element, data, opts) {
-			var width = measureElement(element).width;
+
 			return {
-				'width': width,
-				'height': chartHeight,
-				'padding': { 'top': 10, 'left': 0, 'bottom': 30, 'right': 0 },
+				'width': chartSize(element).width,
+				'height': chartSize(element).height,
+				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right': 0 },
 				'data': [{'name': 'table'}],
 				'scales': [
 					{
 						'name': 'x',
 						'type': 'ordinal',
+						'points': true,
+						'padding': 1,
 						'range': 'width',
 						'domain': { 'data': 'table', 'field': 'data._id' }
 					},
@@ -47,34 +49,35 @@ angular.module('pacApp')
 						'from': { 'data': 'table' },
 						'properties': {
 							'enter': {
-								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.valor_total', 'offset': 5 },
-								'y2': { 'scale': 'y', 'value': 0 },
 								'fill': {'value': '#fff'},
+								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
+								'y': { 'scale': 'y', 'field': 'data.valor_total'},
+								'y2': { 'scale': 'y', 'value': 0 },
 								'width': {'scale': 'x', 'band': true, 'offset': -30},
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id', 'offset': 15},
-								'y': { 'scale': 'y', 'field': 'data.valor_total', 'offset': 5 },
+								'y': { 'scale': 'y', 'field': 'data.valor_total'},
 								'y2': { 'scale': 'y', 'value': 0 },
 								'width': {'scale': 'x', 'band': true, 'offset': -30}
 							}
 						}
 					},
 					{
-						'type': 'text',
+			      'type': 'text',
 						'from': { 'data': 'table' },
 						'properties': {
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data._id'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':-10},
 								'fill': {'value': '#fff'},
 								'text': {'field': 'data.label'},
+								'align': {'value': 'center'},
 								'fontSize': { 'value': 14 }
 							},
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id'},
-								'y': {'scale': 'y', 'field': 'data.valor_total'},
+								'y': {'scale': 'y', 'field': 'data.valor_total', 'offset':-10},
 								'text': {'field': 'data.label'},
 							}
 						}
@@ -83,39 +86,18 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('porRegiaoChart',[
-		'apiUrl',
-		'$http',
-		'porRegiaoSpec',
-		'emptyDataChart',
-		function(apiUrl, $http, evolucaoSpec, emptyDataChart){
+	.service('porRegiaoChart',['PacService','porRegiaoSpec',function(PacService, porRegiaoSpec){
 			var that = this;
 
-			this.spec = evolucaoSpec;
-			this.data = emptyDataChart;
+			this.spec = porRegiaoSpec;
 
-			this.clearResponseElement = function(responseElement){
-				var clearObj = angular.copy(responseElement);
-				clearObj['valor_total'] = '';
-				return clearObj;
-			};
-
-			this.transformResponse = function(investimentosPorTipo){
-				var emptyData = [];
-
-				for (var i = 0; i < investimentosPorTipo.length; i++) {
-					emptyData.push( that.clearResponseElement(investimentosPorTipo[i]) );
-				}
-
-				return {
-					full: { table: investimentosPorTipo },
-					empty: { table: emptyData }
-				};
-			};
+			var service = new PacService(undefined,
+				function(responseElement){
+					responseElement.valor_total = '';
+				});
 
 			this.carregarCategoria = function(categoria, regiao){
-				var url = apiUrl([categoria, 'by_region', regiao].join('/'));
-				$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
+				service.get(categoria+'/by_region/'+regiao).success(function(data){ that.data = data; });
 			};
 		}
 	]);

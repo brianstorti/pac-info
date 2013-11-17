@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/c9f42358.main.css">
+        <link rel="stylesheet" href="styles/05e7b974.main.css">
 </head>
   <body ng-app="pacApp" ng-controller="MainCtrl">
     <!--[if lt IE 7]>
@@ -24,8 +24,7 @@
     <![endif]-->
 
 
-    <header class="navbar navbar-inverse hidden-xs" role="banner" style="margin-bottom: 0">
-      <div class="colorfull-bar"></div>
+    <header class="navbar navbar-inverse hidden-xs" role="banner">
       <div class="container">
         <div class="navbar-header">
           <a href="../" class="navbar-brand">
@@ -35,8 +34,9 @@
       </div>
     </header>
 
-    <nav class="navbar navbar-inverse">
-      <div class="colorfull-bar visible-xs"></div>
+    <nav navbar-principal="" class="navbar navbar-inverse">
+      <div class="colorfull-bar-top hidden-xs"></div>
+      <div class="colorfull-bar-bottom visible-xs"></div>
       <div class="container">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -71,20 +71,21 @@
             </li>
           </ul>
         </nav>
-      </div>
-    </nav>
 
-
-    <!-- Add your site or application content here -->
-    <section class="primary-area">
-      <div class="container">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <div class="well well-shadow pac-banner">
               <h2 ng-bind="banner.title">Transporte</h2>
             </div>
           </div>
-        </div>
+        </div> -->
+      </div>
+    </nav>
+
+
+    <!-- Add your site or application content here -->
+    <section id="primaryCharts" class="primary-area">
+      <div class="container">
 
         <p class="lead text-center">
           Foram investidos aproximadamente
@@ -98,7 +99,7 @@
           <div class="col-md-12">
             <div class="well well-info">
               <header class="well-title">Progresso dos Investimentos</header>
-              <div vega-chart="" data="evolucao.data" spec="evolucao.spec"></div>
+              <div vega-chart="" data="evolucao.data" spec="evolucao.spec" opts="evolucao.opts"></div>
             </div>
           </div>
           <div class="col-md-12">
@@ -111,7 +112,7 @@
       </div>
     </section>
 
-    <section class="secondary-area">
+    <section id="estagiosChart" class="secondary-area">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -124,7 +125,7 @@
       </div>
     </section>
 
-    <section class="primary-area">
+    <section id="regiaoChart" class="primary-area">
       <div class="container">
         <p class="lead text-center">
           Dados de todas as regiões do Brasil:
@@ -138,7 +139,7 @@
 
         <div class="container">
          <div class="row">
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <div class="well well-success">
               <header class="well-title" ng-bind="slides.current.name"></header>
 
@@ -164,7 +165,7 @@
             </div>
           </div>
 
-          <div class="col-sm-8">
+          <div class="col-md-8">
             <div class="well well-success">
               <header class="well-title">Investimentos por Região</header>
               <div class="col-md-8">
@@ -172,7 +173,6 @@
               </div>
               <div class="col-md-4">
                 <div class="well well-compressed bg-dark-success">
-                  <!-- <div vega-chart data="porRegiao.pie.data" spec="porRegiao.pie.spec"></div> -->
                   <h3 class="text-center text-inverse">123</h3>
                   <p class="text-center text-inverse">Milhões</p>
                 </div>
@@ -197,11 +197,11 @@
     </script>
 
     <script src="bower_components/jquery/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
 
         <script src="bower_components/d3/d3.min.js"></script>
         <script src="scripts/643ecaa9.plugins.js"></script>
         <script src="bower_components/bootstrap-sass/dist/js/bootstrap.min.js"></script>
-        <script src="scripts/af98af6b.scripts.js"></script>
+        <script src="scripts/3a68ea52.scripts.js"></script>
 </body>
 </html>
