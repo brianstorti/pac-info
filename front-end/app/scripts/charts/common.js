@@ -19,14 +19,15 @@ angular.module('pacApp')
 		PacService.prototype.transformResponse = function(responseData){
 			var resetTable = [],
 					responseTable = angular.fromJson(responseData),
-					that = this;
+					that = this,
+					total = responseTable.length;
 
 			angular.forEach(responseTable, function(responseEachObject){
 				var idx = responseTable.indexOf(responseEachObject);
-				that.transformObjectFunction(responseEachObject, idx);
+				that.transformObjectFunction(responseEachObject, idx, total);
 
 				var resetObj = angular.copy(responseEachObject);
-				that.resetObjectFunction(resetObj, idx);
+				that.resetObjectFunction(resetObj, idx, total);
 				this.push(resetObj);
 			}, resetTable);
 

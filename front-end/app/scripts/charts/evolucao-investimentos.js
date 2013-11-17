@@ -172,14 +172,13 @@ angular.module('pacApp')
 		};
 	}])
 	.service('evolucaoChart',['PacService','evolucaoSpec', 'compressNumber', function(PacService, evolucaoSpec, compressNumber){
-		var that = this, total = 0;
+		var that = this;
 
 		this.spec = evolucaoSpec;
 
 		var service = new PacService(
-			function(responseElement){
+			function(responseElement, idx){
 				responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
-				total = responseElement.valor_total;
 			},
 			function(responseElement){
 				responseElement.valor_total = '';
@@ -187,9 +186,10 @@ angular.module('pacApp')
 			});
 
 		this.carregarCategoria = function(categoria){
-			total = 0;
 			service.get(categoria).success(function(data){
+				var total = data.full.table[0].valor_total;
 				var compressedNumber = compressNumber(total);
+
 				that.data = data;
 				that.data.total = compressedNumber.value.toFixed(0);
 				that.data.totalLabel = compressedNumber.label;
