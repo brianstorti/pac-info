@@ -72,8 +72,10 @@ angular.module('vegaModule', [])
         spec: '=',
         duration: '@'
       },
-      link: function (scope, iElement) {
-        var view;
+      link: function (scope, iElement, attrs) {
+        var view,
+            reuseSpec = !(attrs.reuseSpec == 'false')
+
         scope.isInTheView = false;
         scope.animate = scope.animate || true;
 
@@ -96,7 +98,7 @@ angular.module('vegaModule', [])
               spec = scope.spec(iElement, dataFull, width, width < 300);
 
 
-          if(!view){
+          if(!reuseSpec || !view){
             vega.parse.spec(spec, function(chart){
               view = chart({el: iElement[0], data: dataEmpty}).update();
               setTimeout(function(){
