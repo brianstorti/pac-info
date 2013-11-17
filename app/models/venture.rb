@@ -9,9 +9,10 @@ class Venture
     result = collection.aggregate(
       { '$match' => { 'idn_estagio.estagio' => { '$in' => ['Em obras', 'Em execução', 'Concluído', 'Em operação'] },
                       'idn_digs.Subeixo' => @category }},
-                      { '$group' => { '_id' => { 'subeixo' => '$idn_digs.Subeixo', 'data_balanco' => '$dat_ciclo' },
-                                      'investimento_total' => { '$sum'  => '$investimento_total' },
-                                      'val_2011_2014' => { '$sum' => '$val_2011_2014' }}})
+      { '$group' => { '_id' => { 'subeixo' => '$idn_digs.Subeixo', 'data_balanco' => '$dat_ciclo' },
+                      'investimento_total' => { '$sum'  => '$investimento_total' },
+                      'val_2011_2014' => { '$sum' => '$val_2011_2014' }}},
+      { '$sort' => { 'dat_ciclo' => 1 }})
     format_currency(result)
   end
 
