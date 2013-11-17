@@ -1,32 +1,38 @@
 [
   {
-    "_id": "Hidrovia",
-    "label": "933 Mi",
-    "valor_total": 933150000
+    "_id": "Marinha Mercante",
+    "label": "23 Bi",
+    "quantidade_empreendimentos": 24,
+    "valor_total": 23138923407.990002
   },
   {
-    "_id": "Porto",
-    "label": "2 Bi",
-    "valor_total": 2897230000
+    "_id": "Geologia e Minera\u00e7\u00e3o - Cprm",
+    "label": "623 Mi",
+    "quantidade_empreendimentos": 11,
+    "valor_total": 623781000.0
   },
   {
-    "_id": "Aeroporto",
-    "label": "21 Bi",
-    "valor_total": 21111059543
+    "_id": "Combust\u00edveis Renov\u00e1veis",
+    "label": "4 Bi",
+    "quantidade_empreendimentos": 6,
+    "valor_total": 4151770000.0
   },
   {
-    "_id": "Ferrovia",
-    "label": "19 Bi",
-    "valor_total": 19015750000
+    "_id": "Petr\u00f3leo e G\u00e1s Natural",
+    "label": "298 Bi",
+    "quantidade_empreendimentos": 181,
+    "valor_total": 298335962000.0
   },
   {
-    "_id": "Equipamentos - Estradas Vicinais",
-    "label": "3 Bi",
-    "valor_total": 3740387880
+    "_id": "Transmiss\u00e3o de Energia El\u00e9trica",
+    "label": "22 Bi",
+    "quantidade_empreendimentos": 177,
+    "valor_total": 22337107000.0
   },
   {
-    "_id": "Rodovias",
-    "label": "69 Bi",
-    "valor_total": 69539669999
+    "_id": "Gera\u00e7\u00e3o de Energia El\u00e9trica",
+    "label": "82 Bi",
+    "quantidade_empreendimentos": 344,
+    "valor_total": 82566410958.0
   }
 ]

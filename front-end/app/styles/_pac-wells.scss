@@ -3,7 +3,7 @@
 // --------------------------------------------------
 .well {
 	border: none;
-	min-height: 265px;
+	min-height: 335px;
 	margin-top: $line-height-computed;
   margin-bottom: $line-height-computed;
 	@include clearfix()
@@ -57,6 +57,7 @@
 .well-title-inverse {
 	color: $gray-dark;
 	margin-bottom: 15px;
+	padding-right: 30px;
 }
 
 // Desktop

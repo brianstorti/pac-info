@@ -74,7 +74,7 @@ angular.module('vegaModule', [])
       },
       link: function (scope, iElement, attrs) {
         var view,
-            reuseSpec = !(attrs.reuseSpec == 'false')
+            reuseSpec = !(attrs.reuseSpec == 'false');
 
         scope.isInTheView = false;
         scope.animate = scope.animate || true;
@@ -95,7 +95,7 @@ angular.module('vegaModule', [])
           var dataFull = scope.data.full,
               dataEmpty = scope.data.empty,
               width = chartSize(iElement).width,
-              spec = scope.spec(iElement, dataFull, width, width < 300);
+              spec = scope.spec(iElement, dataFull, width, width < 320);
 
 
           if(!reuseSpec || !view){

@@ -116,7 +116,7 @@ angular.module('pacApp')
 						},
 						'labels': {
 							'fill': {'value': '#656567'},
-							'fontSize': {'value': 16},
+							'fontSize': {'value': (small)?13:16},
 							'fontFamily': {'value': 'Helvetica'},
 							'text': {'scale': 'estagios'}
 						},

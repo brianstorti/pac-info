@@ -6,8 +6,12 @@ angular.module('pacApp')
 			return {
 				'width': width,
 				'height': chartSize(element).height,
-				'padding': { 'top': small?30:20, 'left': small?10:0, 'bottom': small?40:30, 'right': small?20:10 },
-				'data': [{'name': 'table'}],
+				'padding': { 'top': small?30:20, 'left': small?10:0, 'bottom': small?70:30, 'right': small?20:10 },
+				'data': [
+					{
+						'name': 'table'
+					}
+				],
 				'scales': [
 					{
 						'name': 'x',
@@ -50,7 +54,9 @@ angular.module('pacApp')
 							'labels': {
 								'fill': { 'value': 'white' },
 								'fontSize': { 'value': 14 },
-								'angle': {'value': (small? 45:0)}
+								'angle': {'value': (small? 45:0)},
+								'dy': {'value': (small? 20:0)},
+								'dx': {'value': (small? 20:0)}
 							}
 						}
 					}
