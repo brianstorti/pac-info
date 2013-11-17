@@ -15,6 +15,7 @@ class Venture
                       'investimento_total' => { '$sum'  => '$investimento_total' },
                       'val_2011_2014' => { '$sum' => '$val_2011_2014' }}})
 
+    result = merge_balances(result)
     result = convert_date(result)
     result = result.sort_by { |r| r["formatted_date"] }.reverse
     format_currency(result)
@@ -66,6 +67,19 @@ class Venture
     formatted_result
   end
   private :convert_date
+
+  def merge_balances(results)
+    balance_to_be_deleted = results.detect { |element| element["_id"]["data_balanco"] == "30/06/2012"}
+    if (balance_to_be_deleted)
+        balance = results.detect { |element| element["_id"]["data_balanco"] == "30/04/2012"}
+        balance.merge!('investimento_total' => balance_to_be_deleted["investimento_total"] + balance["investimento_total"])
+        balance.merge!('val_2011_2014' => balance_to_be_deleted["val_2011_2014"] + balance["val_2011_2014"])
+    end
+
+    results.delete(balance_to_be_deleted)
+    results
+  end
+  private :merge_balances
 
   def format_currency(results)
     formatted_results = []
