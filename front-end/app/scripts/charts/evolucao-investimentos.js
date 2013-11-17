@@ -171,14 +171,15 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('evolucaoChart',['PacService','evolucaoSpec',function(PacService, evolucaoSpec){
-		var that = this;
+	.service('evolucaoChart',['PacService','evolucaoSpec', 'compressNumber', function(PacService, evolucaoSpec, compressNumber){
+		var that = this, total = 0;
 
 		this.spec = evolucaoSpec;
 
 		var service = new PacService(
 			function(responseElement){
 				responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
+				total += responseElement.valor_total;
 			},
 			function(responseElement){
 				responseElement.valor_total = '';
@@ -186,7 +187,13 @@ angular.module('pacApp')
 			});
 
 		this.carregarCategoria = function(categoria){
-			service.get(categoria).success(function(data){ that.data = data; });
+			total = 0;
+			service.get(categoria).success(function(data){
+				var compressedNumber = compressNumber(total);
+				that.data = data;
+				that.data.total = compressedNumber.value.toFixed(0);
+				that.data.totalLabel = compressedNumber.label;
+			});
 		};
 
 	}]);

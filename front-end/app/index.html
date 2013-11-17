@@ -91,10 +91,13 @@
 
         <p class="lead text-center">
           Foram investidos aproximadamente
-          <span class="text-info">2 milhões</span> de reais em
-          <span class="text-primary">Rodovias</span>,
-          <span class="text-success">Ferrovias</span> e
-          <span class="text-warning">outros</span>
+          <span class="text-info" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></span> de reais em
+
+          <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:3">
+            <span pac-random-color ng-show="$first" ng-bind-template='{{tipo}}'></span>
+            <span pac-random-color ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
+            <span pac-random-color ng-show="$last" ng-bind-template='e {{tipo}}'></span>
+          </span>
         </p>
 
         <div class="row">

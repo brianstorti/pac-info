@@ -86,14 +86,9 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('porRegiaoChart',['PacService','porRegiaoSpec',function(PacService, porRegiaoSpec){
-			var that = this,
-					total = 0,
-					totalLabel = '',
-					mil = 1000,
-					milhao = mil * 1000,
-					bilhao = milhao * 1000,
-					trilhao = bilhao * 1000;
+	.service('porRegiaoChart',['PacService','porRegiaoSpec', 'compressNumber',
+		function(PacService, porRegiaoSpec,compressNumber){
+			var that = this, total = 0;
 
 			this.spec = porRegiaoSpec;
 
@@ -108,31 +103,11 @@ angular.module('pacApp')
 			this.carregarCategoria = function(categoria, regiao){
 				total = 0;
 				service.get(categoria+'/by_region/'+regiao).success(function(data){
+					var compressedNumber = compressNumber(total);
+
 					that.data = data;
-
-					if(total > trilhao) {
-						that.data.totalLabel = 'Trilhões';
-						that.data.total = total/trilhao;
-					}
-					else if(total > bilhao) {
-						that.data.totalLabel = 'Bilhões';
-						that.data.total = total/bilhao;
-					}
-					else if(total > milhao) {
-						that.data.totalLabel = 'Milhões';
-						that.data.total = total/milhao;
-					}
-					else if(total > mil) {
-						that.data.totalLabel = 'Mil';
-						that.data.total = total/mil;
-					}
-					else {
-						that.data.totalLabel = 'Reais';
-						that.data.total = total;
-					}
-
-					that.data.total = that.data.total.toFixed(0);
-
+					that.data.totalLabel = compressedNumber.label;
+					that.data.total = compressedNumber.value.toFixed(0);
 
 				});
 			};
