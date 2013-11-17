@@ -11,7 +11,7 @@ angular.module('pacApp')
 				'data': [
 					{
 						'name': 'table',
-						'transform': [{'type': 'pie', 'value': 'data.val_2011_2014'}]
+						'transform': [{'type': 'pie', 'value': 'data.valor_total'}]
 					}
 				],
 				'scales':
@@ -19,7 +19,7 @@ angular.module('pacApp')
           {
             'name': 'r',
             'type': 'sqrt',
-            'domain': {'data': 'table', 'field': 'data.val_2011_2014'},
+            'domain': {'data': 'table', 'field': 'data.valor_total'},
             'range': [130, 180]
           }
         ],
@@ -71,11 +71,11 @@ angular.module('pacApp')
 		};
 	}])
 	.service('porRegiaoChart',[
-		'API_URL',
+		'apiUrl',
 		'$http',
 		'porRegiaoSpec',
 		'emptyDataChart',
-		function(API_URL, $http, evolucaoSpec, emptyDataChart){
+		function(apiUrl, $http, evolucaoSpec, emptyDataChart){
 			var that = this;
 
 			this.spec = evolucaoSpec;
@@ -83,7 +83,7 @@ angular.module('pacApp')
 
 			this.clearResponseElement = function(responseElement){
 				var clearObj = angular.copy(responseElement);
-				clearObj['val_2011_2014'] = '';
+				clearObj['valor_total'] = '';
 				return clearObj;
 			};
 
@@ -101,7 +101,7 @@ angular.module('pacApp')
 			};
 
 			this.carregarCategoria = function(categoria, regiao){
-				var url = API_URL + [categoria, 'by_region', regiao + '.json'].join('/');
+				var url = apiUrl([categoria, 'by_region', regiao + '.json'].join('/'));
 				$http.get(url).success(function(data){ that.data = that.transformResponse(data); });
 			};
 		}

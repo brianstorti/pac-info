@@ -37,7 +37,9 @@ angular.module('vegaModule', [])
         }
 
         function drawChartReady() {
-          if(scope.data && scope.data.full && scope.data.full.table && scope.data.full.table.length > 0){
+          var hasData = scope.data && scope.data.full && scope.data.full.table && scope.data.full.table.length > 0;
+
+          if(hasData){
             drawChart();
           }
         }
