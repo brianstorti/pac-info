@@ -43,7 +43,7 @@ angular.module('pacApp')
       var baseUrl = 'http://pac-info.herokuapp.com/ventures',
           mockUrl = 'http://localhost:9000/mock-api';
 
-      return mockUrl + path + '.json';
+      return baseUrl + path;
     };
   })
   .factory('chartSize',  function(){

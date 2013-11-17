@@ -18,3 +18,5 @@ front-end/dist
 front-end/.tmp
 front-end/.sass-cache
 front-end/app/bower_components
+
+.DS_Store
