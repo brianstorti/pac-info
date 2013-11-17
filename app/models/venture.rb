@@ -17,7 +17,7 @@ class Venture
 
   def by_type
     result = collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category, 
+      { '$match' => { 'idn_digs.Subeixo' => @category,
                       'dat_ciclo' => '31/08/2013' }},
       { '$group' => { '_id' => '$idn_digs.Tipo',
                       'investimento_total' => { '$sum'  => '$investimento_total' },
@@ -27,7 +27,7 @@ class Venture
 
   def by_status
     collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category, 
+      { '$match' => { 'idn_digs.Subeixo' => @category,
                       'dat_ciclo' => '31/08/2013' }},
       { '$group' => { '_id' => '$idn_estagio.estagio',
                       'total' => { '$sum' => 1 }}},
@@ -50,7 +50,8 @@ class Venture
     formatted_results = []
     results.each do |result|
       value = result["investimento_total"] + result ["val_2011_2014"]
-      formatted_results << result.merge(label: CurrencyFormatter.new(value).formatted)
+      formatted_results << result.merge(label: CurrencyFormatter.new(value).formatted,
+                                        valor_total: value)
     end
 
     formatted_results
