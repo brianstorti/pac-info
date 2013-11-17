@@ -15,6 +15,15 @@ angular.module('pacApp')
       }
     };
   }])
+  .directive('pacRandomColor', ['shuffle', function (shuffle) {
+    return {
+      restrict: 'A',
+      link: function (scope, iElement) {
+        var colors = shuffle(['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D']);
+        iElement.css('color', colors[parseInt(Math.random()*colors.length, 10)]);
+      }
+    };
+  }])
   .directive('navbarPrincipal', [function () {
     return {
       restrict: 'A',

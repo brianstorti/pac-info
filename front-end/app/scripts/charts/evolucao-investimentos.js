@@ -2,11 +2,11 @@
 
 angular.module('pacApp')
 	.factory('evolucaoSpec', ['chartSize', function(chartSize){
-		return function(element) {
+		return function(element, data, width, small) {
 			return {
-				'width': chartSize(element).width,
+				'width': width,
 				'height': chartSize(element).height,
-				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right':10 },
+				'padding': { 'top': small?30:20, 'left': small?10:0, 'bottom': small?40:30, 'right': small?20:10 },
 				'data': [{'name': 'table'}],
 				'scales': [
 					{
@@ -49,7 +49,8 @@ angular.module('pacApp')
 							'majorTicks': { 'strokeWidth': {'value': 0} },
 							'labels': {
 								'fill': { 'value': 'white' },
-								'fontSize': { 'value': 14 }
+								'fontSize': { 'value': 14 },
+								'angle': {'value': (small? 45:0)}
 							}
 						}
 					}
@@ -67,7 +68,7 @@ angular.module('pacApp')
 			          'text': {'field': ''},
 			          'font': {'value': 'Helvetica Neue'},
 			          'fontSize': {'value': 14},
-			          'align': {'value': 'center'},
+			          'align': {'value': 'center'}
 			        },
 			        'update': {
 			          'x': {'scale': 'x', 'field': 'data._id.data_balanco'},
@@ -170,13 +171,13 @@ angular.module('pacApp')
 			};
 		};
 	}])
-	.service('evolucaoChart',['PacService','evolucaoSpec',function(PacService, evolucaoSpec){
+	.service('evolucaoChart',['PacService','evolucaoSpec', 'compressNumber', function(PacService, evolucaoSpec, compressNumber){
 		var that = this;
 
 		this.spec = evolucaoSpec;
 
 		var service = new PacService(
-			function(responseElement){
+			function(responseElement, idx){
 				responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
 			},
 			function(responseElement){
@@ -185,7 +186,14 @@ angular.module('pacApp')
 			});
 
 		this.carregarCategoria = function(categoria){
-			service.get(categoria).success(function(data){ that.data = data; });
+			service.get(categoria).success(function(data){
+				var total = data.full.table[0].valor_total;
+				var compressedNumber = compressNumber(total);
+
+				that.data = data;
+				that.data.total = compressedNumber.value.toFixed(0);
+				that.data.totalLabel = compressedNumber.label;
+			});
 		};
 
 	}]);

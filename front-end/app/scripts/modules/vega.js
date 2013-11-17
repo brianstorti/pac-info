@@ -64,17 +64,21 @@ angular.module('vegaModule', [])
     });
 
   }])
-  .directive('vegaChart', ['vega', 'screen', function (vega, screen) {
+  .directive('vegaChart', ['vega', 'screen', 'chartSize', function (vega, screen, chartSize) {
     return {
       restrict: 'A',
       scope: {
         data: '=',
         spec: '=',
-        opts: '='
+        duration: '@'
       },
-      link: function (scope, iElement) {
-        var view;
+      link: function (scope, iElement, attrs) {
+        var view,
+            reuseSpec = !(attrs.reuseSpec == 'false')
+
         scope.isInTheView = false;
+        scope.animate = scope.animate || true;
+
         scope.$watch('data', drawChartReady);
         angular.element(window).on('resize', drawChartReady);
 
@@ -88,13 +92,13 @@ angular.module('vegaModule', [])
         });
 
         function drawChart() {
-          var dataFull = scope.data.full || scope.data,
-              dataEmpty = scope.data.empty || scope.data,
-              opts = scope.opts || {};
+          var dataFull = scope.data.full,
+              dataEmpty = scope.data.empty,
+              width = chartSize(iElement).width,
+              spec = scope.spec(iElement, dataFull, width, width < 300);
 
-          var spec = scope.spec(iElement, dataFull, opts);
 
-          if(!view){
+          if(!reuseSpec || !view){
             vega.parse.spec(spec, function(chart){
               view = chart({el: iElement[0], data: dataEmpty}).update();
               setTimeout(function(){

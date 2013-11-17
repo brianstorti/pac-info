@@ -7,7 +7,14 @@ angular.module('pacApp')
 				'width': chartSize(element).width,
 				'height': chartSize(element).height,
 				'padding': { 'top': 20, 'left': 0, 'bottom': 30, 'right': 0 },
-				'data': [{'name': 'table'}],
+				'data': [
+					{
+						'name': 'table',
+						'transform': [
+
+						]
+					}
+				],
 				'scales': [
 					{
 						'name': 'x',
@@ -37,7 +44,7 @@ angular.module('pacApp')
 								'angle': { 'value': 0 },
 								'fontSize': { 'value': 12 },
 								'fontWeight': { 'value': '200' },
-								'align': { 'value': 'center'}
+								'align': { 'value': 'center'},
 							}
 						}
 					}
@@ -87,7 +94,7 @@ angular.module('pacApp')
 		};
 	}])
 	.service('distribuicaoChart',['PacService','distribuicaoSpec',function(PacService, distribuicaoSpec){
-		var that = this;
+		var that = this, tipos = [];
 
 		this.spec = distribuicaoSpec;
 
@@ -96,12 +103,18 @@ angular.module('pacApp')
 				if( responseElement._id === 'Equipamentos - Estradas Vicinais' ){
 					responseElement._id = 'Estradas';
 				}
+
+				tipos.push(responseElement._id);
 			},
 			function(responseElement){
 				responseElement.valor_total = '';
 			});
 
 		this.carregarCategoria = function(categoria){
-			service.get(categoria+'/by_type').success(function(data){ that.data = data; });
+			tipos = [];
+			service.get(categoria+'/by_type').success(function(data){
+				that.data = data;
+				that.data.tipos = tipos;
+			});
 		};
 	}]);

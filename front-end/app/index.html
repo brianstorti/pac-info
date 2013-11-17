@@ -91,10 +91,13 @@
 
         <p class="lead text-center">
           Foram investidos aproximadamente
-          <span class="text-info">2 milhões</span> de reais em
-          <span class="text-primary">Rodovias</span>,
-          <span class="text-success">Ferrovias</span> e
-          <span class="text-warning">outros</span>
+          <span class="text-info" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></span> de reais em
+
+          <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:3">
+            <span pac-random-color ng-show="$first" ng-bind-template='{{tipo}}'></span>
+            <span pac-random-color ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
+            <span pac-random-color ng-show="$last" ng-bind-template='e {{tipo}}'></span>
+          </span>
         </p>
 
         <div class="row">
@@ -118,11 +121,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
+
             <div class="well well-lg well-shadow">
               <header class="well-title-inverse">Estágio dos investimentos</header>
-              <div vega-chart data="estagios.data" spec="estagios.spec"></div>
+
+              <div class="col-sm-7">
+                <div vega-chart data="estagios.data" spec="estagios.spec"></div>
+              </div>
+
+              <div class="col-sm-5">
+                <div vega-chart data="estagios.legendData" spec="estagios.legendSpec" reuse-spec="false"></div>
+              </div>
+
             </div>
+
           </div>
+
         </div>
       </div>
     </section>
@@ -144,28 +158,10 @@
           <div class="col-md-4">
             <div class="well well-success">
               <!-- <header class="well-title" ng-bind="slides.current.name"></header> -->
-
-              <div id="carousel" class="carousel slide" on-slide next="slides.next()" prev="slides.next()" style="height: 200px">
+              <div id="carousel" class="carousel slide" on-slide next="slides.next()" prev="slides.prev()" style="height: 200px">
                 <div class="carousel-inner">
-                  <div class="item active">
-                    <!-- <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px;"> -->
-                    <h2 class="text-center text-inverse" style="margin-top:90px">Norte</h2>
-                  </div>
-                  <div class="item">
-                    <!-- <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px;"> -->
-                    <h2 class="text-center text-inverse" style="margin-top:90px">Nordeste</h2>
-                  </div>
-                  <div class="item">
-                    <!-- <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px;"> -->
-                    <h2 class="text-center text-inverse" style="margin-top:90px">Centro-Oeste</h2>
-                  </div>
-                  <div class="item">
-                    <!-- <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px;"> -->
-                    <h2 class="text-center text-inverse" style="margin-top:90px">Sudeste</h2>
-                  </div>
-                  <div class="item">
-                    <!-- <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px;"> -->
-                    <h2 class="text-center text-inverse" style="margin-top:90px">Sul</h2>
+                  <div class="item" ng-repeat="regiao in ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']" ng-class="{active: $first}">
+                    <h2 class="text-center text-inverse" style="margin-top:90px">{{regiao}}</h2>
                   </div>
                 </div>
                 <a class="left carousel-control" href="#carousel" data-slide="prev">
@@ -180,7 +176,7 @@
 
           <div class="col-md-8">
             <div class="well well-success">
-              <header class="well-title">Investimentos por Região</header>
+              <header class="well-title">Investimentos na região {{slides.current.name}}</header>
               <div class="col-md-8">
                 <div vega-chart data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
               </div>
