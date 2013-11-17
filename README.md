@@ -8,7 +8,7 @@ PAC (Programa de aceleração do crescimento) está sendo investido. Nele nós c
 ver o progresso, distribuição e estágio dos investimentos.
 
 #### Origem dos dados
-Os dados foram obtidos no (site do governo)[http://dados.gov.br/dataset/obras-do-pac-programa-de-aceleracao-do-crescimento]
+Os dados foram obtidos no [site do governo](http://dados.gov.br/dataset/obras-do-pac-programa-de-aceleracao-do-crescimento)
 
 #### Autores
 Brian Thomas Storti
