@@ -179,7 +179,7 @@ angular.module('pacApp')
 		var service = new PacService(
 			function(responseElement){
 				responseElement._id['data_balanco'] = responseElement._id['data_balanco'].substring(3);
-				total += responseElement.valor_total;
+				total = responseElement.valor_total;
 			},
 			function(responseElement){
 				responseElement.valor_total = '';
