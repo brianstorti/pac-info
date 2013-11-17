@@ -72,6 +72,7 @@ class Venture
     balance_to_be_deleted = results.detect { |element| element["_id"]["data_balanco"] == "30/06/2012"}
     if (balance_to_be_deleted)
         balance = results.detect { |element| element["_id"]["data_balanco"] == "30/04/2012"}
+        return results unless balance
         balance.merge!('investimento_total' => balance_to_be_deleted["investimento_total"] + balance["investimento_total"])
         balance.merge!('val_2011_2014' => balance_to_be_deleted["val_2011_2014"] + balance["val_2011_2014"])
     end
