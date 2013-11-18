@@ -30,8 +30,8 @@
           }
 
           var mapDiv = document.getElementById('googft-mapCanvas');
-          mapDiv.style.width = isMobile ? '100%' : '100%';
-          mapDiv.style.height = isMobile ? '100%' : '300px';
+          mapDiv.style.width = '100%';
+          mapDiv.style.height = '300px';
 
           var map = new google.maps.Map(mapDiv, {
             center: new google.maps.LatLng(-20.114844213971704, -47.01049999999998),
@@ -57,6 +57,7 @@
           function handleNoGeolocation(errorFlag) {
             if (errorFlag == true) {
               initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
+              map.setZoom(4);
             } else {
               initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
             }
@@ -274,12 +275,8 @@
             </div>
           </div>
 
-        <div>
-            <header >Mapa das obras do PAC</header>
-            <div class="col-md-12" id="googft-mapCanvas"></div>
-        </div>
-
-        </div>
+          <header>PAC perto de você</header>
+          <div class="col-md-12" id="googft-mapCanvas"></div>
 
       </div>
 
