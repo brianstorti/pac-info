@@ -12,6 +12,7 @@ gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
 gem 'compass'
+gem 'thin'
 
 # MemCachier sets environment variables prefixed with MEMCACHIER rather than MEMCACHE.
 # The memcachier gem, however, fixes this for you.
