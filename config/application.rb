@@ -26,5 +26,6 @@ module PacInfo
     # config.i18n.default_locale = :de
 
     config.cache_store = :dalli_store
+    config.assets.enabled = false
   end
 end
