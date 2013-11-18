@@ -6,7 +6,7 @@ angular.module('pacApp')
 
 			return {
 				'width': width,
-				'height': chartSize(element).height,
+				'height': 180,
 				'padding': { 'top': small?30:20, 'left': 0, 'bottom': 30, 'right': small?10:0 },
 				'data': [{'name': 'table'}],
 				'scales': [

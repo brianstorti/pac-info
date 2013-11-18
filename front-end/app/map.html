@@ -1,0 +1,223 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+      <script type="text/javascript">
+        function initialize() {
+
+          google.maps.visualRefresh = true;
+
+          var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
+            (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
+          if (isMobile) {
+            var viewport = document.querySelector("meta[name=viewport]");
+            viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
+          }
+
+          var mapDiv = document.getElementById('googft-mapCanvas');
+          mapDiv.style.width = isMobile ? '100%' : '100%';
+          mapDiv.style.height = isMobile ? '100%' : '350px';
+
+          var map = new google.maps.Map(mapDiv, {
+            center: new google.maps.LatLng(-20.114844213971704, -47.01049999999998),
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+          if(navigator.geolocation) {
+              browserSupportFlag = true;
+              navigator.geolocation.getCurrentPosition(function(position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                map.setCenter(initialLocation);
+              }, function() {
+                handleNoGeolocation(browserSupportFlag);
+              });
+            }
+            // Browser doesn't support Geolocation
+            else {
+              browserSupportFlag = false;
+              handleNoGeolocation(browserSupportFlag);
+            }
+
+          function handleNoGeolocation(errorFlag) {
+            if (errorFlag == true) {
+              initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
+            } else {
+              initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
+            }
+            map.setCenter(initialLocation);
+          }
+
+          layer = new google.maps.FusionTablesLayer({
+            map: map,
+            heatmap: { enabled: false },
+            query: {
+              select: "col15",
+              from: "1ysIomYBkv6VRf1SV0xaU46UcmPJ-huZ3gNnd5rQ",
+              where: ""
+            },
+            options: {
+              styleId: 2,
+              templateId: 3
+            }
+          });
+
+          if (isMobile) {
+            var legend = document.getElementById('googft-legend');
+            var legendOpenButton = document.getElementById('googft-legend-open');
+            var legendCloseButton = document.getElementById('googft-legend-close');
+            legend.style.display = 'none';
+            legendOpenButton.style.display = 'block';
+            legendCloseButton.style.display = 'block';
+            legendOpenButton.onclick = function() {
+              legend.style.display = 'block';
+              legendOpenButton.style.display = 'none';
+            }
+            legendCloseButton.onclick = function() {
+              legend.style.display = 'none';
+              legendOpenButton.style.display = 'block';
+            }
+          }
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
+  <body ng-app="pacApp" ng-controller="MainCtrl" style="padding-top:60px">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+      <div class="colorfull-bar-bottom"></div>
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand  visible-xs">
+            <span class="navbar-brand-name">PAC II</span> <span class="navbar-brand-subname">Mapa</span><br>
+          </a>
+
+          <a href="../" class="navbar-brand hidden-xs">
+            <span class="navbar-brand-name">PAC II</span>
+          </a>
+
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="text-center" href="/">Estatístico</a>
+            </li>
+            <li class="active hidden-xs">
+              <a class="text-center" href="/map.html">Mapa</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="text-center">
+              <a href="https://github.com/brianstorti/pac-info">
+                <i class="fa fa-github fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Add your site or application content here -->
+    <section class="secondary-area">
+      <div class="container">
+
+        <div class="row">
+          <p class="lead text-center"> Mapa das obras do PAC II</p>
+          <div class="col-md-12">
+            <div class="well well-lg  well-success well-shadow">
+              <div id="googft-mapCanvas"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="navbar navbar-default navbar-inverse navbar-fixed-bottom">
+      <div class="colorfull-bar-top"></div>
+      <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-xs">
+            <a href="https://github.com/brianstorti/pac-info">
+              Contribua
+              <i class="fa fa-github fa-lg"></i>
+            </a>
+          </li>
+        </ul>
+
+        <small class="navbar-text">
+          Aplicativo desenvolvido para o
+          <a href="http://2.encontro.dados.gov.br/concurso.html">
+            Segundo Encontro Nacional de Dados Abertos.
+          </a>
+        </small>
+
+      </div>
+
+    </footer>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-38852102-4');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+        <script src="bower_components/d3/d3.min.js"></script>
+        <!-- build:js scripts/plugins.js -->
+        <script src="libs/vega/vega.js"></script>
+        <!-- endbuild -->
+        <script src="bower_components/bootstrap-sass/dist/js/bootstrap.min.js"></script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/directives/directives.js"></script>
+        <script src="scripts/modules/vega.js"></script>
+
+        <script src="scripts/charts/common.js"></script>
+        <script src="scripts/charts/por-regiao.js"></script>
+        <script src="scripts/charts/evolucao-investimentos.js"></script>
+        <script src="scripts/charts/distribuicao-investimentos.js"></script>
+        <script src="scripts/charts/estagio-investimentos.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
