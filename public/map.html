@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/ef8c688e.main.css">
+        <link rel="stylesheet" href="styles/f4c81e1a.main.css">
 
       <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
@@ -29,7 +29,7 @@
 
           var mapDiv = document.getElementById('googft-mapCanvas');
           mapDiv.style.width = '100%';
-          mapDiv.style.height = '350px';
+          mapDiv.style.height = window.innerHeight+'px';
 
           var map = new google.maps.Map(mapDiv, {
             center: new google.maps.LatLng(-20.114844213971704, -47.01049999999998),
@@ -130,25 +130,12 @@
               <a class="text-center" href="/">Estatístico</a>
             </li>
             <li class="active hidden-xs">
-              <a class="text-center" href="/map.html">Mapa</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="text-center">
-              <a href="https://github.com/brianstorti/pac-info">
-                <i class="fa fa-github fa-lg"></i>
-              </a>
+              <a class="text-center" href="/map.html">Mapa - Obras do PAC perto de você</a>
             </li>
           </ul>
         </nav>
       </div>
     </header>
-
-    <!-- Add your site or application content here -->
-
-    <section class="secondary-area">
-      <p class="lead text-center">Obras do PAC perto de você</p>
-    </section>
 
     <div id="googft-mapCanvas"></div>
 
@@ -158,7 +145,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="hidden-xs">
             <a href="https://github.com/brianstorti/pac-info">
-              Contribua
+              <small>Contribua</small>
               <i class="fa fa-github fa-lg"></i>
             </a>
           </li>
@@ -192,6 +179,6 @@
         <script src="bower_components/d3/d3.min.js"></script>
         <script src="scripts/643ecaa9.plugins.js"></script>
         <script src="bower_components/bootstrap-sass/dist/js/bootstrap.min.js"></script>
-        <script src="scripts/2ba4d318.scripts.js"></script>
+        <script src="scripts/7caf5657.scripts.js"></script>
 </body>
 </html>

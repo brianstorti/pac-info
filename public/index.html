@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/ef8c688e.main.css">
+        <link rel="stylesheet" href="styles/f4c81e1a.main.css">
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   </head>
@@ -42,13 +42,13 @@
               <a class="text-center" href="/map.html">Mapa</a>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+          <!-- <ul class="nav navbar-nav navbar-right">
             <li>
               <a href="https://github.com/brianstorti/pac-info">
                 <i class="fa fa-github fa-lg"></i>
               </a>
             </li>
-          </ul>
+          </ul> -->
         </nav>
       </div>
     </header>
@@ -71,34 +71,34 @@
         </div>
         <nav class="collapse navbar-collapse" role="navigation">
           <ul class="nav navbar-nav pac-nav-site">
-            <li nav-link="">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="text-center" href="#/agua-e-luz-para-todos">Água e Luz para todos</a>
             </li>
-            <li nav-link="">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="text-center" href="#/comunidade-cidada">Comunidade Cidadã</a>
             </li>
-            <li nav-link="" nav-link-default="">
+            <li nav-link="" nav-link-default="" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="text-center" href="#/transportes">Transportes</a>
             </li>
-            <li nav-link="">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="text-center" href="#/cidade-melhor">Cidade Melhor</a>
             </li>
-            <li nav-link="">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="text-center" href="#/energia">Energia</a>
             </li>
-            <li nav-link="">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="text-center" href="#/habitacao">Habitação</a>
             </li>
 
-            <li nav-link="" class="visible-xs">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">
               <a class="text-center" href="/map.html">Mapa</a>
             </li>
 
-            <li class="visible-xs text-center">
+            <!-- <li class="visible-xs text-center">
               <a href="https://github.com/brianstorti/pac-info">
                 <i class="fa fa-github fa-lg"></i>
               </a>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
@@ -109,14 +109,14 @@
     <section id="primaryCharts" class="primary-area">
       <div class="container">
 
-        <p class="lead text-center">
-          <span>O planejamento para <b pac-random-color="">{{banner.title}}</b> é de investir </span>
-          <span class="text-info" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></span> de reais. 
+        <p class="lead text-center" ng-show="evolucao.data">
+          <span>O planejamento para <b>{{banner.title}}</b> é de investir </span>
+          <span class="text-success" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></span> de reais. 
           <span>Em obras de </span>
           <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
-            <span pac-random-color="" ng-show="$first" ng-bind-template="{{tipo}}"></span>
-            <span pac-random-color="" ng-show="$middle" ng-bind-template=", {{tipo}}"></span>
-            <span pac-random-color="" ng-show="$last" ng-bind-template="e {{tipo}}"></span>
+            <b><span ng-show="$first" ng-bind-template="{{tipo}}"></span></b>
+            <b><span ng-show="$middle" ng-bind-template=", {{tipo}}"></span></b>
+            <b><span ng-show="$last" ng-bind-template="e {{tipo}}"></span></b>
           </span>
         </p>
 
@@ -228,7 +228,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="https://github.com/brianstorti/pac-info">
-              Contribua
+              <small>Colabore</small>
               <i class="fa fa-github fa-lg"></i>
             </a>
           </li>
@@ -264,6 +264,6 @@
         <script src="bower_components/d3/d3.min.js"></script>
         <script src="scripts/643ecaa9.plugins.js"></script>
         <script src="bower_components/bootstrap-sass/dist/js/bootstrap.min.js"></script>
-        <script src="scripts/2ba4d318.scripts.js"></script>
+        <script src="scripts/7caf5657.scripts.js"></script>
 </body>
 </html>

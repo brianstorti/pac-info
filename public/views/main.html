@@ -1,108 +1,167 @@
-<section class="primary-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="well well-shadow pac-banner">
-          <h2>Transporte</h2>
+<nav navbar-principal="" class="navbar navbar-inverse">
+      <div class="colorfull-bar-top hidden-xs"></div>
+      <div class="colorfull-bar-bottom visible-xs"></div>
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="../" class="navbar-brand visible-xs">
+            <span class="navbar-brand-name">PAC II</span> <span class="navbar-brand-subname">Estatístico</span><br>
+          </a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav pac-nav-site">
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
+              <a class="text-center" href="#/agua-e-luz-para-todos">Água e Luz para todos</a>
+            </li>
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
+              <a class="text-center" href="#/comunidade-cidada">Comunidade Cidadã</a>
+            </li>
+            <li nav-link="" nav-link-default="" data-toggle="collapse" data-target=".navbar-collapse">
+              <a class="text-center" href="#/transportes">Transportes</a>
+            </li>
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
+              <a class="text-center" href="#/cidade-melhor">Cidade Melhor</a>
+            </li>
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
+              <a class="text-center" href="#/energia">Energia</a>
+            </li>
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse">
+              <a class="text-center" href="#/habitacao">Habitação</a>
+            </li>
+
+            <li nav-link="" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">
+              <a class="text-center" href="/map.html">Mapa</a>
+            </li>
+
+            <!-- <li class="visible-xs text-center">
+              <a href="https://github.com/brianstorti/pac-info">
+                <i class="fa fa-github fa-lg"></i>
+              </a>
+            </li> -->
+          </ul>
+        </nav>
+      </div>
+    </nav>
+
+
+    <!-- Add your site or application content here -->
+    <section id="primaryCharts" class="primary-area">
+      <div class="container">
+
+        <p class="lead text-center" ng-show="evolucao.data">
+          <span>O planejamento para <b>{{banner.title}}</b> é de investir </span>
+          <span class="text-success" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></span> de reais. 
+          <span>Em obras de </span>
+          <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
+            <b><span ng-show="$first" ng-bind-template="{{tipo}}"></span></b>
+            <b><span ng-show="$middle" ng-bind-template=", {{tipo}}"></span></b>
+            <b><span ng-show="$last" ng-bind-template="e {{tipo}}"></span></b>
+          </span>
+        </p>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="well well-info">
+              <header class="well-title">Balanços do PAC </header>
+              <div vega-chart="" data="evolucao.data" spec="evolucao.spec" opts="evolucao.opts"></div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="well well-warning">
+              <header class="well-title">
+                Planejamento dos Empreendimentos
+              </header>
+              <div vega-chart="" data="distribuicao.data" spec="distribuicao.spec"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <p class="lead text-center">
-      Foram investidos aproximadamente
-      <span class="text-info">2 milhões</span> de reais em
-      <span class="text-primary">Rodovias</span>,
-      <span class="text-success">Ferrovias</span> e
-      <span class="text-warning">outros</span>
-    </p>
+    <section id="estagiosChart" class="secondary-area">
+      <div class="container">
+        <div class="row">
+          <p class="lead text-center"> Quantidade de Empreendimentos </p>
+          <div class="col-md-3 col-xs-6" ng-repeat="empreendimento in distribuicao.data.full.table">
+            <div class="well well-primary" style="min-height:170px; margin-bottom:0">
+              <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
+              <p class="text-center text-inverse" ng-bind="empreendimento._id"></p>
+            </div>
+          </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="well well-info">
-          <header class="well-title">Evolução dos investimentos</header>
-          <div vega-chart="" data="evolucao.data" spec="evolucao.spec"></div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="well well-warning">
-          <header class="well-title">Distribuição dos investidos</header>
-          <div vega-chart="" data="distribuicao.data" spec="distribuicao.spec"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="secondary-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="well well-lg well-shadow">
-          <header class="well-title-inverse">Estágio dos investimentos</header>
-          <div vega-chart="" data="estagios.data" spec="estagios.spec"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="primary-area">
-  <div class="container">
-    <p class="lead text-center">
-      Dados de todas as regiões do Brasil:
-      <span class="text-info">Norte</span>,
-      <span class="text-primary">Nordeste</span>,
-      <span class="text-success">Centro-Oeste</span>,
-      <span class="text-warning">Sudeste</span> e
-      <span class="text-danger">Sul</span>
-    </p>
-    </div>
-
-    <div class="container">
-     <div class="row">
-      <div class="col-sm-4">
-        <div class="well well-success">
-          <header class="well-title" ng-bind="slides.current.name"></header>
-
-          <div id="carousel" class="carousel slide" on-slide="" next="slides.next()" prev="slides.next()">
-            <div class="carousel-inner">
-              <div class="item active">
-                <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px">
+          <div class="col-md-12">
+            <div class="well well-lg well-shadow">
+              <header class="well-title-inverse">Estágio dos Empreendimentos</header>
+              <div class="col-sm-6">
+                <div vega-chart="" data="estagios.legendData" spec="estagios.legendSpec" reuse-spec="false"></div>
               </div>
-              <div class="item">
-                <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px">
-              </div>
-              <div class="item">
-                <img class="" src="images/sudeste.png" width="190" style="margin-left: auto;margin-right: auto;margin-top: -10px">
+              <div class="col-sm-6">
+                <div vega-chart="" data="estagios.data" spec="estagios.spec"></div>
               </div>
             </div>
-            <a class="left carousel-control" href="#carousel" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
           </div>
+
         </div>
       </div>
+    </section>
 
-      <div class="col-sm-8">
-        <div class="well well-success">
-          <header class="well-title">Investimentos por Região</header>
-          <div class="col-md-8">
-            <div vega-chart="" data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
-          </div>
+    <section id="regiaoChart" class="primary-area">
+      <div class="container">
+        <p class="lead text-center">
+          Dados de todas as regiões do Brasil:
+          <span class="text-info">Norte</span>,
+          <span class="text-primary">Nordeste</span>,
+          <span class="text-success">Centro-Oeste</span>,
+          <span class="text-warning">Sudeste</span> e
+          <span class="text-danger">Sul</span>
+        </p>
+        </div>
+
+        <div class="container">
+         <div class="row">
           <div class="col-md-4">
-            <div class="well well-compressed bg-dark-success">
-              <!-- <div vega-chart data="porRegiao.pie.data" spec="porRegiao.pie.spec"></div> -->
-              <h3 class="text-center text-inverse">123</h3>
-              <p class="text-center text-inverse">Milhões</p>
+
+            <div class="well well-success">
+              <div id="carousel" class="carousel slide" on-slide="" next="slides.next()" prev="slides.prev()" style="height: 120px">
+                <div class="carousel-inner">
+                  <div class="item" ng-repeat="regiao in ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']" ng-class="{active: $first}">
+                    <h2 class="text-center text-inverse" style="margin-top:40px">{{regiao}}</h2>
+                  </div>
+                </div>
+
+                <a class="left carousel-control" href="#carousel" data-slide="prev" style="margin-left:-10px">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel" data-slide="next" style="margin-right:-10px">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+
+              <div class="well well-compressed well-regiao-counter bg-dark-success">
+                <h3 class="text-center text-inverse" ng-bind="porRegiao.data.total"></h3>
+                <p class="text-center text-inverse" ng-bind="porRegiao.data.totalLabel"></p>
+              </div>
+
             </div>
           </div>
+
+          <div class="col-md-8">
+            <div class="well well-success">
+              <header class="well-title">Planejamento na Região {{slides.current.name}}</header>
+              <div class="col-md-12">
+                <div vega-chart="" data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
-    </div>
-
-  </div>
-
-</section>
+    </section>
