@@ -62,16 +62,16 @@ angular.module('pacApp')
 						'properties': {
 							'enter': {
 								'fill': {'value': '#fff'},
-								'x': {'scale': 'x', 'field': 'data._id', 'offset': small ? 10:40},
+								'x': {'scale': 'x', 'field': 'data._id', 'offset': small ? 20:40},
 								'y': { 'scale': 'y', 'field': 'data.valor_total'},
 								'y2': { 'scale': 'y', 'value': -10 },
-								'width': {'scale': 'x', 'band': true, 'offset': small ? -20: -80},
+								'width': {'scale': 'x', 'band': true, 'offset': small ? -40: -80},
 							},
 							'update': {
-								'x': {'scale': 'x', 'field': 'data._id', 'offset': small ? 10:40},
+								'x': {'scale': 'x', 'field': 'data._id', 'offset': small ? 20:40},
 								'y': { 'scale': 'y', 'field': 'data.valor_total'},
 								'y2': { 'scale': 'y', 'value': -10 },
-								'width': {'scale': 'x', 'band': true, 'offset': small ? -20: -80},
+								'width': {'scale': 'x', 'band': true, 'offset': small ? -40: -80},
 							}
 						},
 					},
@@ -101,10 +101,10 @@ angular.module('pacApp')
 							'enter': {
 								'x': {'scale': 'x', 'field': 'data._id'},
 								'y': {'scale': 'y', 'value': 0},
-								'dy': {'value': (tiny ? 10:20)},
+								'dy': {'value': (small ? 30:20)},
 								'text': {'field': 'name'},
 								'fill': { 'value': '#FFF' },
-								'angle': {'value': (small? 45:0)},
+								'angle': {'value': (tiny? 45:small?20:0)},
 								'fontSize': { 'value': 12 },
 								'fontWeight': { 'value': '200' },
 								'align': { 'value': 'center'}
@@ -112,8 +112,8 @@ angular.module('pacApp')
 							'update': {
 								'x': {'scale': 'x', 'field': 'data._id'},
 								'y': {'scale': 'y', 'value': 0},
-								'dy': {'value': (tiny ? 30:20)},
-								'dx': {'value': (tiny ? 20:0)},
+								'dy': {'value': (small ? 30:20)},
+								'dx': {'value': (small ? 20:0)},
 								'text': {'field': 'name'}
 							}
 						}

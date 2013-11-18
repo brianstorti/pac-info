@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('pacApp')
+
   .factory('PacService', ['apiUrl','$http', function(apiUrl, $http){
 
 		var PacService = function(transformObjectFunction, resetObjectFunction){
@@ -40,14 +41,6 @@ angular.module('pacApp')
 		return PacService;
 
 	}])
-	.factory('apiUrl', function(){
-    return function(path){
-      var baseUrl = 'http://pac-info.herokuapp.com/ventures',
-          mockUrl = 'http://localhost:9000/mock-api';
-
-      return baseUrl + path;
-    };
-  })
   .factory('chartSize',  function(){
     return function(element) {
       return {

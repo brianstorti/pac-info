@@ -3,6 +3,7 @@
 angular.module('pacApp')
 	.factory('evolucaoSpec', ['chartSize', function(chartSize){
 		return function(element, data, width, small) {
+			small = width < 500;
 			return {
 				'width': width,
 				'height': chartSize(element).height,
