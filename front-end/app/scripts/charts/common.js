@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('pacApp')
+
   .factory('PacService', ['apiUrl','$http', function(apiUrl, $http){
 
 		var PacService = function(transformObjectFunction, resetObjectFunction){
