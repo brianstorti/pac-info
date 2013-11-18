@@ -22,3 +22,7 @@ group :development do
   gem 'pry-nav'
   gem 'rspec-rails'
 end
+
+group :production do
+  gem 'unicorn'
+end
