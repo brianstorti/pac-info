@@ -18,4 +18,4 @@ Os dados foram obtidos no [site do governo](http://dados.gov.br/dataset/obras-do
 * [Carlos Chiconato](http://github.com/cachiconato)
 * [Thiago Felix](http://github.com/thiagofelix)
 
-![printscreen](http://cl.ly/image/3C1h210w1v1B)
+![printscreen](http://imageshack.com/a/img849/3829/iqzn.png)
