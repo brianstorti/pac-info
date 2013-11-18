@@ -1,6 +1,7 @@
 # pac-info
 
 Aplicativo desenvolvido para o Segundo Encontro Nacional de Dados Abertos.
+O aplicativo pode ser acessado [aqui](http://pac-info.herokuapp.com).
 
 #### Objetivo
 O objetivo desse aplicativo é mostrar, de uma maneira simples, onde o dinheiro do
@@ -13,6 +14,6 @@ perto de onde você está.
 Os dados foram obtidos no [site do governo](http://dados.gov.br/dataset/obras-do-pac-programa-de-aceleracao-do-crescimento).
 
 #### Autores
-* Brian Thomas Storti
-* Carlos Chiconato
-* Thiago Felix
+* [Brian Thomas Storti](http://github.com/brianstorti)
+* [Carlos Chiconato](http://github.com/cachiconato)
+* [Thiago Felix](http://github.com/thiagofelix)
