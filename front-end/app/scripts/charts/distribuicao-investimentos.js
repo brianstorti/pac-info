@@ -14,7 +14,7 @@ angular.module('pacApp')
 					{
 						'name': 'table',
 						'transform': [
-							{'type': 'truncate', 'value': 'data._id', 'output': 'name', 'limit': tiny ? 15 : small ? 30 : 60, 'position': 'middle'}
+							{'type': 'truncate', 'value': 'data._id', 'output': 'name', 'limit': tiny ? 15 : small ? 20 : 20, 'position': 'middle'}
 						]
 					}
 				],
