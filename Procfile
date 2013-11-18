@@ -1,1 +1,1 @@
-web: bundle exec unicorn -p $PORT -E production
+web: bundle exec unicorn -p $PORT
