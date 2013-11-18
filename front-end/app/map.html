@@ -19,21 +19,49 @@
 
       <script type="text/javascript">
         function initialize() {
+
           google.maps.visualRefresh = true;
+
           var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
             (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
           if (isMobile) {
             var viewport = document.querySelector("meta[name=viewport]");
             viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
           }
+
           var mapDiv = document.getElementById('googft-mapCanvas');
           mapDiv.style.width = isMobile ? '100%' : '100%';
-          mapDiv.style.height = isMobile ? '100%' : '400px';
+          mapDiv.style.height = isMobile ? '100%' : '350px';
+
           var map = new google.maps.Map(mapDiv, {
             center: new google.maps.LatLng(-20.114844213971704, -47.01049999999998),
-            zoom: 4,
+            zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           });
+
+          if(navigator.geolocation) {
+              browserSupportFlag = true;
+              navigator.geolocation.getCurrentPosition(function(position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                map.setCenter(initialLocation);
+              }, function() {
+                handleNoGeolocation(browserSupportFlag);
+              });
+            }
+            // Browser doesn't support Geolocation
+            else {
+              browserSupportFlag = false;
+              handleNoGeolocation(browserSupportFlag);
+            }
+
+          function handleNoGeolocation(errorFlag) {
+            if (errorFlag == true) {
+              initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
+            } else {
+              initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
+            }
+            map.setCenter(initialLocation);
+          }
 
           layer = new google.maps.FusionTablesLayer({
             map: map,
@@ -136,6 +164,29 @@
 
       </div>
     </section>
+
+    <footer class="navbar navbar-default navbar-inverse navbar-fixed-bottom">
+      <div class="colorfull-bar-top"></div>
+      <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-xs">
+            <a href="https://github.com/brianstorti/pac-info">
+              Contribua
+              <i class="fa fa-github fa-lg"></i>
+            </a>
+          </li>
+        </ul>
+
+        <small class="navbar-text">
+          Aplicativo desenvolvido para o
+          <a href="http://2.encontro.dados.gov.br/concurso.html">
+            Segundo Encontro Nacional de Dados Abertos.
+          </a>
+        </small>
+
+      </div>
+
+    </footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
