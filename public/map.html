@@ -28,8 +28,8 @@
           }
 
           var mapDiv = document.getElementById('googft-mapCanvas');
-          mapDiv.style.width = isMobile ? '100%' : '100%';
-          mapDiv.style.height = isMobile ? '100%' : '350px';
+          mapDiv.style.width = '100%';
+          mapDiv.style.height = '350px';
 
           var map = new google.maps.Map(mapDiv, {
             center: new google.maps.LatLng(-20.114844213971704, -47.01049999999998),
@@ -53,11 +53,8 @@
             }
 
           function handleNoGeolocation(errorFlag) {
-            if (errorFlag == true) {
-              initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
-            } else {
-              initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
-            }
+            map.setZoom(4);
+            initialLocation = new google.maps.LatLng(-14.989911309819053, -48.35657244067755);
             map.setCenter(initialLocation);
           }
 
