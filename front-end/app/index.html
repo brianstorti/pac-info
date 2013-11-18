@@ -97,7 +97,8 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
       </script>
-</head>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
   <body ng-app="pacApp" ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -113,9 +114,26 @@
       <div class="container">
         <div class="navbar-header">
           <a href="../" class="navbar-brand">
-            <span class="navbar-brand-name">PAC II</span> <span class="navbar-brand-subname">Estatístico</span>
+            <span class="navbar-brand-name">PAC II</span>
           </a>
         </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="text-center" href="/">Estatístico</a>
+            </li>
+            <li class="active">
+              <a class="text-center" href="/map.html">Mapa</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="https://github.com/brianstorti/pac-info">
+                <i class="fa fa-github fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
 
@@ -132,7 +150,7 @@
             <span class="icon-bar"></span>
           </button>
           <a href="../" class="navbar-brand  visible-xs">
-            <span class="navbar-brand-name">PAC II</span> <span class="navbar-brand-subname">Estatístico</span>
+            <span class="navbar-brand-name">PAC II</span> <span class="navbar-brand-subname">Estatístico</span><br>
           </a>
         </div>
         <nav class="collapse navbar-collapse" role="navigation">
@@ -155,16 +173,18 @@
             <li nav-link>
               <a class="text-center" href="#/habitacao">Habitação</a>
             </li>
+
+            <li nav-link class="visible-xs">
+              <a class="text-center" href="/map.html">Mapa</a>
+            </li>
+
+            <li class="visible-xs text-center">
+              <a href="https://github.com/brianstorti/pac-info">
+                <i class="fa fa-github fa-lg"></i>
+              </a>
+            </li>
           </ul>
         </nav>
-
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <div class="well well-shadow pac-banner">
-              <h2 ng-bind="banner.title">Transporte</h2>
-            </div>
-          </div>
-        </div> -->
       </div>
     </nav>
 
