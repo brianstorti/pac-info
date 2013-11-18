@@ -14,6 +14,6 @@ perto de onde você está.
 Os dados foram obtidos no [site do governo](http://dados.gov.br/dataset/obras-do-pac-programa-de-aceleracao-do-crescimento).
 
 #### Autores
-* [Brian Thomas Storti](@brianstorti)
-* [Carlos Chiconato](@cachiconato)
-* [Thiago Felix](@thiagofelix)
+* [Brian Thomas Storti](http://github.com/brianstorti)
+* [Carlos Chiconato](http://github.com/cachiconato)
+* [Thiago Felix](http://github.com/thiagofelix)
