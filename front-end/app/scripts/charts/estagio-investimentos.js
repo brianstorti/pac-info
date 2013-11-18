@@ -9,6 +9,7 @@ angular.module('pacApp')
 	}])
 	.factory('estagioSpec', [function(){
 		return function(element, data, width, small) {
+			small = width < 350;
 			return {
 				'width': width,
 				'height': (small)?200:400,
