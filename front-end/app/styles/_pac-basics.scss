@@ -31,22 +31,6 @@
 	background-size: 100% 4px;
 }
 
-.well{
-	&:after {
-		content:("");
-		@extend .fa;
-		@extend .fa-spinner;
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		// -webkit-animation: spinner 400ms linear infinite;
-	 //  -moz-animation:    spinner 400ms linear infinite;
-	 //  -ms-animation:     spinner 400ms linear infinite;
-	 //  -o-animation:      spinner 400ms linear infinite;
-	 //  animation:         spinner 400ms linear infinite;
-	}
-}
-
 .bar-behind {
 	background-color: red;
 }
@@ -133,5 +117,5 @@
   left: 0;
 
   width: 100%;
-  height: 3px;
+  height: 4px;
 }
