@@ -1,10 +1,7 @@
-.navbar-collapse {
-  max-height: 380px;
-}
-
 .navbar {
 	margin-bottom: 0;
 }
+
 
 // Navbar nav links
 //
@@ -12,47 +9,42 @@
 // the nav the full height of the horizontal nav (above 768px).
 .navbar-nav {
   > li > a {
-    font-family: $font-family-light;
-
-    &:focus {
-      font-family: $font-family-base;
-    }
+    // font-family: $font-family-light;
   }
 }
 
 
-// Pac Navbar Colorful
-//
-// Builds on top of the `.navbar` components with it's own modifier class to add
-// colorfour top border
-.pac-navbar-colorful.navbar-inverse {
-	background: $gray-dark url(../images/raibow-pattern.png) center -1px repeat-x;
-	background-size: 100% 3px;
-}
 
 // Pac Navbar Stite
 // Defines the main navigation bar
-.pac-nav-site {
-	width: 100%;
-	li {
-		font-size: $font-size-small;
-		a {
-			padding-left: floor($navbar-padding-horizontal * 0.5);
-			padding-right: floor($navbar-padding-horizontal * 0.5);
+// .pac-nav-site {
+// 	width: 100%;
+// 	li {
+// 		font-size: $font-size-small;
+// 		a {
+// 			padding-left: floor($navbar-padding-horizontal * 0.5);
+// 			padding-right: floor($navbar-padding-horizontal * 0.5);
+// 		}
+// 	}
+// }
+
+
+//Tablet
+@media (min-width: $screen-tablet) {
+
+	.pac-nav-site {
+		li {
+			font-size: 13px;
+			padding-left: 0;
+			padding-right: 0;
 		}
 	}
 }
-
-
-//Desktop
-@media (min-width: $screen-md-min) {
+//Tablet
+@media (min-width: $screen-desktop) {
 
 	.pac-nav-site {
-		width: 940px;
-		float: none;
-		margin: auto;
 		li {
-			font-size: $font-size-base;
 			padding-left: $navbar-padding-horizontal;
 			padding-right: $navbar-padding-horizontal;
 		}

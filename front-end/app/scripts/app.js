@@ -30,4 +30,9 @@ angular.module('pacApp', ['vegaModule'])
 
 			return { value: value, label: label };
 		};
-	}]);
+	}])
+	.run(function(){
+		//never cycle the carousel
+		delete($.fn.carousel.Constructor.DEFAULTS.interval);
+	});
+

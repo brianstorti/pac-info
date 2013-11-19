@@ -26,11 +26,11 @@ $yellow: 								#FCD174;
 $orange: 								#FBAD2F;
 $white:									#FFFFFF;
 
-$brand-primary:         $blue !default;
+$brand-primary:         $yellow !default;
 $brand-success:         $green !default;
 $brand-warning:         $purple !default;
 $brand-danger:          $red !default;
-$brand-info:            $yellow !default;
+$brand-info:            $blue !default;
 
 // Scaffolding
 // -------------------------
@@ -301,9 +301,9 @@ $navbar-inverse-border:                     none !default;
 
 // Inverted navbar links
 $navbar-inverse-link-color:                 $gray-light !default;
-$navbar-inverse-link-hover-color:           #EFF2F3 !default;
+$navbar-inverse-link-hover-color:           $link-color !default;
 $navbar-inverse-link-hover-bg:              transparent !default;
-$navbar-inverse-link-active-color:          #EFF2F3 !default;
+$navbar-inverse-link-active-color:          $link-color !default;
 $navbar-inverse-link-active-bg:             transparent !default;
 $navbar-inverse-link-disabled-color:        #A4A9AD !default;
 $navbar-inverse-link-disabled-bg:           transparent !default;

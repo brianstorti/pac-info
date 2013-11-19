@@ -141,7 +141,9 @@ angular.module('pacApp')
 		function(PacService, estagioSpec, estagioLegendSpec, shuffle){
 
 			var that = this,
-					colors = shuffle(['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D']);
+					colors = shuffle(['#FBAD2F', '#68D286','#1DA1CD', '#EB585C', '#A085C6', '#FF8FB4', '#FDD26D']),
+					total = 0,
+					concluido = 0;
 
 			this.spec = estagioSpec;
 			this.legendSpec  = estagioLegendSpec;
@@ -149,14 +151,21 @@ angular.module('pacApp')
 			var service = new PacService(
 				function(responseElement, idx){
 					responseElement.color = colors[idx % colors.length];
+					total += responseElement.total;
+					if( responseElement._id === 'Concluído' ){
+						concluido = responseElement.total;
+					}
 				},
-				function(responseElement, idx){
+				function(responseElement){
 					responseElement.total = 10;
 				});
 
 			this.carregarCategoria = function(categoria){
+				total = 0;
+				concluido = 0;
 				service.get(categoria+'/by_status').success(function(data){
 					that.data = data;
+					that.data.percentalConcluido = (concluido/total * 100).toFixed(0) + '%';
 					that.legendData = { full: data.full, empty: data.full };
 				});
 			};

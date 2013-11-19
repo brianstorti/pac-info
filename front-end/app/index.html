@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PAC Estatístico - Onde, quando e como o dinheiro do PAC foi gasto</title>
+    <title>PAC2 Estatístico - Onde, quando e como o dinheiro esta sendo investido</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -44,17 +44,9 @@
               <a class="text-center" href="/map.html">Mapa</a>
             </li>
           </ul>
-          <!-- <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="https://github.com/brianstorti/pac-info">
-                <i class="fa fa-github fa-lg"></i>
-              </a>
-            </li>
-          </ul> -->
         </nav>
       </div>
     </header>
-
 
     <nav navbar-principal class="navbar navbar-inverse">
       <div class="colorfull-bar-top hidden-xs"></div>
@@ -96,11 +88,6 @@
               <a class="text-center" href="/map.html">Mapa</a>
             </li>
 
-            <!-- <li class="visible-xs text-center">
-              <a href="https://github.com/brianstorti/pac-info">
-                <i class="fa fa-github fa-lg"></i>
-              </a>
-            </li> -->
           </ul>
         </nav>
       </div>
@@ -112,21 +99,23 @@
       <div class="container">
 
         <p class="lead text-center" ng-show="evolucao.data">
-          <span>O planejamento para <b>{{banner.title}}</b> é de investir </span>
-          <span class="text-success" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></span> de reais. </span>
-          <span>Em obras de </span>
+          O planejamento para
+          <b ng-bind="banner.title"></b> é de investir
+          <b ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
+          de reais entre 2009 e 2014 em obras de
           <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
-            <b><span ng-show="$first" ng-bind-template='{{tipo}}'></span></b>
-            <b><span ng-show="$middle" ng-bind-template=', {{tipo}}'></span></b>
-            <b><span ng-show="$last" ng-bind-template='e {{tipo}}'></span></b>
+            <span ng-show="$first" ng-bind-template='{{tipo}}'></span>
+            <span ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
+            <span ng-show="$last" ng-bind-template='e {{tipo}}.'></span>
           </span>
+
         </p>
 
         <div class="row">
 
           <div class="col-md-12">
             <div class="well well-info">
-              <header class="well-title">Balanços do PAC </span></header>
+              <header class="well-title">Planejamento do PAC </span></header>
               <div vega-chart data="evolucao.data" spec="evolucao.spec" opts="evolucao.opts"></div>
             </div>
           </div>
@@ -134,7 +123,7 @@
           <div class="col-md-12">
             <div class="well well-warning">
               <header class="well-title">
-                Planejamento dos Empreendimentos
+                Empreendimentos de <span ng-bind="banner.title"></span>
               </header>
               <div vega-chart data="distribuicao.data" spec="distribuicao.spec"></div>
             </div>
@@ -157,7 +146,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="well well-lg well-shadow">
-              <header class="well-title-inverse">Estágio dos Empreendimentos</span></header>
+              <header class="well-title-inverse">
+                Percentual de obras concluídas é de
+                <b class="h4" ng-bind-template="{{estagios.data.percentalConcluido}}"></b>
+              </header>
               <div class="col-sm-6">
                 <div vega-chart data="estagios.legendData" spec="estagios.legendSpec" reuse-spec="false"></div>
               </div>
@@ -173,12 +165,7 @@
     <section id="regiaoChart"  class="primary-area">
       <div class="container">
         <p class="lead text-center">
-          Dados de todas as regiões do Brasil:
-          <span class="text-info">Norte</span>,
-          <span class="text-primary">Nordeste</span>,
-          <span class="text-success">Centro-Oeste</span>,
-          <span class="text-warning">Sudeste</span> e
-          <span class="text-danger">Sul</span>
+          Dados de todas as regiões do Brasil
         </p>
         </div>
 
@@ -190,7 +177,7 @@
               <div id="carousel" class="carousel slide" on-slide next="slides.next()" prev="slides.prev()" style="height: 120px">
                 <div class="carousel-inner">
                   <div class="item" ng-repeat="regiao in ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']" ng-class="{active: $first}">
-                    <h2 class="text-center text-inverse" style="margin-top:40px">{{regiao}}</h2>
+                    <h3 class="text-center text-inverse" style="margin-top:50px" ng-bind="regiao"></h3>
                   </div>
                 </div>
 
@@ -267,13 +254,13 @@
         <!-- build:js scripts/plugins.js -->
         <script src="libs/vega/vega.js"></script>
         <!-- endbuild -->
-        <script src="bower_components/bootstrap-sass/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/directives.js"></script>
         <script src="scripts/modules/vega.js"></script>
-        <script src="scripts/config/production.js"></script>
+        <script src="scripts/config/development.js"></script>
 
         <script src="scripts/charts/common.js"></script>
         <script src="scripts/charts/por-regiao.js"></script>
