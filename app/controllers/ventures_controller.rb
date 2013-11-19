@@ -18,7 +18,7 @@ class VenturesController < ActionController::API
   end
 
   def store_cache
-    expires_in 1.month, public: true
+    expires_in 1.year, public: true
   end
 
   def get_venture
