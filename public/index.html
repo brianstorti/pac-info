@@ -92,10 +92,10 @@
 
 
     <!-- Add your site or application content here -->
-    <section id="primaryCharts" class="primary-area ng-cloak">
+    <section id="primaryCharts" class="primary-area">
       <div class="container">
 
-        <p class="lead text-center" ng-show="evolucao.data">
+        <p class="lead text-center ng-cloak" ng-show="evolucao.data">
           O planejamento para
           <b ng-bind="banner.title"></b> é de investir
           <b class="h4" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
@@ -120,7 +120,7 @@
 
           <div class="col-md-12">
             <div class="well well-warning">
-              <header class="well-title">
+              <header class="well-title ng-cloak">
                 Empreendimentos de <span ng-bind="banner.title"></span>
               </header>
               <div vega-chart="" data="distribuicao.data" spec="distribuicao.spec"></div>
@@ -130,10 +130,10 @@
       </div>
     </section>
 
-    <section id="estagiosChart" class="secondary-area ng-cloak">
+    <section id="estagiosChart" class="secondary-area">
       <div class="container">
         <div class="row">
-          <p class="lead text-center"> Total de <b class="h4" ng-bind-template="{{distribuicao.data.total}}"></b> Empreendimentos</p>
+          <p class="lead text-center ng-cloak"> Total de <b class="h4" ng-bind-template="{{distribuicao.data.total}}"></b> Empreendimentos</p>
           <div class="col-md-3 col-xs-6" ng-repeat="empreendimento in distribuicao.data.full.table">
             <div class="well well-primary" style="min-height:170px; margin-bottom:0">
               <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
@@ -144,7 +144,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="well well-lg well-shadow">
-              <header class="well-title-inverse text-center">
+              <header class="well-title-inverse text-center ng-cloak">
                 Percentual de obras concluídas é de
                 <b class="h4" ng-bind-template="{{estagios.data.percentalConcluido}}"></b>
               </header>
@@ -160,7 +160,7 @@
       </div>
     </section>
 
-    <section id="regiaoChart" class="primary-area ng-cloak">
+    <section id="regiaoChart" class="primary-area">
       <div class="container">
         <p class="lead text-center">
           Dados de todas as regiões do Brasil
@@ -197,7 +197,7 @@
 
           <div class="col-md-8">
             <div class="well well-success">
-              <header class="well-title">Planejamento na Região {{slides.current.name}}</header>
+              <header class="well-title ng-cloak">Planejamento na Região {{slides.current.name}}</header>
               <div class="col-md-12">
                 <div vega-chart="" data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
               </div>
