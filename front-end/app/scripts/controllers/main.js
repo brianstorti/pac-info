@@ -3,12 +3,13 @@
 angular.module('pacApp')
 	.controller('MainCtrl',[
 		'$scope',
+		'$q',
+		'$location',
 		'porRegiaoChart',
 		'estagioChart',
 		'evolucaoChart',
 		'distribuicaoChart',
-		'$location',
-		function ($scope, porRegiaoChart, estagioChart, evolucaoChart, distribuicaoChart, $location) {
+		function ($scope, $q, $location, porRegiaoChart, estagioChart, evolucaoChart, distribuicaoChart) {
 
 			$scope.regioes = [
 				{ name: 'Norte' },
@@ -48,6 +49,8 @@ angular.module('pacApp')
 				}
 			};
 
+			$scope.banner = {title: '', api:'', loading:false};
+
 			$scope.$on('$locationChangeSuccess', function(){
 				var categoriaApi = $location.path() || '/transportes',
 					categoriasMap = {
@@ -60,13 +63,16 @@ angular.module('pacApp')
 					},
 					categoriaNome = categoriasMap[categoriaApi];
 
-				$scope.evolucao.carregarCategoria(categoriaApi);
-				$scope.distribuicao.carregarCategoria(categoriaApi);
-				$scope.estagios.carregarCategoria(categoriaApi);
-				$scope.porRegiao.carregarCategoria(categoriaApi, $scope.slides.current.name);
-
-
-				$scope.banner = {title: categoriaNome, api: categoriaApi};
+				$scope.banner.loading = true;
+				$q.all(
+					$scope.evolucao.carregarCategoria(categoriaApi),
+					$scope.distribuicao.carregarCategoria(categoriaApi),
+					$scope.estagios.carregarCategoria(categoriaApi),
+					$scope.porRegiao.carregarCategoria(categoriaApi, $scope.slides.current.name)
+				).
+				then(function (){
+					$scope.banner = {title: categoriaNome, api:categoriaApi, loading:false};
+				});
 
 			});
 		}

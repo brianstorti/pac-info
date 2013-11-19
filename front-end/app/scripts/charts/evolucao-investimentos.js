@@ -193,7 +193,7 @@ angular.module('pacApp')
 			});
 
 		this.carregarCategoria = function(categoria){
-			service.get(categoria).success(function(data){
+			return service.get(categoria).success(function(data){
 				var total = data.full.table[0].valor_total;
 				var compressedNumber = compressNumber(total);
 

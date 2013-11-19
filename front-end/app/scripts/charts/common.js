@@ -13,10 +13,10 @@ angular.module('pacApp')
 			var that = this,
 				promise = $http.get(apiUrl(path), {
 					cache: true,
+					transformRequest: NProgress.start,
 					transformResponse: function(data){ return that.transformResponse(data); }
 				});
 
-			NProgress.start();
 			promise.then(NProgress.done, NProgress.done);
 
 			return promise;

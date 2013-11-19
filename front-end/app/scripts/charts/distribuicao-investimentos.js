@@ -123,7 +123,7 @@ angular.module('pacApp')
 		};
 	}])
 	.service('distribuicaoChart',['PacService','distribuicaoSpec',function(PacService, distribuicaoSpec){
-		var that = this, tipos = [];
+		var that = this, tipos = [], total = 0;
 
 		this.spec = distribuicaoSpec;
 
@@ -133,6 +133,7 @@ angular.module('pacApp')
 					responseElement._id = 'Estradas';
 				}
 
+				total += responseElement.quantidade_empreendimentos;
 				tipos.push(responseElement._id);
 			},
 			function(responseElement){
@@ -141,9 +142,11 @@ angular.module('pacApp')
 
 		this.carregarCategoria = function(categoria){
 			tipos = [];
-			service.get(categoria+'/by_type').success(function(data){
+			total = 0;
+			return service.get(categoria+'/by_type').success(function(data){
 				that.data = data;
 				that.data.tipos = tipos;
+				that.data.total = total;
 			});
 		};
 	}]);

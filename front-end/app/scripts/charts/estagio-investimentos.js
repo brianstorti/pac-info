@@ -163,10 +163,11 @@ angular.module('pacApp')
 			this.carregarCategoria = function(categoria){
 				total = 0;
 				concluido = 0;
-				service.get(categoria+'/by_status').success(function(data){
+				return service.get(categoria+'/by_status').success(function(data){
 					that.data = data;
 					that.data.percentalConcluido = (concluido/total * 100).toFixed(0) + '%';
 					that.legendData = { full: data.full, empty: data.full };
 				});
 			};
-		}]);
+		}
+	]);

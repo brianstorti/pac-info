@@ -101,14 +101,15 @@
         <p class="lead text-center" ng-show="evolucao.data">
           O planejamento para
           <b ng-bind="banner.title"></b> é de investir
-          <b ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
+          <b class="h4" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
+
           de reais entre 2009 e 2014 em obras de
           <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
             <span ng-show="$first" ng-bind-template='{{tipo}}'></span>
             <span ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
             <span ng-show="$last" ng-bind-template='e {{tipo}}.'></span>
           </span>
-
+          <i ng-show="banner.loading" class="fa fa-spinner fa-spin"></i>
         </p>
 
         <div class="row">
@@ -135,7 +136,7 @@
     <section id="estagiosChart" class="secondary-area">
       <div class="container">
         <div class="row">
-          <p class="lead text-center"> Quantidade de Empreendimentos </p>
+          <p class="lead text-center"> Total de <b class="h4" ng-bind-template="{{distribuicao.data.total}}"></b> Empreendimentos</p>
           <div class="col-md-3 col-xs-6" ng-repeat="empreendimento in distribuicao.data.full.table">
             <div class="well well-primary" style="min-height:170px; margin-bottom:0">
               <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
@@ -146,7 +147,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="well well-lg well-shadow">
-              <header class="well-title-inverse">
+              <header class="well-title-inverse text-center">
                 Percentual de obras concluídas é de
                 <b class="h4" ng-bind-template="{{estagios.data.percentalConcluido}}"></b>
               </header>

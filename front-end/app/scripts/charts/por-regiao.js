@@ -102,7 +102,7 @@ angular.module('pacApp')
 
 			this.carregarCategoria = function(categoria, regiao){
 				total = 0;
-				service.get(categoria+'/by_region/'+regiao).success(function(data){
+				return service.get(categoria+'/by_region/'+regiao).success(function(data){
 					var compressedNumber = compressNumber(total);
 
 					that.data = data;
