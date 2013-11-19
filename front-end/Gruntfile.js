@@ -14,8 +14,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     yeoman: {
       // configurable paths
-      app: 'front-end/app',
-      dist: 'public'
+      app: require('./bower.json').appPath || 'app',
+      dist: 'dist'
     },
     watch: {
       coffee: {
@@ -254,6 +254,29 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      publish: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.dist %>',
+          dest: '../public/',
+          src: ['**', '**/bower_components/**']
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          dest: '../public/',
+          src: [
+            'images/*'
+          ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '../public/',
+          src: [
+            'images/*'
+          ]
+        }]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -345,7 +368,9 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'copy:publish',
+    'clean:dist'
   ]);
 
   grunt.registerTask('default', [
