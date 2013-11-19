@@ -1,117 +1,60 @@
-@import "_pac-bootstrap";
+/*!
+ *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
 
-.well-regiao-counter {
-	margin-top: 30px;
-}
+@import "_pac-font-awesome-variables";
 
-.navbar-brand-name {
-	color: $white !important;
-}
+@import "font-awesome/scss/mixins";
+@import "font-awesome/scss/path";
+@import "font-awesome/scss/core";
+@import "font-awesome/scss/larger";
+@import "font-awesome/scss/fixed-width";
+@import "font-awesome/scss/list";
+@import "font-awesome/scss/bordered-pulled";
+@import "font-awesome/scss/spinning";
+@import "font-awesome/scss/rotated-flipped";
+@import "font-awesome/scss/stacked";
+@import "font-awesome/scss/icons";
 
-.navbar-brand-subname {
-	text-transform: uppercase;
-	color: #8C989E;
-	margin-left: 5px;
-}
+// Custom variables
+@import "_pac-variables";
 
-.colorfull-bar-bottom {
-	position: absolute;
-	bottom: -2px;
-	min-height: 4px;
-	width: 100%;
-	background: transparent url(../images/colors.png) center -1px repeat-x;
-	background-size: 100% 4px;
-}
-.colorfull-bar-top {
-	position: absolute;
-	top: 0px;
-	min-height: 4px;
-	width: 100%;
-	background: transparent url(../images/colors.png) center -1px repeat-x;
-	background-size: 100% 4px;
-}
+// Core mixins
+@import "bootstrap-sass/lib/mixins";
 
-.carousel-control {
-  // Set gradients for backgrounds
-  &.left {
-    @include gradient-horizontal($start-color: rgba(0,0,0,0), $end-color: rgba(0,0,0,0));
-  }
-  &.right {
-    left: auto;
-    right: 0;
-    @include gradient-horizontal($start-color: rgba(0,0,0,0), $end-color: rgba(0,0,0,0));
-  }
-}
+// Reset
+@import "bootstrap-sass/lib/normalize";
+@import "bootstrap-sass/lib/print";
 
-.text-inverse {
-	color: $white
-}
+// Core CSS
+@import "bootstrap-sass/lib/scaffolding";
+@import "bootstrap-sass/lib/type";
+@import "bootstrap-sass/lib/code";
+@import "bootstrap-sass/lib/grid";
+@import "bootstrap-sass/lib/forms";
 
-.bg-dark-success {
-	background-color: #36B453;
-}
+// Components
+@import "bootstrap-sass/lib/component-animations";
+@import "bootstrap-sass/lib/glyphicons";
+@import "bootstrap-sass/lib/dropdowns";
+@import "bootstrap-sass/lib/navs";
+@import "bootstrap-sass/lib/navbar";
+@import "bootstrap-sass/lib/labels";
+@import "bootstrap-sass/lib/badges";
+@import "bootstrap-sass/lib/wells";
 
-.pac-banner {
-	min-height: 0;
-	background: #EFF2F3;
+// Components w/ JavaScript
+@import "bootstrap-sass/lib/carousel";
 
-	margin-top: 0;
-	@media (min-width: $screen-md-min) {
-		margin-top: $line-height-computed;
-	  margin-bottom: $line-height-computed;
-	}
-}
+// Utility classes
+@import "bootstrap-sass/lib/utilities";
+@import "bootstrap-sass/lib/responsive-utilities";
 
-.lead {
-	color: #8D9AA5;
-  margin-bottom: 0;
-  font-size: floor($font-size-base);
-  line-height: 1.4;
-  font-weight: normal;
-
-  @media (min-width: $screen-sm-min) {
-    font-size: ($font-size-base);
-  }
-}
-
-.primary-area {
-	width: 100%;
-	background-color: $white;
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
-
-.secondary-area {
-	width: 100%;
-	background-color: #F6F9FA;
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
-
-
-@media (min-width: $screen-md-min) {
-	.secondary-area,
-	.primary-area {
-		padding-left: 30px;
-		padding-right: 30px;
-	}
-}
-
-#nprogress .spinner {
-  display: none;
-}
-#nprogress .peg {
-  display: none;
-}
-
-#nprogress .bar {
-  background: $link-color;
-
-  position: fixed;
-  z-index: 10000;
-  top: -1px;
-  left: 0;
-
-  width: 100%;
-  height: 4px;
-}
+// PAC Customization
+@import "_pac-navbar";
+@import "_pac-wells";
+@import "_pac-wells";
+@import "_pac-spinner";
+@import "_pac-progress-bars";
+@import "_pac-basics";

@@ -34,5 +34,7 @@ angular.module('pacApp', ['vegaModule'])
 	.run(function(){
 		//never cycle the carousel
 		delete($.fn.carousel.Constructor.DEFAULTS.interval);
+
+		NProgress.settings.template = '<div class="bar" role="bar"><div class="peg"></div></div><div class="bar-behind"></div>'
 	});
 
