@@ -2,6 +2,7 @@ class Venture
   include Mongoid::Document
 
   DATE_LAST_CYCLE = '31/08/2013'
+  ANALISED_STATUSES = ['Em obras', 'Em execução', 'Concluído', 'Em operação']
 
   def initialize(category)
     @category = category
@@ -9,7 +10,7 @@ class Venture
 
   def investiments
     result = collection.aggregate(
-      { '$match' => { 'idn_estagio.estagio' => { '$in' => ['Em obras', 'Em execução', 'Concluído', 'Em operação'] },
+      { '$match' => { 'idn_estagio.estagio' => { '$in' => ANALISED_STATUSES },
                       'idn_digs.Subeixo' => @category }},
       { '$group' => { '_id' => { 'subeixo' => '$idn_digs.Subeixo', 'data_balanco' => '$dat_ciclo' },
                       'investimento_total' => { '$sum'  => '$investimento_total' },
@@ -23,7 +24,8 @@ class Venture
 
   def by_type
     result = collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category,
+      { '$match' => { 'idn_estagio.estagio' => { '$in' => ANALISED_STATUSES },
+                      'idn_digs.Subeixo' => @category,
                       'dat_ciclo' => DATE_LAST_CYCLE }},
       { '$group' => { '_id' => '$idn_digs.Tipo',
                       'investimento_total' => { '$sum'  => '$investimento_total' },
@@ -35,7 +37,8 @@ class Venture
 
   def by_status
     collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category,
+      { '$match' => { 'idn_estagio.estagio' => { '$in' => ANALISED_STATUSES },
+                      'idn_digs.Subeixo' => @category,
                       'dat_ciclo' => DATE_LAST_CYCLE }},
       { '$group' => { '_id' => '$idn_estagio.estagio',
                       'total' => { '$sum' => 1 }}},
@@ -44,7 +47,8 @@ class Venture
 
   def by_region(region)
     result = collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category,
+      { '$match' => { 'idn_estagio.estagio' => { '$in' => ANALISED_STATUSES },
+                      'idn_digs.Subeixo' => @category,
                       'sig_uf' => { '$in' => Region.states_in(region) },
                       'dat_ciclo' => DATE_LAST_CYCLE }},
       { '$group' => { '_id' => '$sig_uf',
