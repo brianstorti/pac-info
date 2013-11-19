@@ -13,10 +13,9 @@
 
 
 # Ignore ui-interface files
-front-end/node_modules
-front-end/dist
-front-end/.tmp
-front-end/.sass-cache
+node_modules
+.tmp
+.sass-cache
 front-end/app/bower_components
 
 .DS_Store

@@ -1,7 +1,6 @@
-rm -rf public
-cd front-end
+bower install
+bundle install
 grunt build
-cd ..
 git add public
 git commit -m "Updating version"
 git push origin master
