@@ -1,0 +1,256 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PAC2 Estatístico - Onde, quando e como o dinheiro esta sendo investido</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="styles/bb40e556.main.css">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
+  <body ng-app="pacApp" ng-controller="MainCtrl">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+
+    <header class="navbar navbar-inverse hidden-xs" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">
+            <span class="navbar-brand-name">PAC II</span>
+          </a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a class="text-center" href="/">Estatístico</a>
+            </li>
+            <li>
+              <a class="text-center" href="/map.html">Mapa</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <nav navbar-principal="" class="navbar navbar-inverse">
+      <div class="colorfull-bar-top hidden-xs"></div>
+      <div class="colorfull-bar-bottom visible-xs"></div>
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="../" class="navbar-brand visible-xs">
+            <span class="navbar-brand-name">PAC II</span> <span class="navbar-brand-subname">Estatístico</span><br>
+          </a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav pac-nav-site">
+            <li nav-link="">
+              <a class="text-center" href="#/agua-e-luz-para-todos">Água e Luz para todos</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/comunidade-cidada">Comunidade Cidadã</a>
+            </li>
+            <li nav-link="" nav-link-default="">
+              <a class="text-center" href="#/transportes">Transportes</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/cidade-melhor">Cidade Melhor</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/energia">Energia</a>
+            </li>
+            <li nav-link="">
+              <a class="text-center" href="#/habitacao">Habitação</a>
+            </li>
+
+            <li nav-link="" class="visible-xs">
+              <a class="text-center" href="/map.html">Mapa</a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </nav>
+
+
+    <!-- Add your site or application content here -->
+    <section id="primaryCharts" class="primary-area">
+      <div class="container">
+
+        <p class="lead text-center" ng-show="evolucao.data">
+          O planejamento para
+          <b ng-bind="banner.title"></b> é de investir
+          <b ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
+          de reais entre 2009 e 2014 em obras de
+          <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
+            <span ng-show="$first" ng-bind-template="{{tipo}}"></span>
+            <span ng-show="$middle" ng-bind-template=", {{tipo}}"></span>
+            <span ng-show="$last" ng-bind-template="e {{tipo}}."></span>
+          </span>
+
+        </p>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="well well-info">
+              <header class="well-title">Planejamento do PAC </header>
+              <div vega-chart="" data="evolucao.data" spec="evolucao.spec" opts="evolucao.opts"></div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="well well-warning">
+              <header class="well-title">
+                Empreendimentos de <span ng-bind="banner.title"></span>
+              </header>
+              <div vega-chart="" data="distribuicao.data" spec="distribuicao.spec"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estagiosChart" class="secondary-area">
+      <div class="container">
+        <div class="row">
+          <p class="lead text-center"> Quantidade de Empreendimentos </p>
+          <div class="col-md-3 col-xs-6" ng-repeat="empreendimento in distribuicao.data.full.table">
+            <div class="well well-primary" style="min-height:170px; margin-bottom:0">
+              <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
+              <p class="text-center text-inverse" ng-bind="empreendimento._id"></p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well well-lg well-shadow">
+              <header class="well-title-inverse">
+                Percentual de obras concluídas é de
+                <b class="h4" ng-bind-template="{{estagios.data.percentalConcluido}}"></b>
+              </header>
+              <div class="col-sm-6">
+                <div vega-chart="" data="estagios.legendData" spec="estagios.legendSpec" reuse-spec="false"></div>
+              </div>
+              <div class="col-sm-6">
+                <div vega-chart="" data="estagios.data" spec="estagios.spec"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="regiaoChart" class="primary-area">
+      <div class="container">
+        <p class="lead text-center">
+          Dados de todas as regiões do Brasil
+        </p>
+        </div>
+
+        <div class="container">
+         <div class="row">
+          <div class="col-md-4">
+
+            <div class="well well-success">
+              <div id="carousel" class="carousel slide" on-slide="" next="slides.next()" prev="slides.prev()" style="height: 120px">
+                <div class="carousel-inner">
+                  <div class="item" ng-repeat="regiao in ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']" ng-class="{active: $first}">
+                    <h3 class="text-center text-inverse" style="margin-top:50px" ng-bind="regiao"></h3>
+                  </div>
+                </div>
+
+                <a class="left carousel-control" href="#carousel" data-slide="prev" style="margin-left:-10px">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel" data-slide="next" style="margin-right:-10px">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+
+              <div class="well well-compressed well-regiao-counter bg-dark-success">
+                <h3 class="text-center text-inverse" ng-bind="porRegiao.data.total"></h3>
+                <p class="text-center text-inverse" ng-bind="porRegiao.data.totalLabel"></p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="well well-success">
+              <header class="well-title">Planejamento na Região {{slides.current.name}}</header>
+              <div class="col-md-12">
+                <div vega-chart="" data="porRegiao.data" spec="porRegiao.spec" opts="porRegiao.opts"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="navbar navbar-default navbar-inverse">
+      <div class="colorfull-bar-top"></div>
+      <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="https://github.com/brianstorti/pac-info">
+              <small>Colabore</small>
+              <i class="fa fa-github fa-lg"></i>
+            </a>
+          </li>
+        </ul>
+
+        <small class="navbar-text">
+          Aplicativo desenvolvido para o
+          <a href="http://2.encontro.dados.gov.br/concurso.html">
+            Segundo Encontro Nacional de Dados Abertos.
+          </a>
+        </small>
+
+      </div>
+
+    </footer>
+
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-38852102-4');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+        <script src="bower_components/d3/d3.min.js"></script>
+        <script src="scripts/643ecaa9.plugins.js"></script>
+        <script src="bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>
+        <script src="scripts/d41d8cd9.scripts.js"></script>
+</body>
+</html>
