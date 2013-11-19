@@ -10,11 +10,16 @@ angular.module('pacApp')
 		};
 
 		PacService.prototype.get = function(path){
-			var that = this;
-			return $http.get(apiUrl(path), {
-				cache: true,
-				transformResponse: function(data){ return that.transformResponse(data); }
-			});
+			var that = this,
+				promise = $http.get(apiUrl(path), {
+					cache: true,
+					transformResponse: function(data){ return that.transformResponse(data); }
+				});
+
+			NProgress.start();
+			promise.then(NProgress.done, NProgress.done);
+
+			return promise;
 		};
 
 		PacService.prototype.transformResponse = function(responseData){
