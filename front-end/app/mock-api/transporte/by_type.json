@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "Hidrovia",
+    "label": "933 Mi",
+    "valor_total": 933150000
+  },
+  {
+    "_id": "Porto",
+    "label": "2 Bi",
+    "valor_total": 2897230000
+  },
+  {
+    "_id": "Aeroporto",
+    "label": "21 Bi",
+    "valor_total": 21111059543
+  },
+  {
+    "_id": "Ferrovia",
+    "label": "19 Bi",
+    "valor_total": 19015750000
+  },
+  {
+    "_id": "Equipamentos - Estradas Vicinais",
+    "label": "3 Bi",
+    "valor_total": 3740387880
+  },
+  {
+    "_id": "Rodovias",
+    "label": "69 Bi",
+    "valor_total": 69539669999
+  }
+]
