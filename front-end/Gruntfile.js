@@ -186,7 +186,10 @@ module.exports = function (grunt) {
 						'.carousel-inner>.prev',
 						'#nprogress .bar',
 						'#nprogress .peg',
-						'.navbar-fixed-top'
+						'.navbar-fixed-top',
+						'.navbar-collapse.in',
+						'.navbar-collapse.collapse',
+						'.navbar-collapse.collapsing'
 						]
 				}
 			}
