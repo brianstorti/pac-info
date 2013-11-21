@@ -172,6 +172,9 @@ module.exports = function (grunt) {
 			}
 		},
 		uncss: {
+			options: {
+				ignore: ['.active']
+			},
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': ['<%= yeoman.dist %>/Index.html']
