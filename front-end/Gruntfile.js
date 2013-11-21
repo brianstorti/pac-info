@@ -1,6 +1,8 @@
 // Generated on 2013-11-14 using generator-angular 0.5.1
 'use strict';
+
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -19,13 +21,6 @@ module.exports = function (grunt) {
 			dist: 'dist',
 			api: 'pac-info.herokuapp.com'
 		},
-
-
-
-		// RUNTIME
-		//
-		//
-		//
 		watch: {
 			compass: {
 				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -47,21 +42,21 @@ module.exports = function (grunt) {
 				]
 			}
 		},
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js',
-				singleRun: true
+		autoprefixer: {
+			options: ['last 1 version'],
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '.tmp/styles/',
+					src: '{,*/}*.css',
+					dest: '.tmp/styles/'
+				}]
 			}
 		},
-
-
-		// SERVERS
-		//
-		//
-		//
 		connect: {
 			options: {
 				port: 9000,
+				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: '0.0.0.0',
 				livereload: 35729
 			},
@@ -84,9 +79,9 @@ module.exports = function (grunt) {
 					middleware: function (connect, options) {
 						var middlewares = [proxySnippet];
 						options.base.forEach(function(base) {
-		          // Serve static files.
-		          middlewares.push(connect.static(base));
-		        });
+							// Serve static files.
+							middlewares.push(connect.static(base));
+						});
 						return middlewares;
 					}
 				}
@@ -103,17 +98,19 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					base: '<%= yeoman.dist %>'
+					debug: true,
+					base: ['<%= yeoman.dist %>'],
+					middleware: function (connect, options) {
+						var middlewares = [proxySnippet];
+						options.base.forEach(function(base) {
+							// Serve static files.
+							middlewares.push(connect.static(base));
+						});
+						return middlewares;
+					}
 				}
 			}
 		},
-
-
-
-		// PREPARATION TRANSFORMATION AND OPTIMIZATIONS
-		//
-		//
-		//
 		clean: {
 			dist: {
 				files: [{
@@ -127,16 +124,14 @@ module.exports = function (grunt) {
 			},
 			server: '.tmp'
 		},
-		autoprefixer: {
-			options: ['last 1 version'],
-			dist: {
-				files: [{
-					expand: true,
-					cwd: '.tmp/styles/',
-					src: '{,*/}*.css',
-					dest: '.tmp/styles/'
-				}]
-			}
+		jshint: {
+			options: {
+				jshintrc: '.jshintrc'
+			},
+			all: [
+				'Gruntfile.js',
+				'<%= yeoman.app %>/scripts/{,*/}*.js'
+			]
 		},
 		compass: {
 			options: {
@@ -159,6 +154,11 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		// not used since Uglify task does concat,
+		// but still available if needed
+		/*concat: {
+			dist: {}
+		},*/
 		rev: {
 			dist: {
 				files: {
@@ -172,12 +172,20 @@ module.exports = function (grunt) {
 			}
 		},
 		uncss: {
-			options: {
-				ignore: ['.active']
-			},
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': ['<%= yeoman.dist %>/Index.html']
+				},
+				options: {
+					ignore: [
+						'.carousel-inner>.active',
+						'.carousel-inner>.active.left',
+						'.carousel-inner>.active.right',
+						'.carousel-inner>.next',
+						'.carousel-inner>.next.left',
+						'.carousel-inner>.prev',
+						'.carousel-inner>.prev.right'
+						]
 				}
 			}
 		},
@@ -207,15 +215,15 @@ module.exports = function (grunt) {
 		htmlmin: {
 			dist: {
 				options: {
-					// removeCommentsFromCDATA: true,
+					/*removeCommentsFromCDATA: true,
 					// https://github.com/yeoman/grunt-usemin/issues/44
 					//collapseWhitespace: true,
-					// collapseBooleanAttributes: true,
-					// removeAttributeQuotes: true,
-					// removeRedundantAttributes: true,
-					// useShortDoctype: true,
-					// removeEmptyAttributes: true,
-					// removeOptionalTags: true
+					collapseBooleanAttributes: true,
+					removeAttributeQuotes: true,
+					removeRedundantAttributes: true,
+					useShortDoctype: true,
+					removeEmptyAttributes: true,
+					removeOptionalTags: true*/
 				},
 				files: [{
 					expand: true,
@@ -225,30 +233,7 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
-		ngmin: {
-			dist: {
-				files: [{
-					expand: true,
-					cwd: '<%= yeoman.dist %>/scripts',
-					src: '*.js',
-					dest: '<%= yeoman.dist %>/scripts'
-				}]
-			}
-		},
-		uglify: {
-			dist: {
-				files: {
-					'<%= yeoman.dist %>/scripts/scripts.js': [
-						'<%= yeoman.dist %>/scripts/scripts.js'
-					]
-				}
-			}
-		},
-		cdnify: {
-			dist: {
-				html: ['<%= yeoman.dist %>/*.html']
-			}
-		},
+		// Put files not handled in other tasks here
 		copy: {
 			dist: {
 				files: [{
@@ -302,23 +287,6 @@ module.exports = function (grunt) {
 				src: '{,*/}*.css'
 			}
 		},
-
-		// VALIDATION
-		//
-		//
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc'
-			},
-			all: [
-				'Gruntfile.js',
-				'<%= yeoman.app %>/scripts/{,*/}*.js'
-			]
-		},
-
-
-
-		// CONCURRENT TASKS
 		concurrent: {
 			server: [
 				'compass:server',
@@ -333,14 +301,44 @@ module.exports = function (grunt) {
 				'imagemin',
 				'htmlmin'
 			]
+		},
+		karma: {
+			unit: {
+				configFile: 'karma.conf.js',
+				singleRun: true
+			}
+		},
+		cdnify: {
+			dist: {
+				html: ['<%= yeoman.dist %>/*.html']
+			}
+		},
+		ngmin: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '<%= yeoman.dist %>/scripts',
+					src: '*.js',
+					dest: '<%= yeoman.dist %>/scripts'
+				}]
+			}
+		},
+		uglify: {
+			dist: {
+				files: {
+					'<%= yeoman.dist %>/scripts/scripts.js': [
+						'<%= yeoman.dist %>/scripts/scripts.js'
+					]
+				}
+			}
 		}
-
 	});
 
 	grunt.registerTask('server', function (target) {
 		if (target === 'dist') {
-			return grunt.task.run(['build', 'connect:dist:keepalive']);
+			return grunt.task.run(['build', 'configureProxies', 'connect:dist:keepalive']);
 		}
+
 		grunt.task.run([
 			'clean:server',
 			'concurrent:server',
