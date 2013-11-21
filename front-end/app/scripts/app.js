@@ -1,14 +1,10 @@
 'use strict';
 
 angular.module('pacApp', ['vegaModule'])
-	.factory('api', ['$location', function($location){
+	.factory('api', [function(){
 
 		return function(path){
-			if($location.search().development == 'true'){
-				return 'http://localhost:9000/mock-api' + path + '.json'
-			} else {
-				return 'http://pac-info.herokuapp.com/ventures' + path
-			}
+			return '/ventures' + path;
 		};
 	}])
 	.factory('PacService', ['api','$http', function(api, $http){
