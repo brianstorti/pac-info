@@ -368,7 +368,7 @@ module.exports = function (grunt) {
 		'uncss',
 		'uglify',
 		'rev',
-		'usemin'
+		'usemin',
 		'copy:publish',
 		'clean:dist'
 	]);
