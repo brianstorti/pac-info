@@ -37,7 +37,8 @@ class Venture
 
   def by_status
     collection.aggregate(
-      { '$match' => { 'idn_digs.Subeixo' => @category,
+      { '$match' => { 'idn_estagio.estagio' => { '$in' => ANALISED_STATUSES },
+                      'idn_digs.Subeixo' => @category,
                       'dat_ciclo' => DATE_LAST_CYCLE }},
       { '$group' => { '_id' => '$idn_estagio.estagio',
                       'total' => { '$sum' => 1 }}},
