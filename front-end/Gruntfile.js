@@ -185,7 +185,8 @@ module.exports = function (grunt) {
 						'.carousel-inner>.next.left',
 						'.carousel-inner>.prev',
 						'#nprogress .bar',
-						'#nprogress .peg'
+						'#nprogress .peg',
+						'.navbar-fixed-top'
 						]
 				}
 			}
