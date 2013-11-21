@@ -57,6 +57,10 @@ angular.module('pacApp')
             locationChange = function(){ return $location.path(); },
             isDefault = angular.isDefined(attrs.navLinkDefault);
 
+        iElement.click(function(){
+          angular.element('.navbar-toggle').click();
+        });
+
         scope.$watch(locationChange, function(path){
           var pathDefault = path === '/' || path === '';
 

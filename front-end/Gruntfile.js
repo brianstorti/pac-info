@@ -189,7 +189,8 @@ module.exports = function (grunt) {
 						'.navbar-fixed-top',
 						'.navbar-collapse.in',
 						'.navbar-collapse.collapse',
-						'.navbar-collapse.collapsing'
+						'.navbar-collapse.collapsing',
+						'.collapsing'
 						]
 				}
 			}
