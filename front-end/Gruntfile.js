@@ -269,6 +269,29 @@ module.exports = function (grunt) {
 					]
 				}]
 			},
+			publish: {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: '<%= yeoman.dist %>',
+					dest: '../public/',
+					src: ['**', '**/bower_components/**']
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.dist %>',
+					dest: '../public/',
+					src: [
+						'images/*'
+					]
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>',
+					dest: '../public/',
+					src: [
+						'images/*'
+					]
+				}]
+			},
 			styles: {
 				expand: true,
 				cwd: '<%= yeoman.app %>/styles',
@@ -346,6 +369,8 @@ module.exports = function (grunt) {
 		'uglify',
 		'rev',
 		'usemin'
+		'copy:publish',
+		'clean:dist'
 	]);
 
 	grunt.registerTask('default', [
