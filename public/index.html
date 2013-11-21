@@ -17,7 +17,7 @@
 
         <link rel="stylesheet" href="styles/6309b451.main.css">
 
-  
+
   <body ng-app=pacApp ng-controller=MainCtrl>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -179,7 +179,7 @@
               <div id=carousel class="carousel slide" on-slide="" next=slides.next() prev=slides.prev() style="height: 120px">
                 <div class=carousel-inner>
                   <div class=item ng-repeat="regiao in ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']" ng-class="{active: $first}">
-                    <h3 class="text-center text-inverse" style=margin-top:50px ng-bind=regiao></h3>
+                    <h3 class="text-center text-inverse" style=margin-top:50px ng-bind="regiao"></h3>
                   </div>
                 </div>
 
