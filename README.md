@@ -22,7 +22,7 @@ Os dados foram obtidos no [site do governo](http://dados.gov.br/dataset/obras-do
 * [Thiago Felix](http://github.com/thiagofelix)
 
 #### Como contribuir
-* Clone o repositório `git clone git@github.com:brianstorti/pac-info.git`.
+* Clone o repositório: `git clone git@github.com:brianstorti/pac-info.git`.
 * Inicie e atualize o submodule `data`: `git submodule init && git submodule update`.
 * Com o mongodb rodando, execute o script de importação dos dados: `sh data/import-to-mongodb.sh`.
 * Para trabalhar no backend (api que usa o rails-api), rode `rails s`. Isso deve subir o `thin` na porta 3000.
