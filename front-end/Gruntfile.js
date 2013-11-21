@@ -184,7 +184,8 @@ module.exports = function (grunt) {
 						'.carousel-inner>.next',
 						'.carousel-inner>.next.left',
 						'.carousel-inner>.prev',
-						'.carousel-inner>.prev.right'
+						'.bar',
+						'.peg'
 						]
 				}
 			}
