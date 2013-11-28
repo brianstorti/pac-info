@@ -33,6 +33,9 @@
 @media (min-width: $screen-tablet) {
 
 	.pac-nav-site {
+		float: none;
+		max-width: 687px;
+		margin: 0 auto;
 		li {
 			font-size: 13px;
 			padding-left: 0;
@@ -44,6 +47,7 @@
 @media (min-width: $screen-desktop) {
 
 	.pac-nav-site {
+		max-width: 906px;
 		li {
 			font-size: 16px;
 			padding-left: 8px;

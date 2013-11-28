@@ -3,11 +3,11 @@
 angular.module('pacApp')
 	.factory('evolucaoSpec', ['chartSize', function(chartSize){
 		return function(element, data, width, small) {
-			small = width < 500;
+			small = width < 700;
 			return {
 				'width': width,
 				'height': chartSize(element).height,
-				'padding': { 'top': small?30:20, 'left': small?10:0, 'bottom': small?70:30, 'right': small?20:10 },
+				'padding': { 'top': 20, 'left': 0, 'bottom': (small? 60 : 30), 'right': 0 },
 				'data': [
 					{
 						'name': 'table'
@@ -55,7 +55,7 @@ angular.module('pacApp')
 							'labels': {
 								'fill': { 'value': 'white' },
 								'fontSize': { 'value': 14 },
-								'angle': {'value': (small? 45:0)},
+								'angle': {'value': (small? 20:0)},
 								'dy': {'value': (small? 20:0)},
 								'dx': {'value': (small? 20:0)}
 							}
