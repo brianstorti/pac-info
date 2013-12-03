@@ -12,7 +12,7 @@ angular.module('pacApp')
 			small = width < 350;
 			return {
 				'width': width,
-				'height': (small)?200:400,
+				'height': 250,
 				'padding': { 'top': 20, 'left': 10, 'bottom': 30, 'right': 10 },
 				'data': [{
 					'name': 'table',
@@ -24,7 +24,7 @@ angular.module('pacApp')
 						'name': 'r',
 						'type': 'sqrt',
 						'domain': {'data': 'table', 'field': 'data.total'},
-						'range': (small)?[80, 100]:[130, 180]
+						'range': (small)?[60, 110]:[80, 140]
 					}
 				],
 				'marks': [
@@ -37,7 +37,7 @@ angular.module('pacApp')
 								'y': {'group': 'height', 'mult': 0.5},
 								'startAngle': {'field': 'startAngle'},
 								'endAngle': {'field': 'endAngle'},
-								'innerRadius': {'value': (small)?30:80},
+								'innerRadius': {'value': 40},
 								'outerRadius': {'scale': 'r', 'field': 'data.total'},
 								'fill': {'field': 'data.color'},
 								'stroke': {'value': 'white'},
@@ -48,7 +48,7 @@ angular.module('pacApp')
 								'y': {'group': 'height', 'mult': 0.5},
 								'startAngle': {'field': 'startAngle'},
 								'endAngle': {'field': 'endAngle'},
-								'innerRadius': {'value': (small)?30:80},
+								'innerRadius': {'value': 40},
 								'outerRadius': {'scale': 'r', 'field': 'data.total'}
 							}
 						}
@@ -68,7 +68,7 @@ angular.module('pacApp')
 
 			return {
 				'width': width,
-				'height': (small)?300:400,
+				'height': estagios.length*50,
 				'padding': { 'top': 20, 'left': 10, 'bottom': 30, 'right': 30 },
 				'data': [{
 					'name': 'table',
@@ -117,7 +117,7 @@ angular.module('pacApp')
 						},
 						'labels': {
 							'fill': {'value': '#656567'},
-							'fontSize': {'value': (small)?13:16},
+							'fontSize': {'value': 16},
 							'fontFamily': {'value': 'Helvetica'},
 							'text': {'scale': 'estagios'}
 						},
@@ -125,8 +125,8 @@ angular.module('pacApp')
 							'padding': {'value': 10},
 							'stroke': {'value': '#ccc'},
 							'strokeWidth': {'value': 0},
-							'x': {'x': 0},
-							'y': {'value': (small)?0:70}
+							'x': {'group': 'width', 'mult': 0.5, 'offset':-80},
+							'y': {'value': 70}
 						}
 					}
 				}]

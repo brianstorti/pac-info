@@ -29,3 +29,7 @@ Os dados foram obtidos no [site do governo](http://dados.gov.br/dataset/obras-do
   Você pode ver o arquivo de rotas (`config/routes.rb`) para mais informações de como acessar a api.
 * Para trabalhar no frontend, entre no diretório `front-end` e rode `grunt server`.
 * Abra um pull request com as suas alterações.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/brianstorti/pac-info/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

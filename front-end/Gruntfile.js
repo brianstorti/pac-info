@@ -1,6 +1,9 @@
 // Generated on 2013-11-14 using generator-angular 0.5.1
 'use strict';
 
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -10,13 +13,13 @@
 module.exports = function (grunt) {
 	require('load-grunt-tasks')(grunt);
 	require('time-grunt')(grunt);
-	grunt.loadNpmTasks('grunt-uncss');
 
 	grunt.initConfig({
 		yeoman: {
 			// configurable paths
-			app: require('./bower.json').appPath || 'app',
-			dist: 'dist'
+			app: 'app',
+			dist: 'dist',
+			api: 'pac-info.herokuapp.com'
 		},
 		watch: {
 			compass: {
@@ -57,13 +60,30 @@ module.exports = function (grunt) {
 				hostname: '0.0.0.0',
 				livereload: 35729
 			},
+			proxies: [
+				{
+					context: '/ventures',
+					host: '<%= yeoman.api %>',
+					changeOrigin: true,
+					xforward: true
+				}
+			],
 			livereload: {
 				options: {
 					open: true,
+					debug: true,
 					base: [
 						'.tmp',
 						'<%= yeoman.app %>'
-					]
+					],
+					middleware: function (connect, options) {
+						var middlewares = [proxySnippet];
+						options.base.forEach(function(base) {
+							// Serve static files.
+							middlewares.push(connect.static(base));
+						});
+						return middlewares;
+					}
 				}
 			},
 			test: {
@@ -78,7 +98,16 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					base: '<%= yeoman.dist %>'
+					debug: true,
+					base: ['<%= yeoman.dist %>'],
+					middleware: function (connect, options) {
+						var middlewares = [proxySnippet];
+						options.base.forEach(function(base) {
+							// Serve static files.
+							middlewares.push(connect.static(base));
+						});
+						return middlewares;
+					}
 				}
 			}
 		},
@@ -146,6 +175,23 @@ module.exports = function (grunt) {
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': ['<%= yeoman.dist %>/Index.html']
+				},
+				options: {
+					ignore: [
+						'.carousel-inner>.active',
+						'.carousel-inner>.active.left',
+						'.carousel-inner>.active.right',
+						'.carousel-inner>.next',
+						'.carousel-inner>.next.left',
+						'.carousel-inner>.prev',
+						'#nprogress .bar',
+						'#nprogress .peg',
+						'.navbar-fixed-top',
+						'.navbar-collapse.in',
+						'.navbar-collapse.collapse',
+						'.navbar-collapse.collapsing',
+						'.collapsing'
+						]
 				}
 			}
 		},
@@ -296,13 +342,14 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('server', function (target) {
 		if (target === 'dist') {
-			return grunt.task.run(['build', 'connect:dist:keepalive']);
+			return grunt.task.run(['build', 'configureProxies', 'connect:dist:keepalive']);
 		}
 
 		grunt.task.run([
 			'clean:server',
 			'concurrent:server',
 			'autoprefixer',
+			'configureProxies',
 			'connect:livereload',
 			'watch'
 		]);

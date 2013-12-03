@@ -102,30 +102,35 @@
     <section id="primaryCharts"  class="primary-area">
       <div class="container">
 
-        <p class="lead text-center ng-cloak" ng-show="evolucao.data">
-          O planejamento para
-          <b ng-bind="banner.title"></b> é de investir
-          <b class="h4" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
-
-          de reais entre 2009 e 2014 em obras de
-          <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
-            <span ng-show="$first" ng-bind-template='{{tipo}}'></span>
-            <span ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
-            <span ng-show="$last" ng-bind-template='e {{tipo}}.'></span>
-          </span>
-          <i ng-show="banner.loading" class="fa fa-spinner fa-spin"></i>
-        </p>
-
         <div class="row">
 
-          <div class="col-md-12">
+          <div class="col-xs-8 col-xs-offset-2">
+            <p class="lead text-center ng-cloak" ng-show="evolucao.data">
+              O planejamento para
+              <b ng-bind="banner.title"></b> é de investir
+              <b class="h4" ng-bind-template="{{evolucao.data.total}} {{evolucao.data.totalLabel}}"></b>
+
+              de reais entre 2009 e 2014
+
+              <span class="hidden-xs">
+                em obras de
+                <span ng-repeat="tipo in distribuicao.data.tipos | limitTo:5">
+                  <span ng-show="$first" ng-bind-template='{{tipo}}'></span>
+                  <span ng-show="$middle" ng-bind-template=', {{tipo}}'></span>
+                  <span ng-show="$last" ng-bind-template='e {{tipo}}.'></span>
+                </span>
+              </span>
+            </p>
+          </div>
+
+          <div class="col-xs-12">
             <div class="well well-info">
               <header class="well-title">Planejamento do PAC </span></header>
               <div vega-chart data="evolucao.data" spec="evolucao.spec" opts="evolucao.opts"></div>
             </div>
           </div>
 
-          <div class="col-md-12">
+          <div class="col-xs-12">
             <div class="well well-warning">
               <header class="well-title ng-cloak">
                 Empreendimentos de <span ng-bind="banner.title"></span>
@@ -133,6 +138,19 @@
               <div vega-chart data="distribuicao.data" spec="distribuicao.spec"></div>
             </div>
           </div>
+
+          <div class="col-xs-12">
+            <p class="lead text-center ng-cloak"> Total de <b class="h4" ng-bind-template="{{distribuicao.data.total}}"></b> Empreendimentos</p>
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="empreendimento in distribuicao.data.full.table">
+                <div class="well well-primary well-small">
+                  <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
+                  <p class="text-center text-inverse"  ng-bind="empreendimento._id"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -140,25 +158,17 @@
     <section id="estagiosChart" class="secondary-area">
       <div class="container">
         <div class="row">
-          <p class="lead text-center ng-cloak"> Total de <b class="h4" ng-bind-template="{{distribuicao.data.total}}"></b> Empreendimentos</p>
-          <div class="col-md-3 col-xs-6" ng-repeat="empreendimento in distribuicao.data.full.table">
-            <div class="well well-primary" style="min-height:170px; margin-bottom:0">
-              <h3 class="text-center text-inverse" ng-bind-template="{{empreendimento.quantidade_empreendimentos}}"></h3>
-              <p class="text-center text-inverse"  ng-bind="empreendimento._id"></p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
+
+          <div class="col-xs-12">
             <div class="well well-lg well-shadow">
               <header class="well-title-inverse text-center ng-cloak">
                 Percentual de obras concluídas é de
                 <b class="h4" ng-bind-template="{{estagios.data.percentalConcluido}}"></b>
               </header>
-              <div class="col-sm-6">
+              <div class="col-xs-12 col-md-4">
                 <div vega-chart data="estagios.legendData" spec="estagios.legendSpec" reuse-spec="false"></div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-xs-12 col-md-8">
                 <div vega-chart data="estagios.data" spec="estagios.spec"></div>
               </div>
             </div>
@@ -176,7 +186,7 @@
 
         <div class="container">
          <div class="row">
-          <div class="col-md-4">
+          <div class="col-sm-4">
 
             <div class="well well-success">
               <div id="carousel" class="carousel slide" on-slide next="slides.next()" prev="slides.prev()" style="height: 120px">
@@ -202,7 +212,7 @@
             </div>
           </div>
 
-          <div class="col-md-8">
+          <div class="col-sm-8">
             <div class="well well-success">
               <header class="well-title ng-cloak">Planejamento na Região {{slides.current.name}}</header>
               <div class="col-md-12">
