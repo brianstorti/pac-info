@@ -1,4 +1,4 @@
-require_relative "../app/models/currency_formatter"
+require_relative "../../app/models/currency_formatter"
 
 describe CurrencyFormatter do
   it 'ignores cents' do
